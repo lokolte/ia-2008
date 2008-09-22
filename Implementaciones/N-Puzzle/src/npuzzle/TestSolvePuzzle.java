@@ -1,4 +1,4 @@
-package npuzzle;
+package  npuzzle;
 
 /*
  * Assignment: Homework 04
