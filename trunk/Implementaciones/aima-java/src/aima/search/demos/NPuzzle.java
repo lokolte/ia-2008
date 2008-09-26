@@ -7,16 +7,18 @@ package aima.search.demos;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
-import aima.search.eightpuzzle.EightPuzzleBoard;
-import aima.search.eightpuzzle.EightPuzzleGoalTest;
-import aima.search.eightpuzzle.EightPuzzleSuccessorFunction;
-import aima.search.eightpuzzle.MisplacedTilleHeuristicFunction;
 import aima.search.framework.GraphSearch;
 import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
 import aima.search.informed.AStarSearch;
+import aima.search.npuzzle.ManhattanHeuristicFunction;
+import aima.search.npuzzle.MisplacedTilleHeuristicFunction;
+import aima.search.npuzzle.NPuzzleBoard;
+import aima.search.npuzzle.NPuzzleGoalTest;
+import aima.search.npuzzle.NPuzzleSuccessorFunction;
 import aima.search.uninformed.IterativeDeepeningSearch;
 
 /**
@@ -25,29 +27,59 @@ import aima.search.uninformed.IterativeDeepeningSearch;
  */
 
 public class NPuzzle {
-	public static int tam = 4;
-	// public static EightPuzzleBoard boardWithThreeMoveSolution = new
-	// EightPuzzleBoard(
-	// new int[] { 1, 2, 5, 3, 4, 0, 6, 7, 8 });;
+	public static int tam = 3;
 
-	static EightPuzzleBoard random1 = new EightPuzzleBoard(new int[] { 1, 2, 3,
-			4, 5, 6, 7, 8, 9, 10, 12, 0, 13, 14, 11, 15 }, tam);
+	// static NPuzzleBoard random1 = new NPuzzleBoard(new int[] { 0, 2, 3, 4, 5,
+	// 6, 7, 8, 9, 10, 12, 1, 13, 14, 11, 15 }, tam);
 
-	// static EightPuzzleBoard extreme = new EightPuzzleBoard(new int[] { 0, 8,
-	// 7,$
-	// 6, 5, 4, 3, 2, 1 });
+	private static NPuzzleBoard TableroAzar(int tam) {
+		int[] miarray = new int[tam * tam];
+		for (int i = 0; i < tam * tam; i++) {
+			miarray[i] = i;
+		}
 
-	public static void main(String[] args) {
-		eightPuzzleIDLSDemo();
+		NPuzzleBoard random1 = new NPuzzleBoard(randomizar(miarray), tam);
+		return random1;
 	}
 
-	private static void eightPuzzleIDLSDemo() {
-		System.out.println("\nEightPuzzleDemo Iterative DLS -->");
+	public static int[] randomizar(final int[] ints) {
+		final Random rd = new Random();
+		for (int i = 0; i < ints.length; i++) {
+			final int ci = ints[i];
+			final int ni = Math.abs(rd.nextInt() % ints.length);
+			ints[i] = ints[ni];
+			ints[ni] = ci;
+		}
+		return ints;
+	}
+
+	public static void main(String[] args) {
+		long inicio, fin;
+		NPuzzleBoard random1 = TableroAzar(tam);
+		System.out.println("--------------------------------------------");
+		inicio = System.currentTimeMillis();
+
+		eightPuzzleIDLSDemo(random1);
+		// eightPuzzleAStarDemo(random1);
+		// /eightPuzzleAStarManhattanDemo(random1);
+		fin = System.currentTimeMillis();
+		System.out.println("Y ha tardado: " + ((fin - inicio) / 1000.0)
+				+ " segundos");
+
+	}
+
+	private static void eightPuzzleIDLSDemo(NPuzzleBoard random1) {
+		System.out.println("Tablero Problema");
 		System.out.println(random1.toString());
+		System.out.println("Tablero Meta");
+		NPuzzleGoalTest meta = new NPuzzleGoalTest();
+		meta.generarMeta(tam);
+		System.out.println(meta.getGoalBoard().toString());
+
+		System.out.println("\nEightPuzzleDemo Iterative DLS -->");
 		try {
 			Problem problem = new Problem(random1,
-					new EightPuzzleSuccessorFunction(),
-					new EightPuzzleGoalTest());
+					new NPuzzleSuccessorFunction(), new NPuzzleGoalTest());
 			Search search = new IterativeDeepeningSearch();
 			SearchAgent agent = new SearchAgent(problem, search);
 			printActions(agent.getActions());
@@ -57,13 +89,29 @@ public class NPuzzle {
 		}
 	}
 
-	private static void eightPuzzleAStarDemo() {
+	private static void eightPuzzleAStarManhattanDemo(NPuzzleBoard random1) {
+		System.out
+				.println("\nEightPuzzleDemo AStar Search (ManhattanHeursitic)-->");
+		try {
+			Problem problem = new Problem(random1,
+					new NPuzzleSuccessorFunction(), new NPuzzleGoalTest(),
+					new ManhattanHeuristicFunction());
+			Search search = new AStarSearch(new GraphSearch());
+			SearchAgent agent = new SearchAgent(problem, search);
+			printActions(agent.getActions());
+			printInstrumentation(agent.getInstrumentation());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private static void eightPuzzleAStarDemo(NPuzzleBoard random1) {
 		System.out
 				.println("\nEightPuzzleDemo AStar Search (MisplacedTileHeursitic)-->");
 		try {
 			Problem problem = new Problem(random1,
-					new EightPuzzleSuccessorFunction(),
-					new EightPuzzleGoalTest(),
+					new NPuzzleSuccessorFunction(), new NPuzzleGoalTest(),
 					new MisplacedTilleHeuristicFunction());
 			Search search = new AStarSearch(new GraphSearch());
 			SearchAgent agent = new SearchAgent(problem, search);

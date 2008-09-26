@@ -1,4 +1,4 @@
-package aima.search.eightpuzzle;
+package aima.search.npuzzle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import aima.basic.XYLocation;
  * 
  */
 
-public class EightPuzzleBoard {
+public class NPuzzleBoard {
 
 	public static String LEFT = "Left";
 
@@ -27,19 +27,19 @@ public class EightPuzzleBoard {
 	int[] board;
 	int tam;
 
-	public EightPuzzleBoard(int atam) {
+	public NPuzzleBoard(int atam) {
 		board = new int[] { 5, 4, 0, 6, 1, 8, 7, 3, 2, 9, 10, 11, 12, 13, 14,
 				15 };
 		tam = atam;
 
 	}
 
-	public EightPuzzleBoard() {
+	public NPuzzleBoard() {
 		board = new int[] { 5, 4, 0, 6, 1, 8, 7, 3, 2, 9, 10, 11, 12, 13, 14,
 				15 };
 	}
 
-	public EightPuzzleBoard(int[] aBoard, int atam) {
+	public NPuzzleBoard(int[] aBoard, int atam) {
 		board = aBoard;
 		tam = atam;
 	}
@@ -161,7 +161,7 @@ public class EightPuzzleBoard {
 		if ((o == null) || (this.getClass() != o.getClass())) {
 			return false;
 		}
-		EightPuzzleBoard aBoard = (EightPuzzleBoard) o;
+		NPuzzleBoard aBoard = (NPuzzleBoard) o;
 
 		for (int i = 0; i < this.tam * this.tam - 1; i++) {
 			if (this.getPositionOf(i) != aBoard.getPositionOf(i)) {
