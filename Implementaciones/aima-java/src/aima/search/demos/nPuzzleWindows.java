@@ -30,11 +30,13 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -42,172 +44,35 @@ import javax.swing.SwingConstants;
 public class nPuzzleWindows extends JPanel implements KeyListener,
 		ComponentListener {
 	private int partida[];
+	private int memoria[];
 	private int tamanho = 3;// Maneja el tamaño del problema Puzzle
 	private final BorderLayout esquema_principal;
-	private final JPanel panelCentro, panelDisplay, JPsetN, JPpath, JPnodes;// Paneles
+	private final JPanel panelCentro, panelDisplay;// Paneles
+	private final JPanel JPsetN;
+	final JPanel JPjugadas, JPbotoncitos, JPbotoncitos2;
+	private final JPanel JPpath, JPnodes, JPsecuencias;
 	// del
 	// contenedor principal
 	private final JPanel panelNumerico, panelMain; // Subpaneles del
 	// panelCentro
 	private JButton botones_numericos[];// Botones
-	private JButton b_hash, b_cerrar, b_evaluar, b_ayuda;
-	final JButton b_setN;
+	private JButton b_hash, b_memoria, b_evaluarPI, b_evaluarAstar;
+	private final JButton b_setN;
+	final JButton b_secuencias, b_salir;
 	// para el Subpanel panelCentro
 	private final JLabel etiqueta;
-	private final JTextField display_profundidad, display_n, display_nodos;
-	private JLabel JLsetN, JLpath, JLnodes, JLempty;
+	private final JTextField display_profundidad, display_time;
+	private final JTextField display_n;
+	final JTextField display_nodos;
+	private JLabel JLsetN, JLpath, JLnodes, JLsecuencias, JLtime;
+	final JTextArea display_secuencias;
+	final JLabel JLempty;
 	private boolean resp_resultado;
 	final boolean display_push = false;
-	private final String memoria = new String("0");
-
-	// Constructos General
-	public nPuzzleWindows() {
-		super();
-
-		esquema_principal = new BorderLayout(5, 10);// Este es el equema
-		// principal donde se dibuja
-		// todos los components
-		this.setLayout(esquema_principal);
-		// Se crea el objeto que se encargara de manejar todos los eventos del
-		// programa
-		ManejadorEventoBotones manejador = new ManejadorEventoBotones(this);
-		this.addKeyListener(this);// EL objeto de la clase Calculadora se
-		// encarga de manejar los eventos tipo
-		// KeyListener
-		/*
-		 * Panel Central para operaciones principales, numerico, y tecla de
-		 * borrar, evaluar, ayuda, etc
-		 */
-		panelCentro = new JPanel();
-		panelCentro.setLayout(new BorderLayout(3, 3));
-
-		// Panel para evaluar, ayuda, retroceder y borrar
-		panelMain = new JPanel();
-		panelMain.setLayout(new GridLayout(1, 4));
-		// Crear botones para evaluar, ayuda, retroceder y borrar
-		etiqueta = new JLabel();
-		crear_botones_principales();
-
-		// Panel principal de Botones numericos y operaciones principales
-		panelNumerico = new JPanel();
-		panelNumerico.setLayout(new GridLayout(tamanho, tamanho, 2, 2));
-		// Crear y agregar botones numericos
-		botones_numericos = new JButton[tamanho * tamanho];
-		crear_botones_numericos(tamanho);
-		for (int i = 0; i < tamanho * tamanho; i++) {
-			panelNumerico.add(botones_numericos[i]);
-		}
-
-		// Agregamos los paneles numericos y principal al panel central
-		panelCentro.add(panelMain, BorderLayout.SOUTH);
-		panelCentro.add(panelNumerico, BorderLayout.NORTH);
-
-		// Se agraga la etiqueta del dato Profundidad
-		JPpath = new JPanel();
-		JPpath.setLayout(new GridLayout(1, 2));
-		JLpath = new JLabel();
-		JLpath = new JLabel("Profundidad");
-		JLpath.setHorizontalAlignment(SwingConstants.LEFT);
-		JLpath.setFont(new Font("Serif", Font.PLAIN, 18));
-		display_profundidad = new JTextField("", 60);
-		display_profundidad.setFont(new Font("Monospaced", Font.PLAIN, 24));
-		display_profundidad.setHorizontalAlignment(SwingConstants.RIGHT);
-		display_profundidad.setEditable(false);
-		display_profundidad.setBackground(new Color(255, 255, 255));
-		display_profundidad.addKeyListener(this);
-		JPpath.add(JLpath);
-		JPpath.add(display_profundidad);
-
-		// Se agraga la etiqueta del dato Nodos Expandidos
-		JPnodes = new JPanel();
-		JPnodes.setLayout(new GridLayout(1, 2));
-		JLnodes = new JLabel();
-		JLnodes = new JLabel("Nodos expandidos");
-		JLnodes.setHorizontalAlignment(SwingConstants.LEFT);
-		JLnodes.setFont(new Font("Serif", Font.PLAIN, 18));
-		display_nodos = new JTextField("0", 60);
-		display_nodos.setFont(new Font("Serif", Font.PLAIN, 24));
-		display_nodos.setHorizontalAlignment(SwingConstants.RIGHT);
-		display_nodos.setEditable(false);
-		display_nodos.setBackground(new Color(255, 255, 255));
-		display_nodos.setForeground(new Color(255, 0, 0));
-		display_nodos.addKeyListener(this);
-		JPnodes.add(JLnodes);
-		JPnodes.add(display_nodos);
-
-		// Armamos el panel donde se insertara el tamaño de N
-		JPsetN = new JPanel();
-		JPsetN.setLayout(new GridLayout(1, 3));
-		JLsetN = new JLabel();
-		JLsetN = new JLabel("Tamaño");
-		JLsetN.setHorizontalAlignment(SwingConstants.LEFT);
-		JLsetN.setFont(new Font("Serif", Font.PLAIN, 18));
-		display_n = new JTextField("", 60);
-		display_n.setFont(new Font("Monospaced", Font.PLAIN, 24));
-		display_n.setHorizontalAlignment(SwingConstants.RIGHT);
-		display_n.setEditable(true);
-		display_n.setBackground(new Color(255, 255, 255));
-		display_n.addKeyListener(this);
-		b_setN = new JButton("Cambiar");
-		b_setN.setToolTipText("Fija el valor de N y recalcula la matriz");
-		b_setN.setFont(new Font("Arial", Font.BOLD, 12));
-		b_setN.setMnemonic(8);
-		b_setN.setForeground(new Color(255, 0, 0));
-		JPsetN.add(JLsetN);
-		JPsetN.add(display_n);
-		JPsetN.add(b_setN);
-
-		// Crear Panel de Display
-		panelDisplay = new JPanel();
-		panelDisplay.setLayout(new GridLayout(3, 1, -1, -1));
-		panelDisplay.setBackground(new Color(255, 255, 255));
-		panelDisplay.add(JPsetN);
-		panelDisplay.add(JPpath);
-		panelDisplay.add(JPnodes);
-
-		/*
-		 * Agregamos el panel central, panel izquierdo y Caja de Texto del
-		 * display_profundidad al Contenedor principal
-		 */
-		this.add(panelCentro, BorderLayout.CENTER);
-		// this.add(panelIzq, BorderLayout.WEST);
-		this.add(panelDisplay, BorderLayout.SOUTH);
-
-		/*
-		 * Agregamos los manejadores de eventos para todos los botones definidos
-		 */
-		/**
-		 * for (int i = 0; i < this.tamanho * this.tamanho; i++) { // Manejador
-		 * de // los botones // numericos
-		 * botones_numericos[i].addMouseMotionListener(manejador);
-		 * botones_numericos[i].addMouseListener(manejador);
-		 * botones_numericos[i].addActionListener(manejador);
-		 * botones_numericos[i].addKeyListener(this); }
-		 * 
-		 * b_evaluar.addMouseListener(manejador);
-		 * b_evaluar.addMouseMotionListener(manejador);
-		 * b_evaluar.addActionListener(manejador);
-		 * b_evaluar.addKeyListener(this); b_ayuda.addMouseListener(manejador);
-		 * b_ayuda.addMouseMotionListener(manejador);
-		 * b_ayuda.addActionListener(manejador); b_ayuda.addKeyListener(this);
-		 * b_hash.addMouseListener(manejador);
-		 * b_hash.addMouseMotionListener(manejador);
-		 * b_hash.addActionListener(manejador); b_hash.addKeyListener(this);
-		 * b_cerrar.addMouseListener(manejador);
-		 * b_cerrar.addMouseMotionListener(manejador);
-		 * b_cerrar.addActionListener(manejador); b_cerrar.addKeyListener(this); //
-		 * *********************************************************************************** //
-		 * Fijar los valores por defecto del Frame
-		 */
-		b_cerrar.requestFocus();// Dejamos esta sentencia que es util cuando el
-		// panel se carga en un
-		// Frame.
-	}
 
 	// Constructor Generar con tamaño del Puzzle como parametro
-	public nPuzzleWindows(int tamanho) {
+	public nPuzzleWindows() {
 		super();
-		this.tamanho = tamanho;
 
 		esquema_principal = new BorderLayout(5, 10);// Este es el equema
 		// principal donde se dibuja
@@ -250,7 +115,6 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		 * Panel Izquierdo para funciones y caracteres especiales
 		 */
 
-		JLempty = new JLabel();
 		JLabel JLempty2 = new JLabel();
 		JLempty = new JLabel(" ");
 		// Se agraga la etiqueta del dato Profundidad
@@ -260,9 +124,9 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		JLpath = new JLabel("Profundidad");
 		JLpath.setHorizontalAlignment(SwingConstants.LEFT);
 		JLpath.setFont(new Font("Serif", Font.PLAIN, 18));
-		display_profundidad = new JTextField("", 60);
+		display_profundidad = new JTextField("0", 60);
 		display_profundidad.setFont(new Font("Monospaced", Font.PLAIN, 24));
-		display_profundidad.setHorizontalAlignment(SwingConstants.RIGHT);
+		display_profundidad.setHorizontalAlignment(SwingConstants.LEFT);
 		display_profundidad.setEditable(false);
 		display_profundidad.setBackground(new Color(255, 255, 255));
 		display_profundidad.addKeyListener(this);
@@ -277,20 +141,52 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		JLnodes.setHorizontalAlignment(SwingConstants.LEFT);
 		JLnodes.setFont(new Font("Serif", Font.PLAIN, 18));
 		display_nodos = new JTextField("0", 60);
-		display_nodos.setFont(new Font("Serif", Font.PLAIN, 24));
-		display_nodos.setHorizontalAlignment(SwingConstants.RIGHT);
+		display_nodos.setFont(new Font("Monospaced", Font.PLAIN, 24));
+		display_nodos.setHorizontalAlignment(SwingConstants.LEFT);
 		display_nodos.setEditable(false);
 		display_nodos.setBackground(new Color(255, 255, 255));
-		display_nodos.setForeground(new Color(255, 0, 0));
 		display_nodos.addKeyListener(this);
 		JPnodes.add(JLnodes);
 		JPnodes.add(display_nodos);
 		JPnodes.add(JLempty2);
+		// Se agraga la etiqueta del dato secuencia del Juego con el boton de
+		// animacion
+		JPsecuencias = new JPanel();
+		JPsecuencias.setLayout(new GridLayout(1, 3));
+		JLsecuencias = new JLabel();
+		JLsecuencias = new JLabel("Secuencia de Jugadas");
+		JLsecuencias.setHorizontalAlignment(SwingConstants.LEFT);
+		JLsecuencias.setFont(new Font("Serif", Font.PLAIN, 18));
+		display_secuencias = new JTextArea();
+		JScrollPane scrollPane = new JScrollPane(display_secuencias);
+		display_secuencias.setEditable(false);
+		display_secuencias
+				.setText("Entre las grandes cosas que podemos hacer y las pequeñas que no hacemos el peligro esta en ni hacer ninguno de lo que pensabamos hacer por temor al fracaso del cual nunca estuvimos seguros");
+		display_secuencias.setFont(new Font("Monospaced", Font.PLAIN, 12));
+		display_secuencias.setBackground(new Color(255, 255, 255));
+		display_secuencias.setEditable(true);
+		display_secuencias.addKeyListener(this);
+		JPsecuencias.add(JLsecuencias);
+		JPsecuencias.add(scrollPane);
+		// Botones de jugada y finalizacion del programa
+		JPjugadas = new JPanel();
+		JPjugadas.setLayout(new GridLayout(1, 3));
+		JPbotoncitos = new JPanel();
+		JPbotoncitos.setLayout(new GridLayout(1, 2));
+		b_secuencias = new JButton("Animar");
+		b_secuencias
+				.setToolTipText("Juega el puzzle resuelto por el algoritmo");
+		b_secuencias.setFont(new Font("Arial", Font.BOLD, 12));
+		b_secuencias.setMnemonic(8);
+		b_secuencias.setForeground(new Color(255, 0, 0));
+		JPbotoncitos.add(new JLabel(""));
+		JPbotoncitos.add(b_secuencias);
+		JPsecuencias.add(JPbotoncitos);
 		// Armamos el panel donde se insertara el tamaño de N
 		JPsetN = new JPanel();
 		JPsetN.setLayout(new GridLayout(1, 3));
 		JLsetN = new JLabel();
-		JLsetN = new JLabel("Tamaño");
+		JLsetN = new JLabel("Tamaño del Puzzle");
 		JLsetN.setHorizontalAlignment(SwingConstants.LEFT);
 		JLsetN.setFont(new Font("Serif", Font.PLAIN, 18));
 		display_n = new JTextField("", 60);
@@ -307,14 +203,39 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		JPsetN.add(JLsetN);
 		JPsetN.add(display_n);
 		JPsetN.add(b_setN);
-
+		// Creamos el display del tiempo utilizado para el proceso y el boton de
+		// Terminacion del programa
+		JLtime = new JLabel();
+		JLtime = new JLabel("Tiempo empleado");
+		JLtime.setHorizontalAlignment(SwingConstants.LEFT);
+		JLtime.setFont(new Font("Serif", Font.PLAIN, 18));
+		display_time = new JTextField("0", 60);
+		display_time.setFont(new Font("Monospaced", Font.PLAIN, 24));
+		display_time.setHorizontalAlignment(SwingConstants.LEFT);
+		display_time.setEditable(false);
+		display_time.setBackground(new Color(255, 255, 255));
+		display_time.addKeyListener(this);
+		JPbotoncitos2 = new JPanel();
+		JPbotoncitos2.setLayout(new GridLayout(1, 2));
+		b_salir = new JButton("Salir");
+		b_salir.setToolTipText("Juega el puzzle resuelto por el algoritmo");
+		b_salir.setFont(new Font("Arial", Font.BOLD, 12));
+		b_salir.setMnemonic(8);
+		b_salir.setForeground(new Color(255, 0, 0));
+		JPbotoncitos2.add(new JLabel(""));
+		JPbotoncitos2.add(b_salir);
+		JPjugadas.add(JLtime);
+		JPjugadas.add(display_time);
+		JPjugadas.add(JPbotoncitos2);
 		// Crear Panel de Display
 		panelDisplay = new JPanel();
-		panelDisplay.setLayout(new GridLayout(3, 1, -1, -1));
+		panelDisplay.setLayout(new GridLayout(5, 1, 1, 1));
 		panelDisplay.setBackground(new Color(255, 255, 255));
 		panelDisplay.add(JPsetN);
 		panelDisplay.add(JPpath);
 		panelDisplay.add(JPnodes);
+		panelDisplay.add(JPsecuencias);
+		panelDisplay.add(JPjugadas);
 		/*
 		 * Agregamos el panel central, panel izquierdo y Caja de Texto del
 		 * display_profundidad al Contenedor principal
@@ -327,35 +248,34 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		 * Agregamos los manejadores de eventos para todos los botones definidos
 		 */
 
-		b_evaluar.addMouseListener(manejador);
-		b_evaluar.addMouseMotionListener(manejador);
-		b_evaluar.addActionListener(manejador);
-		b_evaluar.addKeyListener(this);
-		b_ayuda.addMouseListener(manejador);
-		b_ayuda.addMouseMotionListener(manejador);
-		b_ayuda.addActionListener(manejador);
-		b_ayuda.addKeyListener(this);
+		b_evaluarPI.addMouseListener(manejador);
+		b_evaluarPI.addMouseMotionListener(manejador);
+		b_evaluarPI.addActionListener(manejador);
+		b_evaluarPI.addKeyListener(this);
+		b_evaluarAstar.addMouseListener(manejador);
+		b_evaluarAstar.addMouseMotionListener(manejador);
+		b_evaluarAstar.addActionListener(manejador);
+		b_evaluarAstar.addKeyListener(this);
 		b_hash.addMouseListener(manejador);
 		b_hash.addMouseMotionListener(manejador);
 		b_hash.addActionListener(manejador);
 		b_hash.addKeyListener(this);
-		b_cerrar.addMouseListener(manejador);
-		b_cerrar.addMouseMotionListener(manejador);
-		b_cerrar.addActionListener(manejador);
-		b_cerrar.addKeyListener(this);
+		b_memoria.addMouseListener(manejador);
+		b_memoria.addMouseMotionListener(manejador);
+		b_memoria.addActionListener(manejador);
+		b_memoria.addKeyListener(this);
 		b_setN.addMouseListener(manejador);
 		b_setN.addMouseMotionListener(manejador);
 		b_setN.addActionListener(manejador);
 		b_setN.addKeyListener(this);
-
-		/***********************************************************************
-		 * // Fijar los valores por defecto del Frame
-		 * 
-		 */
-		b_cerrar.requestFocus();// Dejamos esta sentencia que es util cuando el
-		// panel se carga en un
-		// Frame.
-
+		b_salir.addMouseListener(manejador);
+		b_salir.addMouseMotionListener(manejador);
+		b_salir.addActionListener(manejador);
+		b_salir.addKeyListener(this);
+		b_secuencias.addMouseListener(manejador);
+		b_secuencias.addMouseMotionListener(manejador);
+		b_secuencias.addActionListener(manejador);
+		b_secuencias.addKeyListener(this);
 	}// Fin del constructor General
 
 	/*
@@ -368,9 +288,10 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			botones_numericos[i] = new JButton(String.valueOf(i + 1));
 			botones_numericos[i].setToolTipText(String.valueOf(i + 1));
 			botones_numericos[i].setForeground(new Color(0, 0, 255));
-			botones_numericos[i].setFont(new Font("Arial", Font.BOLD, 20));
+			botones_numericos[i].setFont(new Font("Arial", Font.BOLD, 80));
 		}
 		partida[tamanho * tamanho - 1] = 0;
+		memoria = partida.clone();
 		botones_numericos[tamanho * tamanho - 1] = new JButton(String
 				.valueOf(" "));
 		botones_numericos[tamanho * tamanho - 1].setToolTipText(String
@@ -378,7 +299,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		botones_numericos[tamanho * tamanho - 1].setForeground(new Color(0, 0,
 				255));
 		botones_numericos[tamanho * tamanho - 1].setFont(new Font("Arial",
-				Font.BOLD, 20));
+				Font.BOLD, 80));
 	}
 
 	private void crear_botones_principales() {
@@ -389,52 +310,44 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		b_hash.setMnemonic(8);
 		b_hash.setForeground(new Color(255, 0, 0));
 
-		b_cerrar = new JButton("Salir");
-		b_cerrar.setToolTipText("Cierra el Juego");
-		b_cerrar.setFont(new Font("Arial", Font.BOLD, 14));
-		b_cerrar.setMnemonic(127);
-		b_cerrar.setForeground(new Color(255, 0, 0));
+		b_memoria = new JButton("MR");
+		b_memoria
+				.setToolTipText("Carga el tablero con estado inicial memorizado");
+		b_memoria.setFont(new Font("Arial", Font.BOLD, 14));
+		b_memoria.setMnemonic(127);
+		b_memoria.setForeground(new Color(255, 0, 0));
 
-		b_evaluar = new JButton("Resolver PI");
-		b_evaluar.setToolTipText("Resuelve el Puzzle");
-		b_evaluar.setFont(new Font("Arial", Font.BOLD, 12));
-		b_evaluar.setMnemonic('R');
-		b_evaluar.setForeground(new Color(255, 0, 0));
+		b_evaluarPI = new JButton("Resolver PI");
+		b_evaluarPI
+				.setToolTipText("Resuelve el Puzzle por metodo de Busqueda de Profundidad Iterativa");
+		b_evaluarPI.setFont(new Font("Arial", Font.BOLD, 12));
+		b_evaluarPI.setMnemonic('R');
+		b_evaluarPI.setForeground(new Color(255, 0, 0));
 
-		b_ayuda = new JButton("Ayuda");
-		b_ayuda.setToolTipText("Abre Ventana de Ayuda");
-		b_ayuda.setFont(new Font("Arial", Font.BOLD, 12));
-		b_ayuda.setMnemonic('y');
-		b_ayuda.setForeground(new Color(255, 0, 0));
+		b_evaluarAstar = new JButton("Resolver A* ");
+		b_evaluarAstar
+				.setToolTipText("Resuelve el Puzzle por el metodo de A* con numeor de piezas mal colocadas");
+		b_evaluarAstar.setFont(new Font("Arial", Font.BOLD, 12));
+		b_evaluarAstar.setMnemonic('y');
+		b_evaluarAstar.setForeground(new Color(255, 0, 0));
 
-		panelMain.add(b_evaluar);
+		panelMain.add(b_evaluarPI);
+		panelMain.add(b_evaluarAstar);
 		panelMain.add(b_hash);
-		panelMain.add(b_cerrar);
+		panelMain.add(b_memoria);
 
 	}
 
-	private int getPositionOf(int val) {
-		int retVal = -1;
-		for (int i = 0; i < tamanho * tamanho; i++) {
-			if (partida[i] == val) {
-				retVal = i;
-			}
+	// Funcion para randomizar un vector
+	public static int[] randomizar(final int[] ints) {
+		final Random rd = new Random();
+		for (int i = 0; i < ints.length; i++) {
+			final int ci = ints[i];
+			final int ni = Math.abs(rd.nextInt() % ints.length);
+			ints[i] = ints[ni];
+			ints[ni] = ci;
 		}
-		if (retVal == -1) {
-			int c = 1;
-		}
-
-		return retVal;
-	}
-
-	@Override
-	public int hashCode() {
-		int result = 17;
-		for (int i = 0; i < tamanho * tamanho - 1; i++) {
-			int position = this.getPositionOf(i);
-			result = 37 * result + position;
-		}
-		return result;
+		return ints;
 	}
 
 	// Quitar
@@ -483,7 +396,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 	}
 
 	public void componentShown(ComponentEvent arg0) {
-		b_cerrar.requestFocus();// Se pasa el enfoque el boton "Cerar"
+
 	}
 
 	/*
@@ -507,10 +420,10 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 
 		public void actionPerformed(ActionEvent evento) {
 
-			if (evento.getSource() == b_ayuda)
+			if (evento.getSource() == b_evaluarAstar)
 				;// Aqui debe llamar al menu de ayuda
 
-			else if (evento.getSource() == b_evaluar) {// Boton Evaluar
+			else if (evento.getSource() == b_evaluarPI) {// Boton Evaluar
 				// Expresion
 				JTextArea areadeSalida = new JTextArea(2, 40);
 				areadeSalida.setBackground(new Color(255, 0, 0));
@@ -518,18 +431,14 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 				areadeSalida.setEditable(false);
 				String salida;
 
-			}// Fin del Bloque "Evaluar"
-			else if (evento.getSource() == b_cerrar) {
-				display_profundidad.setText("");
-				display_nodos.setText("0");
+			}// Fin del Bloque "EvaluarPI"
+			else if (evento.getSource() == b_memoria) {
+				dispersarTableroMemorizado();
 				resp_resultado = false;
 			} else if (evento.getSource() == b_hash) {
-				if (display_profundidad.getText().length() > 1)
-					display_profundidad
-							.setText(display_profundidad.getText().substring(0,
-									display_profundidad.getText().length() - 1));
-				else
-					display_profundidad.setText("");
+				partida = randomizar(partida);
+				memoria = partida.clone();
+				dispersarTablero();
 				resp_resultado = false;
 			} else if (evento.getSource() == b_setN) {
 				JTextArea areadeSalida = new JTextArea(2, 40);// Para mensajes
@@ -558,17 +467,73 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 					JOptionPane.showMessageDialog(areadeSalida, areadeSalida);
 				}
 				resp_resultado = false;
-			} else if (evento.getSource() == display_n) {
-				display_profundidad.setText("");
-				display_n.selectAll();
-				// redimensionar la tabla
-				resp_resultado = false;
+			} else if (evento.getSource() == b_salir) {
+				System.exit(0);
 			}
 
 		}// Fin del metodo actionPerformed
 
+		// Metodo para dibujar el tablero randomizado
+		private void dispersarTablero() {
+			for (int i = 0; i < tamanho * tamanho; i++) {
+				if (partida[i] == 0) {
+					botones_numericos[i].setText("");
+					principal.panelCentro.revalidate();
+					principal.panelCentro.repaint();
+				} else {
+					botones_numericos[i].setText(String.valueOf(partida[i]));
+					principal.panelCentro.revalidate();
+					principal.panelCentro.repaint();
+				}
+			}
+		}
+
+		// Metodo para dibujar el tablero randomizado memorizado previamente
+		private void dispersarTableroMemorizado() {
+			for (int i = 0; i < tamanho * tamanho; i++) {
+				if (memoria[i] == 0) {
+					botones_numericos[i].setText("");
+					principal.panelCentro.revalidate();
+					principal.panelCentro.repaint();
+				} else {
+					botones_numericos[i].setText(String.valueOf(memoria[i]));
+					principal.panelCentro.revalidate();
+					principal.panelCentro.repaint();
+				}
+			}
+		}
+
 		// Metodo para redimensionar el tablero del Puzzle
 		private void redimensionartablero() {
+			int tamanhoFuente;
+			switch (tamanho) {
+			case 3:
+				tamanhoFuente = 80;
+				break;
+			case 4:
+				tamanhoFuente = 55;
+				break;
+			case 5:
+				tamanhoFuente = 50;
+				break;
+			case 6:
+				tamanhoFuente = 45;
+				break;
+			case 7:
+				tamanhoFuente = 40;
+				break;
+			case 8:
+				tamanhoFuente = 35;
+				break;
+			case 9:
+				tamanhoFuente = 30;
+				break;
+			case 10:
+				tamanhoFuente = 25;
+				break;
+			default:
+				tamanhoFuente = 20;
+			}
 			panelNumerico.removeAll();
 			panelNumerico.setLayout(new GridLayout(tamanho, tamanho, 2, 2));
 			botones_numericos = new JButton[tamanho * tamanho];
@@ -578,9 +543,11 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 				botones_numericos[i] = new JButton(String.valueOf(i + 1));
 				botones_numericos[i].setToolTipText(String.valueOf(i + 1));
 				botones_numericos[i].setForeground(new Color(0, 0, 255));
-				botones_numericos[i].setFont(new Font("Arial", Font.BOLD, 20));
+				botones_numericos[i].setFont(new Font("Arial", Font.BOLD,
+						tamanhoFuente));
 			}
 			partida[tamanho * tamanho - 1] = 0;
+			memoria = partida.clone();
 			botones_numericos[tamanho * tamanho - 1] = new JButton(String
 					.valueOf(" "));
 			botones_numericos[tamanho * tamanho - 1].setToolTipText(String
@@ -588,7 +555,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			botones_numericos[tamanho * tamanho - 1].setForeground(new Color(0,
 					0, 255));
 			botones_numericos[tamanho * tamanho - 1].setFont(new Font("Arial",
-					Font.BOLD, 20));
+					Font.BOLD, tamanhoFuente));
 			for (int i = 0; i < tamanho * tamanho; i++) {
 				panelNumerico.add(botones_numericos[i]);
 			}
@@ -607,14 +574,12 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		@Override
 		public void mouseMoved(MouseEvent evento) {
 
-			if (evento.getSource() == b_evaluar)
-				b_evaluar.requestFocus();
-			else if (evento.getSource() == b_ayuda)
-				b_ayuda.requestFocus();
+			if (evento.getSource() == b_evaluarPI)
+				b_evaluarPI.requestFocus();
+			else if (evento.getSource() == b_evaluarAstar)
+				b_evaluarAstar.requestFocus();
 			else if (evento.getSource() == b_hash)
 				b_hash.requestFocus();
-			else if (evento.getSource() == b_cerrar)
-				b_cerrar.requestFocus();
 
 		}// fin metodo mouseMoved
 

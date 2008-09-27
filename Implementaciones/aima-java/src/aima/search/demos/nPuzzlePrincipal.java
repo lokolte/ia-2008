@@ -6,9 +6,9 @@ public class nPuzzlePrincipal extends JApplet {
 
 	@Override
 	public void init() {
-		nPuzzleWindows nPuzzle = new nPuzzleWindows(4);
+		nPuzzleWindows nPuzzle = new nPuzzleWindows();
 		getContentPane().add(nPuzzle);
-		setSize(608, 350);
+		setSize(700, 680);
 		this.addComponentListener(nPuzzle);// Escucha los Eventos del Componete
 		// Applet
 	}
