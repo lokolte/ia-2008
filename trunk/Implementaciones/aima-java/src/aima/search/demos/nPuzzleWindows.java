@@ -43,7 +43,9 @@ import javax.swing.SwingConstants;
 
 public class nPuzzleWindows extends JPanel implements KeyListener,
         ComponentListener, ActionListener {
-
+    
+    LIFOQueue movimientos = null; //Movimientos son de tipo String
+    
     private int partida[];
     private int memoria[];
     private int tamanho = 3;// Maneja el tama�o del problema Puzzle
@@ -180,6 +182,8 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
         b_secuencias.setFont(new Font("Arial", Font.BOLD, 12));
         b_secuencias.setMnemonic(8);
         b_secuencias.setForeground(new Color(255, 0, 0));
+        b_secuencias.addActionListener(this);
+        
         JPbotoncitos.add(new JLabel(""));
         JPbotoncitos.add(b_secuencias);
         JPsecuencias.add(JPbotoncitos);
@@ -593,7 +597,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
             LIFOQueue cola = new LIFOQueue();
             NPuzzle npuzzle = new NPuzzle();
             npuzzle.tam = tamanho;
-            npuzzle.resolverIDL(partida, cola);
+            movimientos = npuzzle.resolverIDL(partida, cola);
 
             display_time.setText("" + npuzzle.getTiempoDeEjecucion());
             display_profundidad.setText("" + npuzzle.getProfundidad());
@@ -605,11 +609,13 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
             LIFOQueue cola = new LIFOQueue();
             NPuzzle npuzzle = new NPuzzle();
             npuzzle.tam = tamanho;
-            npuzzle.resolverAAsterisco(partida, cola);
+            movimientos = npuzzle.resolverAAsterisco(partida, cola);
 
             display_time.setText("" + npuzzle.getTiempoDeEjecucion());
             display_profundidad.setText("" + npuzzle.getProfundidad());
             display_nodos.setText("" + npuzzle.getCantidadNodosExpandidos());
+            
+        } else if (cadena.compareTo("Animar") == 0) {
             
         }
     }
