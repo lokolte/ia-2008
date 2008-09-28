@@ -4,6 +4,7 @@
  */
 package aima.search.demos;
 
+import aima.datastructures.LIFOQueue;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -28,7 +29,15 @@ import aima.search.uninformed.IterativeDeepeningSearch;
 
 public class NPuzzle {
 	public static int tam = 3;
+        public static double tiempo = 0;
 
+        public double getTiempoDeEjecucion() {
+		return tiempo;
+	}
+	
+	public void setTiempoDeEjecucion(double tiempo){
+		this.tiempo = tiempo;
+	}
 	// static NPuzzleBoard random1 = new NPuzzleBoard(new int[] { 0, 2, 3, 4, 5,
 	// 6, 7, 8, 9, 10, 12, 1, 13, 14, 11, 15 }, tam);
 
@@ -53,22 +62,32 @@ public class NPuzzle {
 		return ints;
 	}
 
-	public static void main(String[] args) {
+	/**
+         * Resuelve el problema A* pasandole un vector
+         * de la partida que se tiene que resolver.
+         * 
+         * @autor Guido Casco
+         * @param partida
+         */
+        public void resolverAAsterisco (int[] partida, LIFOQueue cola) {
 		long inicio, fin;
 		NPuzzleBoard random1 = TableroAzar(tam);
+		random1.setBoard(partida);
+		
 		System.out.println("--------------------------------------------");
-		inicio = System.currentTimeMillis();
 
-		eightPuzzleIDLSDemo(random1);
-		// eightPuzzleAStarDemo(random1);
-		// /eightPuzzleAStarManhattanDemo(random1);
-		fin = System.currentTimeMillis();
-		System.out.println("Y ha tardado: " + ((fin - inicio) / 1000.0)
+		inicio = System.nanoTime();
+		npuzzlePuzzleAStarDemo(random1, cola);
+		fin = System.nanoTime();
+
+                tiempo = (fin - inicio) / 1000000.0;
+		
+		System.out.println("Y ha tardado: " + ((fin - inicio) / 1000000.0)
 				+ " segundos");
 
-	}
-
-	private static void eightPuzzleIDLSDemo(NPuzzleBoard random1) {
+	} 
+        
+	private void eightPuzzleIDLSDemo(NPuzzleBoard random1) {
 		System.out.println("Tablero Problema");
 		System.out.println(random1.toString());
 		System.out.println("Tablero Meta");
@@ -89,7 +108,7 @@ public class NPuzzle {
 		}
 	}
 
-	private static void eightPuzzleAStarManhattanDemo(NPuzzleBoard random1) {
+	private void eightPuzzleAStarManhattanDemo(NPuzzleBoard random1) {
 		System.out
 				.println("\nEightPuzzleDemo AStar Search (ManhattanHeursitic)-->");
 		try {
@@ -106,7 +125,7 @@ public class NPuzzle {
 
 	}
 
-	private static void eightPuzzleAStarDemo(NPuzzleBoard random1) {
+	private void npuzzlePuzzleAStarDemo(NPuzzleBoard random1, LIFOQueue cola) {
 		System.out
 				.println("\nEightPuzzleDemo AStar Search (MisplacedTileHeursitic)-->");
 		try {
@@ -123,17 +142,43 @@ public class NPuzzle {
 
 	}
 
-	private static void printInstrumentation(Properties properties) {
+        
+        private String cantNodosExpandidos = ""; //Cantidad de Nodos Expandidos
+	private String profundidad = "";         //Profundidad Maxima
+	
+	public String getCantidadNodosExpandidos () {
+		return cantNodosExpandidos;
+	}
+	
+	public void setCantidadNodosExpantidos(String cantNodosExpandidos){
+		this.cantNodosExpandidos = cantNodosExpandidos;
+	}
+	
+	public String getProfundidad() {
+		return profundidad;
+	}
+	
+	public void setProfundidad(String profundidad){
+		this.profundidad = profundidad;
+	}
+        
+	private void printInstrumentation(Properties properties) {
 		Iterator keys = properties.keySet().iterator();
 		while (keys.hasNext()) {
 			String key = (String) keys.next();
 			String property = properties.getProperty(key);
 			System.out.println(key + " : " + property);
+                        
+                        if(key.compareTo("nodesExpanded") == 0) {
+				setCantidadNodosExpantidos(property);
+			} else if(key.compareTo("maxQueueSize") == 0) {
+				this.setProfundidad(property);
+			}
 		}
 
 	}
 
-	private static void printActions(List actions) {
+	private void printActions(List actions) {
 		for (int i = 0; i < actions.size(); i++) {
 			String action = (String) actions.get(i);
 			System.out.println(action);
