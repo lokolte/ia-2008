@@ -32,6 +32,9 @@ public class LIFOQueue extends AbstractQueue {
 
 	@Override
 	public Object get() {
-		return super.getFirst();
+		Object first = super.getFirst();
+                remove();
+                return first;
+                
 	}
 }
