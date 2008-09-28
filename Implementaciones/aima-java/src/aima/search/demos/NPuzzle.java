@@ -87,45 +87,7 @@ public class NPuzzle {
 
 	} 
         
-	private void eightPuzzleIDLSDemo(NPuzzleBoard random1) {
-		System.out.println("Tablero Problema");
-		System.out.println(random1.toString());
-		System.out.println("Tablero Meta");
-		NPuzzleGoalTest meta = new NPuzzleGoalTest();
-		meta.generarMeta(tam);
-		System.out.println(meta.getGoalBoard().toString());
-
-		System.out.println("\nEightPuzzleDemo Iterative DLS -->");
-		try {
-			Problem problem = new Problem(random1,
-					new NPuzzleSuccessorFunction(), new NPuzzleGoalTest());
-			Search search = new IterativeDeepeningSearch();
-			SearchAgent agent = new SearchAgent(problem, search);
-			printActions(agent.getActions());
-			printInstrumentation(agent.getInstrumentation());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void eightPuzzleAStarManhattanDemo(NPuzzleBoard random1) {
-		System.out
-				.println("\nEightPuzzleDemo AStar Search (ManhattanHeursitic)-->");
-		try {
-			Problem problem = new Problem(random1,
-					new NPuzzleSuccessorFunction(), new NPuzzleGoalTest(),
-					new ManhattanHeuristicFunction());
-			Search search = new AStarSearch(new GraphSearch());
-			SearchAgent agent = new SearchAgent(problem, search);
-			printActions(agent.getActions());
-			printInstrumentation(agent.getInstrumentation());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	private void npuzzlePuzzleAStarDemo(NPuzzleBoard random1, LIFOQueue cola) {
+        private void npuzzlePuzzleAStarDemo(NPuzzleBoard random1, LIFOQueue cola) {
 		System.out
 				.println("\nEightPuzzleDemo AStar Search (MisplacedTileHeursitic)-->");
 		try {
@@ -140,8 +102,56 @@ public class NPuzzle {
 			e.printStackTrace();
 		}
 
-	}
+	} 
+        
+	
+        /**
+         * Resuelve el problema A* pasandole un vector
+         * de la partida que se tiene que resolver.
+         * 
+         * @autor Guido Casco
+         * @param partida
+         */
+        public void resolverIDL (int[] partida, LIFOQueue cola) {
+		long inicio, fin;
+		NPuzzleBoard random1 = TableroAzar(tam);
+		random1.setBoard(partida);
+		
+		System.out.println("--------------------------------------------");
 
+		inicio = System.nanoTime();
+		npuzzlePuzzleIDLSDemo(random1, cola);
+		fin = System.nanoTime();
+
+                tiempo = (fin - inicio) / 1000000.0;
+		
+		System.out.println("Y ha tardado: " + ((fin - inicio) / 1000000.0)
+				+ " segundos");
+
+	}
+        
+        private void npuzzlePuzzleIDLSDemo(NPuzzleBoard random1, LIFOQueue cola) {
+		System.out.println("Tablero Problema");
+		System.out.println(random1.toString());
+		System.out.println("Tablero Meta");
+		NPuzzleGoalTest meta = new NPuzzleGoalTest();
+		meta.generarMeta(tam);
+		System.out.println(meta.getGoalBoard().toString());
+
+		System.out.println("\nEightPuzzleDemo Iterative DLS -->");
+		try {
+			Problem problem = new Problem(random1,
+					new NPuzzleSuccessorFunction(), new NPuzzleGoalTest());
+			Search search = new IterativeDeepeningSearch();
+			SearchAgent agent = new SearchAgent(problem, search);
+			this.printActions(agent.getActions());
+			this.printInstrumentation(agent.getInstrumentation());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+        
         
         private String cantNodosExpandidos = ""; //Cantidad de Nodos Expandidos
 	private String profundidad = "";         //Profundidad Maxima

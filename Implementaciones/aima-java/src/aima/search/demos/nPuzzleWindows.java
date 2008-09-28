@@ -587,10 +587,18 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 
         System.out.println("Cadena: " + cadena);
 
-
-
-
         if (cadena.compareTo("Resolver PI") == 0) {
+             System.out.println("Estoy Resolviendo PI*");
+
+            LIFOQueue cola = new LIFOQueue();
+            NPuzzle npuzzle = new NPuzzle();
+            npuzzle.tam = tamanho;
+            npuzzle.resolverIDL(partida, cola);
+
+            display_time.setText("" + npuzzle.getTiempoDeEjecucion());
+            display_profundidad.setText("" + npuzzle.getProfundidad());
+            display_nodos.setText("" + npuzzle.getCantidadNodosExpandidos());
+            
         } else if (cadena.compareTo("Resolver A*") == 0) {
             System.out.println("Estoy Resolviendo A*");
 
