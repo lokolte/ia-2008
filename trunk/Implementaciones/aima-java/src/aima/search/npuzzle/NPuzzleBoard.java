@@ -25,8 +25,6 @@ public class NPuzzleBoard {
         this.movimientos = movimientos;
     }
     
-    
-    
     int[] board;
     int tam;
 

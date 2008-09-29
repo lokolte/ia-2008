@@ -124,7 +124,7 @@ public class NPuzzle {
     }
 
     /**
-     * Resuelve el problema A* pasandole un vector
+     * Resuelve el problema PI pasandole un vector
      * de la partida que se tiene que resolver.
      * 
      * @autor Guido Casco
@@ -175,7 +175,7 @@ public class NPuzzle {
             e.printStackTrace();
         }
         
-        cola = random1.getMovimientos();
+        cola = ids.getMovimientos();
         
         return cola;
     }
