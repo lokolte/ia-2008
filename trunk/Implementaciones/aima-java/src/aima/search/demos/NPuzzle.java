@@ -138,7 +138,7 @@ public class NPuzzle {
         System.out.println("--------------------------------------------");
 
         inicio = System.nanoTime();
-        npuzzlePuzzleIDLSDemo(random1, cola);
+        cola = npuzzlePuzzleIDLSDemo(random1, cola);
         fin = System.nanoTime();
 
         tiempo = (fin - inicio) / 1000000.0;
@@ -157,11 +157,13 @@ public class NPuzzle {
         meta.generarMeta(tam);
         System.out.println(meta.getGoalBoard().toString());
 
-        System.out.println("\nEightPuzzleDemo Iterative DLS -->");
+        System.out.println("\nNPuzzle Iterative DLS -->");
         Search search = null;
         SearchAgent agent = null;
         Problem problem = null;
         IterativeDeepeningSearch ids = new IterativeDeepeningSearch();
+        ids.setMovimientos(cola);
+        
         try {
             problem = new Problem(random1,
                     new NPuzzleSuccessorFunction(), new NPuzzleGoalTest());
@@ -172,8 +174,8 @@ public class NPuzzle {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        cola = ids.getMovimientos();
+        
+        cola = random1.getMovimientos();
         
         return cola;
     }

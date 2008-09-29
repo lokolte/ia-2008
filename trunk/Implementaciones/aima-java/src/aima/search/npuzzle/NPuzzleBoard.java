@@ -15,6 +15,18 @@ public class NPuzzleBoard {
     public static String RIGHT = "Right";
     public static String UP = "Up";
     public static String DOWN = "Down";
+    public List movimientos = new ArrayList();
+
+    public List getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List movimientos) {
+        this.movimientos = movimientos;
+    }
+    
+    
+    
     int[] board;
     int tam;
 
@@ -114,6 +126,9 @@ public class NPuzzleBoard {
     }
 
     public void moveGapRight() {
+        
+        movimientos.add(RIGHT);
+        
         int gapPosition = getGapPosition();
         int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
         int ypos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[1];
@@ -126,6 +141,9 @@ public class NPuzzleBoard {
     }
 
     public void moveGapLeft() {
+        
+        movimientos.add(LEFT);
+        
         int gapPosition = getGapPosition();
         int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
         int ypos = xycoordinatesFromAbsoluteCoordinate(getGapPosition())[1];
@@ -138,6 +156,9 @@ public class NPuzzleBoard {
     }
 
     public void moveGapDown() {
+        
+        movimientos.add(DOWN);
+        
         int gapPosition = getGapPosition();
         int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
         int ypos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[1];
@@ -149,6 +170,9 @@ public class NPuzzleBoard {
     }
 
     public void moveGapUp() {
+        
+        movimientos.add(UP);
+        
         int gapPosition = getGapPosition();
         int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
         int ypos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[1];
