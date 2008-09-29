@@ -598,31 +598,52 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 
             movimientos = new ArrayList();
             NPuzzle npuzzle = new NPuzzle();
+            
+            //Pone el tamanho
             npuzzle.tam = tamanho;
             movimientos = npuzzle.resolverIDL(partida, movimientos);
 
+            //Pone el tiempo
             display_time.setText("" + npuzzle.getTiempoDeEjecucion());
+            
+            //Pone la profundidad
             display_profundidad.setText("" + npuzzle.getProfundidad());
+            
+            //Pone la cantidad de nodos expandidos
             display_nodos.setText("" + npuzzle.getCantidadNodosExpandidos());
             
             //Para poder poner en el texto de Secuencias
             String movimientosString = "";
-            for(int i=0; i<movimientos.size(); i++) {
-                movimientosString  = movimientosString + movimientos;
+            for(int i=0; i< 10; i++) {
+                movimientosString  = movimientosString + movimientos.get(i);
             }
-            
+            display_secuencias.setText(movimientosString);
             
         } else if (cadena.compareTo("Resolver A*") == 0) {
             System.out.println("Estoy Resolviendo A*");
 
             movimientos = new ArrayList();
             NPuzzle npuzzle = new NPuzzle();
+            
+            //Pone el tamanho
             npuzzle.tam = tamanho;
             movimientos = npuzzle.resolverAAsterisco(partida, movimientos);
 
+            //Pone el tiempo
             display_time.setText("" + npuzzle.getTiempoDeEjecucion());
+            
+            //Pone la profundidad
             display_profundidad.setText("" + npuzzle.getProfundidad());
+            
+            //Pone la cantidad de nodos expandidos
             display_nodos.setText("" + npuzzle.getCantidadNodosExpandidos());
+            
+            //Para poder poner en el texto de Secuencias
+            String movimientosString = "";
+            for(int i=0; i< 10; i++) {
+                movimientosString  = movimientosString + movimientos.get(i);
+            }
+            display_secuencias.setText(movimientosString);
             
         } else if (cadena.compareTo("Animar") == 0) {
             
