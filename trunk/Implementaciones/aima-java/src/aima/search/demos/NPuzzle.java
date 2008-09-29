@@ -4,6 +4,7 @@
  */
 package aima.search.demos;
 
+import aima.basic.XYLocation;
 import aima.datastructures.LIFOQueue;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +22,7 @@ import aima.search.npuzzle.NPuzzleBoard;
 import aima.search.npuzzle.NPuzzleGoalTest;
 import aima.search.npuzzle.NPuzzleSuccessorFunction;
 import aima.search.uninformed.IterativeDeepeningSearch;
+import java.util.Set;
 
 /**
  * @author Ravi Mohan
@@ -69,7 +71,7 @@ public class NPuzzle {
      * @autor Guido Casco
      * @param partida
      */
-    public List resolverAAsterisco(int[] partida, List cola) {
+    public List resolverAAsterisco(int[] partida, List movimientos) {
         long inicio, fin;
         NPuzzleBoard random1 = TableroAzar(tam);
         random1.setBoard(partida);
@@ -77,17 +79,17 @@ public class NPuzzle {
         System.out.println("--------------------------------------------");
 
         inicio = System.nanoTime();
-        cola = npuzzlePuzzleAStarDemo(random1, cola);
+        movimientos = npuzzlePuzzleAStarDemo(random1, movimientos);
         fin = System.nanoTime();
 
         tiempo = (fin - inicio) / 1000000.0;
 
         System.out.println("Y ha tardado: " + ((fin - inicio) / 1000000.0) + " segundos");
 
-        return cola;
+        return movimientos;
     }
 
-    private List npuzzlePuzzleAStarDemo(NPuzzleBoard random1, List cola) {
+    private List npuzzlePuzzleAStarDemo(NPuzzleBoard random1, List movimientos) {
 
         System.out.println("Tablero Problema");
         System.out.println(random1.toString());
@@ -107,20 +109,18 @@ public class NPuzzle {
             
             Search search = new AStarSearch(grafoSearch);
             SearchAgent agent = new SearchAgent(problem, search);
+            
+            movimientos.add(agent.getActions());
+            
             printActions(agent.getActions());
             printInstrumentation(agent.getInstrumentation());
+        
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        cola = grafoSearch.getMovimientos();
         
-        /*while(!cola.isEmpty()) {
-            System.out.println("" + cola.get().toString());
-        }*/
-        
-        
-        return cola;
+        return movimientos;
     }
 
     /**
@@ -202,6 +202,7 @@ public class NPuzzle {
     }
 
     private void printInstrumentation(Properties properties) {
+       
         Iterator keys = properties.keySet().iterator();
         while (keys.hasNext()) {
             String key = (String) keys.next();

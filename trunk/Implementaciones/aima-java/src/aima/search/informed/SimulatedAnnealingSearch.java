@@ -75,7 +75,10 @@ public class SimulatedAnnealingSearch extends NodeExpander implements Search {
 		lastState = null;
 		// current <- MAKE-NODE(INITIAL-STATE[problem])
 		Node current = new Node(p.getInitialState());
-		Node next = null;
+		
+                System.out.println("Entro aqui");
+                
+                Node next = null;
 		List<String> ret = new ArrayList<String>();
 		// for t <- 1 to INFINITY do
 		int timeStep = 0;

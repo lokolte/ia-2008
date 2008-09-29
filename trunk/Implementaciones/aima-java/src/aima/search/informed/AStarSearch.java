@@ -21,13 +21,8 @@ import java.util.List;
  */
 public class AStarSearch extends BestFirstSearch {
 
-        List movimientos = new ArrayList();
-    
+        
 	public AStarSearch(QueueSearch search) {
 		super(search, new AStarEvaluationFunction());
 	}
-        
-        public List getMovimientos() {
-            return movimientos;
-        }
 }
