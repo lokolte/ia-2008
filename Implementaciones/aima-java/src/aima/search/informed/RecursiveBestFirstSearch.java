@@ -1,5 +1,6 @@
 package aima.search.informed;
 
+import aima.datastructures.LIFOQueue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,8 @@ public class RecursiveBestFirstSearch extends NodeExpander implements Search {
 
 	private static final Double INFINITY = Double.MAX_VALUE;
 
+        private LIFOQueue movimientos = new LIFOQueue();
+        
 	public RecursiveBestFirstSearch(EvaluationFunction ef) {
 		evaluationFunction = ef;
 	}
@@ -115,7 +118,7 @@ public class RecursiveBestFirstSearch extends NodeExpander implements Search {
 		}
 
 		// successors <- EXPAND(node, problem)
-		List<Node> successors = expandNode(n, p);
+		List<Node> successors = expandNode(n, p, movimientos);
 		// if successors is empty then return failure, infinity
 		if (0 == successors.size()) {
 			return new SearchResult(null, INFINITY);

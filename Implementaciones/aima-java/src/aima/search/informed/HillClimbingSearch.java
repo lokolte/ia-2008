@@ -1,5 +1,6 @@
 package aima.search.informed;
 
+import aima.datastructures.LIFOQueue;
 import java.util.List;
 
 import aima.search.framework.Node;
@@ -43,6 +44,8 @@ public class HillClimbingSearch extends NodeExpander implements Search {
 
 	private Object lastState = null;
 
+        private LIFOQueue movimientos = new LIFOQueue();
+                
 	public HillClimbingSearch() {
 	}
 
@@ -59,7 +62,7 @@ public class HillClimbingSearch extends NodeExpander implements Search {
 		Node neighbor = null;
 		// loop do
 		while (true) {
-			List children = expandNode(current, p);
+			List children = expandNode(current, p, movimientos);
 			// neighbor <- a highest-valued successor of current
 			neighbor = getHighestValuedNodeFrom(children, p);
 
