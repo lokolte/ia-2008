@@ -191,7 +191,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
         JPsetN = new JPanel();
         JPsetN.setLayout(new GridLayout(1, 3));
         JLsetN = new JLabel();
-        JLsetN = new JLabel("Tama�o del Puzzle");
+        JLsetN = new JLabel("Tamaño del Puzzle");
         JLsetN.setHorizontalAlignment(SwingConstants.LEFT);
         JLsetN.setFont(new Font("Serif", Font.PLAIN, 18));
 
