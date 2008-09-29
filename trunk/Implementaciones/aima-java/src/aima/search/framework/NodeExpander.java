@@ -45,7 +45,7 @@ public class NodeExpander {
                     node.getState(), successor.getState(),
                     successor.getAction());
 
-            this.movimientos.add(successor.getAction());
+            movimientos.add(successor.getAction());
 
             aNode.setStepCost(stepCost);
             aNode.addToPathCost(stepCost);

@@ -614,8 +614,8 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
             
             //Para poder poner en el texto de Secuencias
             String movimientosString = "";
-            for(int i=0; i< 10; i++) {
-                movimientosString  = movimientosString + movimientos.get(i);
+            for(int i=0; i<10; i++) {
+                movimientosString  = movimientosString + movimientos.get(i).toString() + " " ;
             }
             display_secuencias.setText(movimientosString);
             
@@ -641,7 +641,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
             //Para poder poner en el texto de Secuencias
             String movimientosString = "";
             for(int i=0; i< 10; i++) {
-                movimientosString  = movimientosString + movimientos.get(i);
+                movimientosString  = movimientosString + movimientos.get(i).toString() + " ";
             }
             display_secuencias.setText(movimientosString);
             
