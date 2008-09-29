@@ -57,7 +57,7 @@ public class SimulatedAnnealingSearch extends NodeExpander implements Search {
 	private final Scheduler scheduler;
 	private SearchOutcome outcome = SearchOutcome.FAILURE;
         private Object lastState = null;
-        private LIFOQueue movimientos = new LIFOQueue();
+        private List movimientos = new ArrayList();
         
 	public SimulatedAnnealingSearch() {
 		this.scheduler = new Scheduler();

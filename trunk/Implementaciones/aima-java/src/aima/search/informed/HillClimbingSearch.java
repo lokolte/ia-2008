@@ -8,6 +8,7 @@ import aima.search.framework.NodeExpander;
 import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchUtils;
+import java.util.ArrayList;
 
 /**
  * Artificial Intelligence A Modern Approach (2nd Edition): Figure 4.11, page 112.
@@ -44,7 +45,7 @@ public class HillClimbingSearch extends NodeExpander implements Search {
 
 	private Object lastState = null;
 
-        private LIFOQueue movimientos = new LIFOQueue();
+        private List movimientos = new ArrayList();
                 
 	public HillClimbingSearch() {
 	}

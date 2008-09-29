@@ -30,6 +30,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -44,7 +46,7 @@ import javax.swing.SwingConstants;
 public class nPuzzleWindows extends JPanel implements KeyListener,
         ComponentListener, ActionListener {
     
-    LIFOQueue movimientos = null; //Movimientos son de tipo String
+    List movimientos = null; //Movimientos son de tipo String
     
     private int partida[];
     private int memoria[];
@@ -592,9 +594,9 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
         System.out.println("Cadena: " + cadena);
 
         if (cadena.compareTo("Resolver PI") == 0) {
-             System.out.println("Estoy Resolviendo PI*");
+            System.out.println("Estoy Resolviendo PI*");
 
-            movimientos = new LIFOQueue();
+            movimientos = new ArrayList();
             NPuzzle npuzzle = new NPuzzle();
             npuzzle.tam = tamanho;
             movimientos = npuzzle.resolverIDL(partida, movimientos);
@@ -603,11 +605,17 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
             display_profundidad.setText("" + npuzzle.getProfundidad());
             display_nodos.setText("" + npuzzle.getCantidadNodosExpandidos());
             
+            //Para poder poner en el texto de Secuencias
+            String movimientosString = "";
+            for(int i=0; i<movimientos.size(); i++) {
+                movimientosString  = movimientosString + movimientos;
+            }
+            
             
         } else if (cadena.compareTo("Resolver A*") == 0) {
             System.out.println("Estoy Resolviendo A*");
 
-            movimientos = new LIFOQueue();
+            movimientos = new ArrayList();
             NPuzzle npuzzle = new NPuzzle();
             npuzzle.tam = tamanho;
             movimientos = npuzzle.resolverAAsterisco(partida, movimientos);

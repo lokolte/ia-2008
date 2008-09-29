@@ -69,7 +69,7 @@ public class NPuzzle {
      * @autor Guido Casco
      * @param partida
      */
-    public LIFOQueue resolverAAsterisco(int[] partida, LIFOQueue cola) {
+    public List resolverAAsterisco(int[] partida, List cola) {
         long inicio, fin;
         NPuzzleBoard random1 = TableroAzar(tam);
         random1.setBoard(partida);
@@ -87,7 +87,7 @@ public class NPuzzle {
         return cola;
     }
 
-    private LIFOQueue npuzzlePuzzleAStarDemo(NPuzzleBoard random1, LIFOQueue cola) {
+    private List npuzzlePuzzleAStarDemo(NPuzzleBoard random1, List cola) {
 
         System.out.println("Tablero Problema");
         System.out.println(random1.toString());
@@ -130,7 +130,7 @@ public class NPuzzle {
      * @autor Guido Casco
      * @param partida
      */
-    public LIFOQueue resolverIDL(int[] partida, LIFOQueue cola) {
+    public List resolverIDL(int[] partida, List cola) {
         long inicio,  fin;
         NPuzzleBoard random1 = TableroAzar(tam);
         random1.setBoard(partida);
@@ -149,7 +149,7 @@ public class NPuzzle {
 
     }
 
-    private LIFOQueue npuzzlePuzzleIDLSDemo(NPuzzleBoard random1, LIFOQueue cola) {
+    private List npuzzlePuzzleIDLSDemo(NPuzzleBoard random1, List cola) {
         System.out.println("Tablero Problema");
         System.out.println(random1.toString());
         System.out.println("Tablero Meta");
