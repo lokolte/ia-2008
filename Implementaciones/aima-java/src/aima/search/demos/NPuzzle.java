@@ -96,12 +96,16 @@ public class NPuzzle {
         meta.generarMeta(tam);
         System.out.println(meta.getGoalBoard().toString());
         
-        System.out.println("\nEightPuzzleDemo AStar Search (MisplacedTileHeursitic)-->");
+        System.out.println("\nNPuzzle AStar Search (MisplacedTileHeursitic)-->");
+        GraphSearch grafoSearch = new GraphSearch();
         try {
             Problem problem = new Problem(random1,
                     new NPuzzleSuccessorFunction(), new NPuzzleGoalTest(),
                     new MisplacedTilleHeuristicFunction());
-            Search search = new AStarSearch(new GraphSearch());
+            
+            
+            
+            Search search = new AStarSearch(grafoSearch);
             SearchAgent agent = new SearchAgent(problem, search);
             printActions(agent.getActions());
             printInstrumentation(agent.getInstrumentation());
@@ -109,6 +113,13 @@ public class NPuzzle {
             e.printStackTrace();
         }
 
+        cola = grafoSearch.getMovimientos();
+        
+        /*while(!cola.isEmpty()) {
+            System.out.println("" + cola.get().toString());
+        }*/
+        
+        
         return cola;
     }
 
@@ -147,17 +158,23 @@ public class NPuzzle {
         System.out.println(meta.getGoalBoard().toString());
 
         System.out.println("\nEightPuzzleDemo Iterative DLS -->");
+        Search search = null;
+        SearchAgent agent = null;
+        Problem problem = null;
+        IterativeDeepeningSearch ids = new IterativeDeepeningSearch();
         try {
-            Problem problem = new Problem(random1,
+            problem = new Problem(random1,
                     new NPuzzleSuccessorFunction(), new NPuzzleGoalTest());
-            Search search = new IterativeDeepeningSearch();
-            SearchAgent agent = new SearchAgent(problem, search);
+            search = ids;
+            agent = new SearchAgent(problem, search);
             printActions(agent.getActions());
             printInstrumentation(agent.getInstrumentation());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        cola = ids.getMovimientos();
+        
         return cola;
     }
     
