@@ -12,17 +12,17 @@ public class NodeExpander {
 
     protected Metrics metrics;
     protected static String NODES_EXPANDED = "nodesExpanded";
-    private LIFOQueue movimientos = new LIFOQueue();
+    private List movimientos = new ArrayList();
     
     public NodeExpander() {
         metrics = new Metrics();
     }
 
-    public LIFOQueue getMovimientos() {
+    public List getMovimientos() {
         return movimientos;
     }
 
-    public void setMovimientos(LIFOQueue movimientos) {
+    public void setMovimientos(List movimientos) {
         this.movimientos = movimientos;
     }
 
@@ -32,7 +32,7 @@ public class NodeExpander {
         metrics.set(NODES_EXPANDED, 0);
     }
 
-    public List<Node> expandNode(Node node, Problem problem, LIFOQueue movimientos) {
+    public List<Node> expandNode(Node node, Problem problem, List movimientos) {
 
         List<Node> nodes = new ArrayList<Node>();
         List successors = problem.getSuccessorFunction().getSuccessors(

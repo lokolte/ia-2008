@@ -1,6 +1,7 @@
 package aima.search.framework;
 
 import aima.datastructures.LIFOQueue;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,13 +33,13 @@ import java.util.Set;
 public class GraphSearch extends QueueSearch {
 
     Set<Object> closed = new HashSet<Object>();
-    private LIFOQueue movimientos = new LIFOQueue();
+    private List movimientos = new ArrayList();
 
-    public LIFOQueue getMovimientos() {
+    public List getMovimientos() {
         return movimientos;
     }
 
-    public void setMovimientos(LIFOQueue movimientos) {
+    public void setMovimientos(List movimientos) {
         this.movimientos = movimientos;
     }
 

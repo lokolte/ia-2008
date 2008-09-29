@@ -48,7 +48,7 @@ public class RecursiveBestFirstSearch extends NodeExpander implements Search {
 
 	private static final Double INFINITY = Double.MAX_VALUE;
 
-        private LIFOQueue movimientos = new LIFOQueue();
+        private List movimientos = new ArrayList();
         
 	public RecursiveBestFirstSearch(EvaluationFunction ef) {
 		evaluationFunction = ef;

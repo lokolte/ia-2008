@@ -42,7 +42,7 @@ import aima.search.framework.SearchUtils;
 public class DepthLimitedSearch extends NodeExpander implements Search {
 	private static String PATH_COST = "pathCost";
 	private final int limit;
-        private LIFOQueue movimientos = new LIFOQueue();
+        private List movimientos = new ArrayList();
         
 	public DepthLimitedSearch(int limit) {
 		this.limit = limit;
