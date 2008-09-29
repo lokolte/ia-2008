@@ -72,7 +72,7 @@ public class DepthLimitedSearch extends NodeExpander implements Search {
 			return createCutOffResult();
 		} else {
 			// else for each successor in EXPAND(node, problem) do
-			List children = expandNode(node, problem, movimientos);
+			List children = expandNode(node, problem);
 			for (int i = 0; i < children.size(); i++) {
 				Node child = (Node) children.get(i);
 				// result <- RECURSIVE-DLS(successor, problem, limit)
