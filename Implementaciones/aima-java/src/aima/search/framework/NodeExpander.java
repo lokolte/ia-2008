@@ -62,6 +62,7 @@ public class NodeExpander {
         List<Node> nodes = new ArrayList<Node>();
         List successors = problem.getSuccessorFunction().getSuccessors(
                 node.getState());
+        
         for (int i = 0; i < successors.size(); i++) {
             Successor successor = (Successor) successors.get(i);
             Node aNode = new Node(node, successor.getState());
@@ -69,19 +70,13 @@ public class NodeExpander {
             Double stepCost = problem.getStepCostFunction().calculateStepCost(
                     node.getState(), successor.getState(),
                     successor.getAction());
-
-            movimientos.add(successor.getAction());
-
+            
             aNode.setStepCost(stepCost);
             aNode.addToPathCost(stepCost);
             nodes.add(aNode);
-
         }
-        this.movimientos = movimientos;
         
         metrics.set(NODES_EXPANDED, metrics.getInt(NODES_EXPANDED) + 1);
-        // System.out.println("Nodes expanded = " +
-        // metrics.getInt(NODES_EXPANDED));
         return nodes;
     }
 

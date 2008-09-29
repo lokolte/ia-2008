@@ -59,7 +59,7 @@ public class RecursiveBestFirstSearch extends NodeExpander implements Search {
 	public List<String> search(Problem p) throws Exception {
 		List<String> actions = new ArrayList<String>();
 
-		clearInstrumentation();
+                clearInstrumentation();
 
 		// RBFS(problem, MAKE-NODE(INITIAL-STATE[problem]), infinity)
 		Node n = new Node(p.getInitialState());

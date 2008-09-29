@@ -43,6 +43,15 @@ public class GraphSearch extends QueueSearch {
         this.movimientos = movimientos;
     }
 
+    public Set<Object> getClosed() {
+        return closed;
+    }
+
+    public void setClosed(Set<Object> closed) {
+        this.closed = closed;
+    }
+
+    
     // Need to override search() method so that I can re-initialize
     // the closed list should multiple calls to search be made.
     @Override
@@ -60,9 +69,11 @@ public class GraphSearch extends QueueSearch {
             // add STATE[node] to closed
             closed.add(node.getState());
             // fringe <- INSERT-ALL(EXPAND(node, problem), fringe)
-            fringe.add(expandNode(node, problem, movimientos));
+            
+            List<Node> nodesExpanded = expandNode(node, problem);
+            fringe.add(nodesExpanded);
 
-        }
+        } 
     }
 
     private boolean alreadySeen(Node node) {
