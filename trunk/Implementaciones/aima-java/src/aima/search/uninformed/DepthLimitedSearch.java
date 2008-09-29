@@ -4,6 +4,7 @@
  */
 package aima.search.uninformed;
 
+import aima.datastructures.LIFOQueue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +41,9 @@ import aima.search.framework.SearchUtils;
  */
 public class DepthLimitedSearch extends NodeExpander implements Search {
 	private static String PATH_COST = "pathCost";
-
 	private final int limit;
-
+        private LIFOQueue movimientos = new LIFOQueue();
+        
 	public DepthLimitedSearch(int limit) {
 		this.limit = limit;
 
@@ -71,7 +72,7 @@ public class DepthLimitedSearch extends NodeExpander implements Search {
 			return createCutOffResult();
 		} else {
 			// else for each successor in EXPAND(node, problem) do
-			List children = expandNode(node, problem);
+			List children = expandNode(node, problem, movimientos);
 			for (int i = 0; i < children.size(); i++) {
 				Node child = (Node) children.get(i);
 				// result <- RECURSIVE-DLS(successor, problem, limit)

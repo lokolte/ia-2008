@@ -1,5 +1,7 @@
 package aima.search.framework;
 
+import aima.datastructures.LIFOQueue;
+
 /**
  * Artificial Intelligence A Modern Approach (2nd Edition): Figure 3.7, page 70.
  * <code>
@@ -52,10 +54,12 @@ package aima.search.framework;
 
 public class TreeSearch extends QueueSearch {
 
+        LIFOQueue movimientos = new LIFOQueue();
+    
 	@Override
 	public void addExpandedNodesToFringe(NodeStore fringe, Node node,
 			Problem problem) {
-		fringe.add(expandNode(node, problem));
+		fringe.add(expandNode(node, problem, movimientos));
 	}
 
 }
