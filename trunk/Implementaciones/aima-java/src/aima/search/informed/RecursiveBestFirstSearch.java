@@ -1,6 +1,5 @@
 package aima.search.informed;
 
-import aima.datastructures.LIFOQueue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +47,6 @@ public class RecursiveBestFirstSearch extends NodeExpander implements Search {
 
 	private static final Double INFINITY = Double.MAX_VALUE;
 
-        private List movimientos = new ArrayList();
-        
 	public RecursiveBestFirstSearch(EvaluationFunction ef) {
 		evaluationFunction = ef;
 	}
@@ -59,7 +56,7 @@ public class RecursiveBestFirstSearch extends NodeExpander implements Search {
 	public List<String> search(Problem p) throws Exception {
 		List<String> actions = new ArrayList<String>();
 
-                clearInstrumentation();
+		clearInstrumentation();
 
 		// RBFS(problem, MAKE-NODE(INITIAL-STATE[problem]), infinity)
 		Node n = new Node(p.getInitialState());
@@ -118,7 +115,7 @@ public class RecursiveBestFirstSearch extends NodeExpander implements Search {
 		}
 
 		// successors <- EXPAND(node, problem)
-		List<Node> successors = expandNode(n, p, movimientos);
+		List<Node> successors = expandNode(n, p);
 		// if successors is empty then return failure, infinity
 		if (0 == successors.size()) {
 			return new SearchResult(null, INFINITY);

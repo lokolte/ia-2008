@@ -4,8 +4,6 @@
  */
 package aima.search.demos;
 
-import aima.basic.XYLocation;
-import aima.datastructures.LIFOQueue;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -22,208 +20,196 @@ import aima.search.npuzzle.NPuzzleBoard;
 import aima.search.npuzzle.NPuzzleGoalTest;
 import aima.search.npuzzle.NPuzzleSuccessorFunction;
 import aima.search.uninformed.IterativeDeepeningSearch;
-import java.util.Set;
 
 /**
  * @author Ravi Mohan
  * 
  */
+
 public class NPuzzle {
+	public static int tam = 3;
+	private static String profundidad;
+	private static Double tiempo;
+	private static String[] movimientos;
+	private static String nodosExpandidos;
 
-    public static int tam = 3;
-    public static double tiempo = 0;
+	// static NPuzzleBoard random1 = new NPuzzleBoard(new int[] { 0, 2, 3, 4, 5,
+	// 6, 7, 8, 9, 10, 12, 1, 13, 14, 11, 15 }, tam);
 
-    public double getTiempoDeEjecucion() {
-        return tiempo;
-    }
+	private static NPuzzleBoard TableroAzar(int tam) {
+		int[] miarray = new int[tam * tam];
+		for (int i = 0; i < tam * tam; i++) {
+			miarray[i] = i + 1;
+		}
+		miarray[tam * tam - 1] = 0;
 
-    public void setTiempoDeEjecucion(double tiempo) {
-        this.tiempo = tiempo;
-    }
-    // static NPuzzleBoard random1 = new NPuzzleBoard(new int[] { 0, 2, 3, 4, 5,
-    // 6, 7, 8, 9, 10, 12, 1, 13, 14, 11, 15 }, tam);
+		// NPuzzleBoard random1 = new NPuzzleBoard(miarray, tam);
+		NPuzzleBoard random1 = new NPuzzleBoard(randomizar(miarray), tam);
 
-    private static NPuzzleBoard TableroAzar(int tam) {
-        int[] miarray = new int[tam * tam];
-        for (int i = 0; i < tam * tam; i++) {
-            miarray[i] = i;
-        }
+		NPuzzleBoard nn = new NPuzzleBoard(new int[] { 4, 1, 2, 0, 5, 3, 7, 8,
+				6 }, tam);
 
-        NPuzzleBoard random1 = new NPuzzleBoard(randomizar(miarray), tam);
-        return random1;
-    }
+		return nn;
+	}
 
-    public static int[] randomizar(final int[] ints) {
-        final Random rd = new Random();
-        for (int i = 0; i < ints.length; i++) {
-            final int ci = ints[i];
-            final int ni = Math.abs(rd.nextInt() % ints.length);
-            ints[i] = ints[ni];
-            ints[ni] = ci;
-        }
-        return ints;
-    }
+	public static int[] randomizar(final int[] ints) {
+		final Random rd = new Random();
+		for (int i = 0; i < ints.length; i++) {
+			final int ci = ints[i];
+			final int ni = Math.abs(rd.nextInt() % ints.length);
+			ints[i] = ints[ni];
+			ints[ni] = ci;
+		}
+		return ints;
+	}
 
-    /**
-     * Resuelve el problema A* pasandole un vector
-     * de la partida que se tiene que resolver.
-     * 
-     * @autor Guido Casco
-     * @param partida
-     */
-    public List resolverAAsterisco(int[] partida, List movimientos) {
-        long inicio, fin;
-        NPuzzleBoard random1 = TableroAzar(tam);
-        random1.setBoard(partida);
+	public static void main(String[] args) {
+		resolverPI();
+		System.out.println("Profundidad: " + getProfundidad());
+		System.out.println("Tiempo: " + getTiempo());
+		System.out.println("Movimientos: " + getMovimientos().toString());
+		System.out.println("Nodos Expandidos: " + getNodosExpandidos());
 
-        System.out.println("--------------------------------------------");
+	}
 
-        inicio = System.nanoTime();
-        movimientos = npuzzlePuzzleAStarDemo(random1, movimientos);
-        fin = System.nanoTime();
+	private static void eightPuzzleIDLSDemo(NPuzzleBoard random1) {
+		System.out.println("Tablero Problema");
+		System.out.println(random1.toString());
+		System.out.println("Tablero Meta");
+		NPuzzleGoalTest meta = new NPuzzleGoalTest();
+		meta.generarMeta(tam);
+		System.out.println(meta.getGoalBoard().toString());
 
-        tiempo = (fin - inicio) / 1000000.0;
+		System.out.println("\nEightPuzzleDemo Iterative DLS -->");
+		try {
+			Problem problem = new Problem(random1,
+					new NPuzzleSuccessorFunction(), meta);
+			Search search = new IterativeDeepeningSearch();
+			SearchAgent agent = new SearchAgent(problem, search);
+			printActions(agent.getActions());
+			printInstrumentation(agent.getInstrumentation());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-        System.out.println("Y ha tardado: " + ((fin - inicio) / 1000000.0) + " segundos");
+	private static void eightPuzzleAStarManhattanDemo(NPuzzleBoard random1) {
+		System.out.println("Tablero Problema");
+		System.out.println(random1.toString());
+		System.out.println("Tablero Meta");
+		NPuzzleGoalTest meta = new NPuzzleGoalTest();
+		meta.generarMeta(tam);
+		System.out.println(meta.getGoalBoard().toString());
 
-        return movimientos;
-    }
+		System.out
+				.println("\nEightPuzzleDemo AStar Search (ManhattanHeursitic)-->");
+		try {
+			Problem problem = new Problem(random1,
+					new NPuzzleSuccessorFunction(), meta,
+					new ManhattanHeuristicFunction());
+			Search search = new AStarSearch(new GraphSearch());
+			SearchAgent agent = new SearchAgent(problem, search);
+			printActions(agent.getActions());
+			printInstrumentation(agent.getInstrumentation());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    private List npuzzlePuzzleAStarDemo(NPuzzleBoard random1, List movimientos) {
+	}
 
-        System.out.println("Tablero Problema");
-        System.out.println(random1.toString());
-        System.out.println("Tablero Meta");
-        NPuzzleGoalTest meta = new NPuzzleGoalTest();
-        meta.generarMeta(tam);
-        System.out.println(meta.getGoalBoard().toString());
-        
-        System.out.println("\nNPuzzle AStar Search (MisplacedTileHeursitic)-->");
-        GraphSearch grafoSearch = new GraphSearch();
-        try {
-            Problem problem = new Problem(random1,
-                    new NPuzzleSuccessorFunction(), new NPuzzleGoalTest(),
-                    new MisplacedTilleHeuristicFunction());
-            
-            
-            
-            Search search = new AStarSearch(grafoSearch);
-            SearchAgent agent = new SearchAgent(problem, search);
-            
-            movimientos.add(agent.getActions());
-            
-            printActions(agent.getActions());
-            printInstrumentation(agent.getInstrumentation());
-        
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	private static void eightPuzzleAStarDemo(NPuzzleBoard random1) {
+		System.out
+				.println("\nEightPuzzleDemo AStar Search (MisplacedTileHeursitic)-->");
+		try {
+			Problem problem = new Problem(random1,
+					new NPuzzleSuccessorFunction(), new NPuzzleGoalTest(),
+					new MisplacedTilleHeuristicFunction());
+			Search search = new AStarSearch(new GraphSearch());
+			SearchAgent agent = new SearchAgent(problem, search);
+			printActions(agent.getActions());
+			printInstrumentation(agent.getInstrumentation());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        
-        return movimientos;
-    }
+	}
 
-    /**
-     * Resuelve el problema PI pasandole un vector
-     * de la partida que se tiene que resolver.
-     * 
-     * @autor Guido Casco
-     * @param partida
-     */
-    public List resolverIDL(int[] partida, List cola) {
-        long inicio,  fin;
-        NPuzzleBoard random1 = TableroAzar(tam);
-        random1.setBoard(partida);
+	private static void printInstrumentation(Properties properties) {
+		Iterator keys = properties.keySet().iterator();
+		while (keys.hasNext()) {
+			String key = (String) keys.next();
+			String property = properties.getProperty(key);
+			// System.out.println(key + " : " + property);
+			if (key.equals("pathCost")) {
+				profundidad = property;
+			} else {
+				nodosExpandidos = property;
+			}
+		}
 
-        System.out.println("--------------------------------------------");
+	}
 
-        inicio = System.nanoTime();
-        cola = npuzzlePuzzleIDLSDemo(random1, cola);
-        fin = System.nanoTime();
+	private static void printActions(List actions) {
+		movimientos = new String[actions.size()];
+		for (int i = 0; i < actions.size(); i++) {
+			String action = (String) actions.get(i);
+			movimientos[i] = action;
+			// System.out.println(action);
+		}
+	}
 
-        tiempo = (fin - inicio) / 1000000.0;
+	public static void resolverPI() {
+		long inicio, fin;
+		NPuzzleBoard random1 = TableroAzar(tam);
+		System.out.println("--------------------------------------------");
+		inicio = System.currentTimeMillis();
 
-        System.out.println("Y ha tardado: " + ((fin - inicio) / 1000000.0) + " segundos");
+		eightPuzzleIDLSDemo(random1);
+		// eightPuzzleAStarDemo(random1);
+		// eightPuzzleAStarManhattanDemo(random1);
+		fin = System.currentTimeMillis();
+		tiempo = (fin - inicio) / 1000.0;
+		// System.out.println("Y ha tardado: " + ((fin - inicio) / 1000.0)
+		// + " segundos");
+	}
 
-        return cola;
+	public static int getTam() {
+		return tam;
+	}
 
-    }
+	public static void setTam(int tam) {
+		NPuzzle.tam = tam;
+	}
 
-    private List npuzzlePuzzleIDLSDemo(NPuzzleBoard random1, List cola) {
-        System.out.println("Tablero Problema");
-        System.out.println(random1.toString());
-        System.out.println("Tablero Meta");
-        NPuzzleGoalTest meta = new NPuzzleGoalTest();
-        meta.generarMeta(tam);
-        System.out.println(meta.getGoalBoard().toString());
+	public static String getProfundidad() {
+		return profundidad;
+	}
 
-        System.out.println("\nNPuzzle Iterative DLS -->");
-        Search search = null;
-        SearchAgent agent = null;
-        Problem problem = null;
-        IterativeDeepeningSearch ids = new IterativeDeepeningSearch();
-        ids.setMovimientos(cola);
-        
-        try {
-            problem = new Problem(random1,
-                    new NPuzzleSuccessorFunction(), new NPuzzleGoalTest());
-            search = ids;
-            agent = new SearchAgent(problem, search);
-            printActions(agent.getActions());
-            printInstrumentation(agent.getInstrumentation());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        cola = ids.getMovimientos();
-        
-        return cola;
-    }
-    
-    
-    private String cantNodosExpandidos = ""; //Cantidad de Nodos Expandidos
-    private String profundidad = "";         //Profundidad Maxima
+	public static void setProfundidad(String profundidad) {
+		NPuzzle.profundidad = profundidad;
+	}
 
+	public static Double getTiempo() {
+		return tiempo;
+	}
 
-    public String getCantidadNodosExpandidos() {
-        return cantNodosExpandidos;
-    }
+	public static void setTiempo(Double tiempo) {
+		NPuzzle.tiempo = tiempo;
+	}
 
-    public void setCantidadNodosExpantidos(String cantNodosExpandidos) {
-        this.cantNodosExpandidos = cantNodosExpandidos;
-    }
+	public static String[] getMovimientos() {
+		return movimientos;
+	}
 
-    public String getProfundidad() {
-        return profundidad;
-    }
+	public static void setMovimientos(String[] movimientos) {
+		NPuzzle.movimientos = movimientos;
+	}
 
-    public void setProfundidad(String profundidad) {
-        this.profundidad = profundidad;
-    }
+	public static String getNodosExpandidos() {
+		return nodosExpandidos;
+	}
 
-    private void printInstrumentation(Properties properties) {
-       
-        Iterator keys = properties.keySet().iterator();
-        while (keys.hasNext()) {
-            String key = (String) keys.next();
-            String property = properties.getProperty(key);
-            System.out.println(key + " : " + property);
-
-            if (key.compareTo("nodesExpanded") == 0) {
-                setCantidadNodosExpantidos(property);
-            } else if (key.compareTo("maxQueueSize") == 0) {
-                this.setProfundidad(property);
-            }
-        }
-
-    }
-
-    private void printActions(List actions) {
-        System.out.println("Tamanho de la Lista de Action: " + actions.size());
-        
-        for (int i = 0; i < actions.size(); i++) {
-            String action = (String) actions.get(i);
-            System.out.println(action);
-        }
-    }
+	public static void setNodosExpandidos(String nodosExpandidos) {
+		NPuzzle.nodosExpandidos = nodosExpandidos;
+	}
 }

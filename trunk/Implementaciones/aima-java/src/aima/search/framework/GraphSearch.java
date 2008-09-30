@@ -1,7 +1,5 @@
 package aima.search.framework;
 
-import aima.datastructures.LIFOQueue;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +8,7 @@ import java.util.Set;
  * @author Ravi Mohan
  * 
  */
+
 /**
  * Artificial Intelligence A Modern Approach (2nd Edition): Figure 3.19, page
  * 83. <code>
@@ -30,53 +29,34 @@ import java.util.Set;
  * states. This algorithm assumes that the first path to a state s is the
  * cheapest (see text).
  */
+
 public class GraphSearch extends QueueSearch {
 
-    Set<Object> closed = new HashSet<Object>();
-    private List movimientos = new ArrayList();
+	Set<Object> closed = new HashSet<Object>();
 
-    public List getMovimientos() {
-        return movimientos;
-    }
+	// Need to override search() method so that I can re-initialize
+	// the closed list should multiple calls to search be made.
+	@Override
+	public List<String> search(Problem problem, NodeStore fringe) {
+		closed.clear();
+		return super.search(problem, fringe);
+	}
 
-    public void setMovimientos(List movimientos) {
-        this.movimientos = movimientos;
-    }
+	@Override
+	public void addExpandedNodesToFringe(NodeStore fringe, Node node,
+			Problem problem) {
 
-    public Set<Object> getClosed() {
-        return closed;
-    }
+		// if STATE[node] is not in closed then
+		if (!(alreadySeen(node))) {
+			// add STATE[node] to closed
+			closed.add(node.getState());
+			// fringe <- INSERT-ALL(EXPAND(node, problem), fringe)
+			fringe.add(expandNode(node, problem));
 
-    public void setClosed(Set<Object> closed) {
-        this.closed = closed;
-    }
+		}
+	}
 
-    
-    // Need to override search() method so that I can re-initialize
-    // the closed list should multiple calls to search be made.
-    @Override
-    public List<String> search(Problem problem, NodeStore fringe) {
-        closed.clear();
-        return super.search(problem, fringe);
-    }
-
-    @Override
-    public void addExpandedNodesToFringe(NodeStore fringe, Node node,
-            Problem problem) {
-
-        // if STATE[node] is not in closed then
-        if (!(alreadySeen(node))) {
-            // add STATE[node] to closed
-            closed.add(node.getState());
-            // fringe <- INSERT-ALL(EXPAND(node, problem), fringe)
-            
-            List<Node> nodesExpanded = expandNode(node, problem);
-            fringe.add(nodesExpanded);
-
-        } 
-    }
-
-    private boolean alreadySeen(Node node) {
-        return closed.contains(node.getState());
-    }
+	private boolean alreadySeen(Node node) {
+		return closed.contains(node.getState());
+	}
 }

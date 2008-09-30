@@ -6,8 +6,6 @@ package aima.search.informed;
 
 import aima.search.framework.BestFirstSearch;
 import aima.search.framework.QueueSearch;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Artificial Intelligence A Modern Approach (2nd Edition): page 97.
@@ -21,7 +19,6 @@ import java.util.List;
  */
 public class AStarSearch extends BestFirstSearch {
 
-        
 	public AStarSearch(QueueSearch search) {
 		super(search, new AStarEvaluationFunction());
 	}

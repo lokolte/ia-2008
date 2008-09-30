@@ -4,7 +4,6 @@
  */
 package aima.search.uninformed;
 
-import aima.datastructures.LIFOQueue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +40,9 @@ import aima.search.framework.SearchUtils;
  */
 public class DepthLimitedSearch extends NodeExpander implements Search {
 	private static String PATH_COST = "pathCost";
+
 	private final int limit;
-        private List movimientos = new ArrayList();
-        
+
 	public DepthLimitedSearch(int limit) {
 		this.limit = limit;
 
