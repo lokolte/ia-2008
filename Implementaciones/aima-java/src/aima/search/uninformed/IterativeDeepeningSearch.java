@@ -4,7 +4,6 @@
  */
 package aima.search.uninformed;
 
-import aima.search.framework.GraphSearch;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +48,6 @@ public class IterativeDeepeningSearch extends NodeExpander implements Search {
 		iterationMetrics.set(PATH_COST, 0);
 	}
 
-    
 	// function ITERATIVE-DEEPENING-SEARCH(problem) returns a solution, or
 	// failure
 	// inputs: problem, a problem

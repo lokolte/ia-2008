@@ -1,9 +1,5 @@
 package aima.search.framework;
 
-import aima.datastructures.LIFOQueue;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Artificial Intelligence A Modern Approach (2nd Edition): Figure 3.7, page 70.
  * <code>
@@ -56,12 +52,10 @@ import java.util.List;
 
 public class TreeSearch extends QueueSearch {
 
-        List movimientos = new ArrayList();
-    
 	@Override
 	public void addExpandedNodesToFringe(NodeStore fringe, Node node,
 			Problem problem) {
-		fringe.add(expandNode(node, problem, movimientos));
+		fringe.add(expandNode(node, problem));
 	}
 
 }

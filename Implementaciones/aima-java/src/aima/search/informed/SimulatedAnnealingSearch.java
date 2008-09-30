@@ -4,7 +4,6 @@
  */
 package aima.search.informed;
 
-import aima.datastructures.LIFOQueue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -55,10 +54,11 @@ public class SimulatedAnnealingSearch extends NodeExpander implements Search {
 	};
 
 	private final Scheduler scheduler;
+
 	private SearchOutcome outcome = SearchOutcome.FAILURE;
-        private Object lastState = null;
-        private List movimientos = new ArrayList();
-        
+
+	private Object lastState = null;
+
 	public SimulatedAnnealingSearch() {
 		this.scheduler = new Scheduler();
 	}
@@ -75,10 +75,7 @@ public class SimulatedAnnealingSearch extends NodeExpander implements Search {
 		lastState = null;
 		// current <- MAKE-NODE(INITIAL-STATE[problem])
 		Node current = new Node(p.getInitialState());
-		
-                System.out.println("Entro aqui");
-                
-                Node next = null;
+		Node next = null;
 		List<String> ret = new ArrayList<String>();
 		// for t <- 1 to INFINITY do
 		int timeStep = 0;
@@ -96,7 +93,7 @@ public class SimulatedAnnealingSearch extends NodeExpander implements Search {
 				break;
 			}
 
-			List<Node> children = expandNode(current, p, movimientos);
+			List<Node> children = expandNode(current, p);
 			if (children.size() > 0) {
 				// next <- a randomly selected successor of current
 				next = Util.selectRandomlyFromList(children);
