@@ -21,7 +21,21 @@ public class MisplacedTilleHeuristicFunction implements HeuristicFunction {
 	}
 
 	private int getNumberOfMisplacedTiles(NPuzzleBoard board) {
-		int numberOfMisplacedTiles = 0;
+		
+                int numberOfMisplacedTiles = 0;
+		
+                int k = -1;
+                
+                for (int i=0; i<board.getTam(); i++) {
+                    for (int j=0; j<board.getTam(); j++) {
+                        if (!(board.getLocationOf(++k).equals(new XYLocation(i, j)))) {
+                            numberOfMisplacedTiles++;
+                        }
+                    }
+                    
+                }
+            
+                /*int numberOfMisplacedTiles = 0;
 		if (!(board.getLocationOf(0).equals(new XYLocation(0, 0)))) {
 			numberOfMisplacedTiles++;
 		}
@@ -49,7 +63,7 @@ public class MisplacedTilleHeuristicFunction implements HeuristicFunction {
 		if (!(board.getLocationOf(8).equals(new XYLocation(2, 2)))) {
 			numberOfMisplacedTiles++;
 		}
-		System.out.println(numberOfMisplacedTiles);
+		System.out.println(numberOfMisplacedTiles);*/
 		return numberOfMisplacedTiles;
 	}
 
