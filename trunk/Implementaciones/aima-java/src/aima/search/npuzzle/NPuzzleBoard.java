@@ -11,249 +11,252 @@ import aima.basic.XYLocation;
  */
 public class NPuzzleBoard {
 
-    public static String LEFT = "Left";
-    public static String RIGHT = "Right";
-    public static String UP = "Up";
-    public static String DOWN = "Down";
+	public static String LEFT = "Izquierda";
+	public static String RIGHT = "Derecha";
+	public static String UP = "Arriba";
+	public static String DOWN = "Abajo";
 
-    public int[] getBoard() {
-        return board;
-    }
+	public int[] getBoard() {
+		return board;
+	}
 
-    public void setBoard(int[] board) {
-        this.board = board;
-    }
-    
-    int[] board;
-    int tam;
+	public void setBoard(int[] board) {
+		this.board = board;
+	}
 
-    public int getTam() {
-        return tam;
-    }
+	int[] board;
+	int tam;
 
-    public void setTam(int tam) {
-        this.tam = tam;
-    }
+	public int getTam() {
+		return tam;
+	}
 
-    public NPuzzleBoard(int atam) {
-        board = new int[]{5, 4, 0, 6, 1, 8, 7, 3, 2, 9, 10, 11, 12, 13, 14,
-                    15
-                };
-        tam = atam;
+	public void setTam(int tam) {
+		this.tam = tam;
+	}
 
-    }
+	public NPuzzleBoard(int atam) {
+		int[] miarray = new int[atam * atam];
+		for (int i = 0; i < atam * atam; i++) {
+			miarray[i] = i + 1;
+		}
+		miarray[atam * atam - 1] = 0;
 
-    public NPuzzleBoard() {
-        board = new int[]{5, 4, 0, 6, 1, 8, 7, 3, 2, 9, 10, 11, 12, 13, 14,
-                    15
-                };
-    }
+		board = miarray;
+		tam = atam;
 
-    public NPuzzleBoard(int[] aBoard, int atam) {
-        board = aBoard;
-        tam = atam;
-    }
+	}
 
-    private int[] xycoordinatesFromAbsoluteCoordinate(int x) {
-        int[] retVal = null;
-        int xcoord = (x / this.tam);
-        int c = (xcoord * this.tam) + 1;
-        int ycoord = 0;
-        while (true) {
-            if (c++ > x) {
-                break;
-            }
-            ycoord++;
-        }
-        retVal = new int[]{xcoord, ycoord};
+	public NPuzzleBoard() {
+		board = new int[] { 5, 4, 0, 6, 1, 8, 7, 3, 2, 9, 10, 11, 12, 13, 14,
+				15 };
+	}
 
-        return retVal;
-    }
+	public NPuzzleBoard(int[] aBoard, int atam) {
+		board = aBoard;
+		tam = atam;
+	}
 
-    private int absoluteCoordinatesFromXYCoordinates(int x, int y) {
-        return x * this.tam + y;
-    }
+	private int[] xycoordinatesFromAbsoluteCoordinate(int x) {
+		int[] retVal = null;
+		int xcoord = (x / this.tam);
+		int c = (xcoord * this.tam) + 1;
+		int ycoord = 0;
+		while (true) {
+			if (c++ > x) {
+				break;
+			}
+			ycoord++;
+		}
+		retVal = new int[] { xcoord, ycoord };
 
-    private int getValueAt(int x, int y) {
-        // refactor this use either case or a div/mod soln
-        return board[absoluteCoordinatesFromXYCoordinates(x, y)];
-    }
+		return retVal;
+	}
 
-    private int getGapPosition() {
+	private int absoluteCoordinatesFromXYCoordinates(int x, int y) {
+		return x * this.tam + y;
+	}
 
-        return getPositionOf(0);
-    }
+	private int getValueAt(int x, int y) {
+		// refactor this use either case or a div/mod soln
+		return board[absoluteCoordinatesFromXYCoordinates(x, y)];
+	}
 
-    private int getPositionOf(int val) {
-        int retVal = -1;
-        for (int i = 0; i < this.tam * this.tam; i++) {
-            if (board[i] == val) {
-                retVal = i;
-            }
-        }
-        if (retVal == -1) {
-            int c = 1;
-        }
+	private int getGapPosition() {
 
-        return retVal;
-    }
+		return getPositionOf(0);
+	}
 
-    public XYLocation getLocationOf(int val) {
-        int abspos = getPositionOf(val);
-        int xpos = xycoordinatesFromAbsoluteCoordinate(abspos)[0];
-        int ypos = xycoordinatesFromAbsoluteCoordinate(abspos)[1];
-        return new XYLocation(xpos, ypos);
-    }
+	private int getPositionOf(int val) {
+		int retVal = -1;
+		for (int i = 0; i < this.tam * this.tam; i++) {
+			if (board[i] == val) {
+				retVal = i;
+			}
+		}
+		if (retVal == -1) {
+			int c = 1;
+		}
 
-    private void setValue(int xPos, int yPos, int val) {
-        int abscoord = absoluteCoordinatesFromXYCoordinates(xPos, yPos);
-        board[abscoord] = val;
+		return retVal;
+	}
 
-    }
+	public XYLocation getLocationOf(int val) {
+		int abspos = getPositionOf(val);
+		int xpos = xycoordinatesFromAbsoluteCoordinate(abspos)[0];
+		int ypos = xycoordinatesFromAbsoluteCoordinate(abspos)[1];
+		return new XYLocation(xpos, ypos);
+	}
 
-    public int getValueAt(XYLocation loc) {
-        return getValueAt(loc.getXCoOrdinate(), loc.getYCoOrdinate());
-    }
+	private void setValue(int xPos, int yPos, int val) {
+		int abscoord = absoluteCoordinatesFromXYCoordinates(xPos, yPos);
+		board[abscoord] = val;
 
-    public void moveGapRight() {
-        int gapPosition = getGapPosition();
-        int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
-        int ypos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[1];
-        if (!(ypos == 2)) {
-            int valueOnRight = getValueAt(xpos, ypos + 1);
-            setValue(xpos, ypos, valueOnRight);
-            setValue(xpos, ypos + 1, 0);
-        }
+	}
 
-    }
+	public int getValueAt(XYLocation loc) {
+		return getValueAt(loc.getXCoOrdinate(), loc.getYCoOrdinate());
+	}
 
-    public void moveGapLeft() {
-        int gapPosition = getGapPosition();
-        int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
-        int ypos = xycoordinatesFromAbsoluteCoordinate(getGapPosition())[1];
-        if (!(ypos == 0)) {
-            int valueOnLeft = getValueAt(xpos, ypos - 1);
-            setValue(xpos, ypos, valueOnLeft);
-            setValue(xpos, ypos - 1, 0);
-        }
+	public void moveGapRight() {
+		int gapPosition = getGapPosition();
+		int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
+		int ypos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[1];
+		if (!(ypos == 2)) {
+			int valueOnRight = getValueAt(xpos, ypos + 1);
+			setValue(xpos, ypos, valueOnRight);
+			setValue(xpos, ypos + 1, 0);
+		}
 
-    }
+	}
 
-    public void moveGapDown() {
-        int gapPosition = getGapPosition();
-        int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
-        int ypos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[1];
-        if (!(xpos == 2)) {
-            int valueOnBottom = getValueAt(xpos + 1, ypos);
-            setValue(xpos, ypos, valueOnBottom);
-            setValue(xpos + 1, ypos, 0);
-        }
-    }
+	public void moveGapLeft() {
+		int gapPosition = getGapPosition();
+		int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
+		int ypos = xycoordinatesFromAbsoluteCoordinate(getGapPosition())[1];
+		if (!(ypos == 0)) {
+			int valueOnLeft = getValueAt(xpos, ypos - 1);
+			setValue(xpos, ypos, valueOnLeft);
+			setValue(xpos, ypos - 1, 0);
+		}
 
-    public void moveGapUp() {
-        int gapPosition = getGapPosition();
-        int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
-        int ypos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[1];
-        if (!(xpos == 0)) {
-            int valueOnTop = getValueAt(xpos - 1, ypos);
-            setValue(xpos, ypos, valueOnTop);
-            setValue(xpos - 1, ypos, 0);
-        }
+	}
 
-    }
+	public void moveGapDown() {
+		int gapPosition = getGapPosition();
+		int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
+		int ypos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[1];
+		if (!(xpos == 2)) {
+			int valueOnBottom = getValueAt(xpos + 1, ypos);
+			setValue(xpos, ypos, valueOnBottom);
+			setValue(xpos + 1, ypos, 0);
+		}
+	}
 
-    @Override
-    public boolean equals(Object o) {
+	public void moveGapUp() {
+		int gapPosition = getGapPosition();
+		int xpos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[0];
+		int ypos = xycoordinatesFromAbsoluteCoordinate(gapPosition)[1];
+		if (!(xpos == 0)) {
+			int valueOnTop = getValueAt(xpos - 1, ypos);
+			setValue(xpos, ypos, valueOnTop);
+			setValue(xpos - 1, ypos, 0);
+		}
 
-        if (this == o) {
-            return true;
-        }
-        if ((o == null) || (this.getClass() != o.getClass())) {
-            return false;
-        }
-        NPuzzleBoard aBoard = (NPuzzleBoard) o;
+	}
 
-        for (int i = 0; i < this.tam * this.tam - 1; i++) {
-            if (this.getPositionOf(i) != aBoard.getPositionOf(i)) {
-                return false;
-            }
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object o) {
 
-    @Override
-    public int hashCode() {
-        int result = 17;
-        for (int i = 0; i < this.tam * this.tam - 1; i++) {
-            int position = this.getPositionOf(i);
-            result = 37 * result + position;
-        }
-        return result;
-    }
+		if (this == o) {
+			return true;
+		}
+		if ((o == null) || (this.getClass() != o.getClass())) {
+			return false;
+		}
+		NPuzzleBoard aBoard = (NPuzzleBoard) o;
 
-    public List<XYLocation> getPositions() {
-        ArrayList<XYLocation> retVal = new ArrayList<XYLocation>();
-        for (int i = 0; i < this.tam * this.tam; i++) {
-            int[] res = xycoordinatesFromAbsoluteCoordinate(getPositionOf(i));
-            XYLocation loc = new XYLocation(res[0], res[1]);
-            retVal.add(loc);
+		for (int i = 0; i < this.tam * this.tam - 1; i++) {
+			if (this.getPositionOf(i) != aBoard.getPositionOf(i)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-        }
-        return retVal;
-    }
+	@Override
+	public int hashCode() {
+		int result = 17;
+		for (int i = 0; i < this.tam * this.tam - 1; i++) {
+			int position = this.getPositionOf(i);
+			result = 37 * result + position;
+		}
+		return result;
+	}
 
-    public void setBoard(List<XYLocation> locs) {
+	public List<XYLocation> getPositions() {
+		ArrayList<XYLocation> retVal = new ArrayList<XYLocation>();
+		for (int i = 0; i < this.tam * this.tam; i++) {
+			int[] res = xycoordinatesFromAbsoluteCoordinate(getPositionOf(i));
+			XYLocation loc = new XYLocation(res[0], res[1]);
+			retVal.add(loc);
 
-        int count = 0;
+		}
+		return retVal;
+	}
 
-        for (int i = 0; i < locs.size(); i++) {
-            XYLocation loc = locs.get(i);
-            this.setValue(loc.getXCoOrdinate(), loc.getYCoOrdinate(), count);
-            count = count + 1;
-        }
-    }
+	public void setBoard(List<XYLocation> locs) {
 
-    public boolean canMoveGap(String where) {
-        boolean retVal = true;
-        int abspos = getPositionOf(0);
-        int xpos = xycoordinatesFromAbsoluteCoordinate(abspos)[0];
-        int ypos = xycoordinatesFromAbsoluteCoordinate(abspos)[1];
-        if (where.equals(LEFT)) {
-            if (ypos == 0) {
-                retVal = false;
-            }
-        }
-        if (where.equals(RIGHT)) {
-            if (ypos == this.tam - 1) {
-                retVal = false;
-            }
-        }
-        if (where.equals(UP)) {
-            if (xpos == 0) {
-                retVal = false;
-            }
-        }
-        if (where.equals(DOWN)) {
-            if (xpos == this.tam - 1) {
-                retVal = false;
-            }
-        }
+		int count = 0;
 
-        return retVal;
-    }
+		for (int i = 0; i < locs.size(); i++) {
+			XYLocation loc = locs.get(i);
+			this.setValue(loc.getXCoOrdinate(), loc.getYCoOrdinate(), count);
+			count = count + 1;
+		}
+	}
 
-    @Override
-    public String toString() {
-        String retVal = "";
-        int resto = 1;
-        for (int i = 0; i < this.tam * this.tam; i++) {
-            if (resto * this.tam == i + 1) {
-                resto++;
-                retVal = retVal + "\t" + board[i] + "\n";
-            } else {
-                retVal = retVal + "\t" + board[i];
-            }
-        }
-        return retVal;
-    }
+	public boolean canMoveGap(String where) {
+		boolean retVal = true;
+		int abspos = getPositionOf(0);
+		int xpos = xycoordinatesFromAbsoluteCoordinate(abspos)[0];
+		int ypos = xycoordinatesFromAbsoluteCoordinate(abspos)[1];
+		if (where.equals(LEFT)) {
+			if (ypos == 0) {
+				retVal = false;
+			}
+		}
+		if (where.equals(RIGHT)) {
+			if (ypos == this.tam - 1) {
+				retVal = false;
+			}
+		}
+		if (where.equals(UP)) {
+			if (xpos == 0) {
+				retVal = false;
+			}
+		}
+		if (where.equals(DOWN)) {
+			if (xpos == this.tam - 1) {
+				retVal = false;
+			}
+		}
+
+		return retVal;
+	}
+
+	@Override
+	public String toString() {
+		String retVal = "";
+		int resto = 1;
+		for (int i = 0; i < this.tam * this.tam; i++) {
+			if (resto * this.tam == i + 1) {
+				resto++;
+				retVal = retVal + "\t" + board[i] + "\n";
+			} else {
+				retVal = retVal + "\t" + board[i];
+			}
+		}
+		return retVal;
+	}
 }
