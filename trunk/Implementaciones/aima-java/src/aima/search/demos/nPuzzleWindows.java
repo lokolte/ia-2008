@@ -45,7 +45,8 @@ import aima.search.npuzzle.NPuzzleBoard;
 public class nPuzzleWindows extends JPanel implements KeyListener,
 		ComponentListener {
 
-	private int partida[];
+	private int partida[], paso;
+	private int progreso;
 	private int memoria[];
 	private int tamanho = 3;// Maneja el tamaï¿½o del problema Puzzle
 	private final BorderLayout esquema_principal;
@@ -53,11 +54,15 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 	private final JPanel JPsetN;
 	final JPanel JPjugadas, JPbotoncitos, JPbotoncitos2;
 	private final JPanel JPpath, JPnodes, JPsecuencias;
+	private int[] posiciones;
+	private int xpos;
+	private int ypos;
+	private int white_array_pos_prv;
 	// del
 	// contenedor principal
 	private final JPanel panelNumerico, panelMain; // Subpaneles del
 	// panelCentro
-
+	private String[] secuencias;
 	private JButton botones_numericos[];// Botones
 	private JButton b_hash, b_memoria, b_evaluarPI, b_evaluarAstar;
 	private final JButton b_setN;
@@ -80,7 +85,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		esquema_principal = new BorderLayout(5, 10);// Este es el equema
 		// principal donde se dibuja
 		// todos los components
-
+		secuencias = null;
 		this.setLayout(esquema_principal);
 		// Se crea el objeto que se encargara de manejar todos los eventos del
 		// programa
@@ -164,8 +169,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		display_secuencias = new JTextArea();
 		JScrollPane scrollPane = new JScrollPane(display_secuencias);
 		display_secuencias.setEditable(false);
-		display_secuencias
-				.setText("Entre las grandes cosas que podemos hacer y las pequeï¿½as que no hacemos el peligro esta en ni hacer ninguno de lo que pensabamos hacer por temor al fracaso del cual nunca estuvimos seguros");
+		display_secuencias.setText("");
 		display_secuencias.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		display_secuencias.setBackground(new Color(255, 255, 255));
 		display_secuencias.setEditable(true);
@@ -192,7 +196,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		JPsetN = new JPanel();
 		JPsetN.setLayout(new GridLayout(1, 3));
 		JLsetN = new JLabel();
-		JLsetN = new JLabel("Tamaï¿½o del Puzzle");
+		JLsetN = new JLabel("Tamaïo del Puzzle");
 		JLsetN.setHorizontalAlignment(SwingConstants.LEFT);
 		JLsetN.setFont(new Font("Serif", Font.PLAIN, 18));
 		display_n = new JTextField("", 60);
@@ -457,41 +461,40 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			} else if (evento.getSource() == b_evaluarPI) {// Boton Evaluar
 				// Expresion
 				NPuzzle mypuzzle = new NPuzzle();
-				NPuzzle
+				mypuzzle
 						.resolverPI(new NPuzzleBoard(partida, tamanho), tamanho);
-				display_time.setText(NPuzzle.getTiempo() + "");
-				display_profundidad.setText(NPuzzle.getProfundidad());
-				display_nodos.setText(NPuzzle.getNodosExpandidos());
+				display_time.setText(mypuzzle.getTiempo() + "");
+				display_profundidad.setText(mypuzzle.getProfundidad());
+				display_nodos.setText(mypuzzle.getNodosExpandidos());
+				principal.secuencias = mypuzzle.getMovimientos();
+				posiciones = xycoordinatesFromAbsoluteCoordinate(getPositionOf(0));
+				xpos = posiciones[0];
+				ypos = posiciones[1];
+				white_array_pos_prv = absoluteCoordinatesFromXYCoordinates(
+						xpos, ypos);
+				paso = principal.secuencias.length;
+				progreso = 0;
 				String mov = "";
-				for (int i = 0; i < NPuzzle.getMovimientos().length; i++) {
-					mov = mov + " " + NPuzzle.getMovimientos()[i];
+				for (int i = 0; i < mypuzzle.getMovimientos().length; i++) {
+					mov = mov + " " + mypuzzle.getMovimientos()[i];
 				}
 				display_secuencias.setText(mov);
 			}// Fin del Bloque "EvaluarPI"
-			else
-
-			if (evento.getSource() == b_memoria) {
+			else if (evento.getSource() == b_memoria) {
 				dispersarTableroMemorizado();
 				resp_resultado = false;
-			} else
-
-			if (evento.getSource() == b_hash) {
+			} else if (evento.getSource() == b_hash) {
 				partida = randomizar(partida);
 				memoria = partida.clone();
 				dispersarTablero();
 				resp_resultado = false;
-			} else
-
-			if (evento.getSource() == b_setN) {
+			} else if (evento.getSource() == b_setN) {
 				JTextArea areadeSalida = new JTextArea(2, 40);// Para mensajes
-				// de Error
-				// emergentes
-				// Validar numero
 
 				try {
 					tamanho = Integer.parseInt(display_n.getText());
 					if ((tamanho < 3) || (tamanho > 10)) {
-						String salida = "El tamaï¿½o debe estar comprendido entre 3 y 10";
+						String salida = "El tamaño debe estar comprendido entre 3 y 10";
 						areadeSalida.setText(salida);
 						JOptionPane.showMessageDialog(areadeSalida,
 								areadeSalida);
@@ -510,12 +513,69 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 					JOptionPane.showMessageDialog(areadeSalida, areadeSalida);
 				}
 				resp_resultado = false;
-			} else
-
-			if (evento.getSource() == b_salir) {
+			} else if (evento.getSource() == b_salir) {
 				System.exit(0);
+			} else if (evento.getSource() == b_secuencias) {
+				realizar_transiciones_secuencias(principal.secuencias);
 			}
 		}// Fin del metodo actionPerformed
+
+		private void realizar_transiciones_secuencias(String[] secuencias) {
+			int aux;
+			if (progreso < paso) {
+				if (secuencias[progreso].compareTo("Izquierda") == 0) {
+					ypos = ypos - 1;
+				} else if (secuencias[progreso].compareTo("Derecha") == 0) {
+					ypos = ypos + 1;
+				} else if (secuencias[progreso].compareTo("Arriba") == 0) {
+					xpos = xpos - 1;
+				} else if (secuencias[progreso].compareTo("Abajo") == 0) {
+					xpos = xpos + 1;
+				}
+				int white_array_pos_nxt = absoluteCoordinatesFromXYCoordinates(
+						xpos, ypos);
+				aux = partida[white_array_pos_prv];
+				partida[white_array_pos_prv] = partida[white_array_pos_nxt];
+				partida[white_array_pos_nxt] = aux;
+				white_array_pos_prv = white_array_pos_nxt;
+				dispersarTablero();
+			}
+			progreso = progreso + 1;
+		}
+
+		private int[] xycoordinatesFromAbsoluteCoordinate(int x) {
+			int[] retVal = null;
+			int xcoord = (x / tamanho);
+			int c = (xcoord * tamanho) + 1;
+			int ycoord = 0;
+			while (true) {
+				if (c++ > x) {
+					break;
+				}
+				ycoord++;
+			}
+			retVal = new int[] { xcoord, ycoord };
+
+			return retVal;
+		}
+
+		private int getPositionOf(int val) {
+			int retVal = -1;
+			for (int i = 0; i < tamanho * tamanho; i++) {
+				if (partida[i] == val) {
+					retVal = i;
+				}
+			}
+			if (retVal == -1) {
+				int c = 1;
+			}
+
+			return retVal;
+		}
+
+		private int absoluteCoordinatesFromXYCoordinates(int x, int y) {
+			return x * tamanho + y;
+		}
 
 		// Metodo para dibujar el tablero randomizado
 		private void dispersarTablero() {
