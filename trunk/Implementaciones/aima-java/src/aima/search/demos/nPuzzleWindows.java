@@ -41,6 +41,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import aima.search.npuzzle.NPuzzleBoard;
+
 public class nPuzzleWindows extends JPanel implements KeyListener,
 		ComponentListener {
 	private int partida[];
@@ -215,6 +217,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		display_time.setEditable(false);
 		display_time.setBackground(new Color(255, 255, 255));
 		display_time.addKeyListener(this);
+
 		JPbotoncitos2 = new JPanel();
 		JPbotoncitos2.setLayout(new GridLayout(1, 2));
 		b_salir = new JButton("Salir");
@@ -317,7 +320,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		b_memoria.setMnemonic(127);
 		b_memoria.setForeground(new Color(255, 0, 0));
 
-		b_evaluarPI = new JButton("Resolver PI");
+		b_evaluarPI = new JButton("Resolver IDS");
 		b_evaluarPI
 				.setToolTipText("Resuelve el Puzzle por metodo de Busqueda de Profundidad Iterativa");
 		b_evaluarPI.setFont(new Font("Arial", Font.BOLD, 12));
@@ -425,12 +428,17 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 
 			else if (evento.getSource() == b_evaluarPI) {// Boton Evaluar
 				// Expresion
-				JTextArea areadeSalida = new JTextArea(2, 40);
-				areadeSalida.setBackground(new Color(255, 0, 0));
-				areadeSalida.setFont(new Font("Serif", Font.BOLD, 12));
-				areadeSalida.setEditable(false);
-				String salida;
-
+				NPuzzle mypuzzle = new NPuzzle();
+				mypuzzle
+						.resolverPI(new NPuzzleBoard(partida, tamanho), tamanho);
+				display_time.setText(mypuzzle.getTiempo() + "");
+				display_profundidad.setText(mypuzzle.getProfundidad());
+				display_nodos.setText(mypuzzle.getNodosExpandidos());
+				String mov = "";
+				for (int i = 0; i < mypuzzle.getMovimientos().length; i++) {
+					mov = mov + " " + mypuzzle.getMovimientos()[i];
+				}
+				display_secuencias.setText(mov);
 			}// Fin del Bloque "EvaluarPI"
 			else if (evento.getSource() == b_memoria) {
 				dispersarTableroMemorizado();

@@ -27,7 +27,7 @@ import aima.search.uninformed.IterativeDeepeningSearch;
  */
 
 public class NPuzzle {
-	public static int tam = 3;
+	// public static int tam = 3;
 	private static String profundidad;
 	private static Double tiempo;
 	private static String[] movimientos;
@@ -64,7 +64,17 @@ public class NPuzzle {
 	}
 
 	public static void main(String[] args) {
-		resolverPI();
+		int tam = 3;
+		NPuzzleBoard random1 = TableroAzar(tam);
+		System.out.println("\nIterative DLS -->");
+		resolverPI(random1, tam);
+		System.out.println("Profundidad: " + getProfundidad());
+		System.out.println("Tiempo: " + getTiempo());
+		System.out.println("Movimientos: " + getMovimientos().toString());
+		System.out.println("Nodos Expandidos: " + getNodosExpandidos());
+
+		System.out.println("\nA* Misplaced Tiles -->");
+		resolverAstar_Misplaced(random1);
 		System.out.println("Profundidad: " + getProfundidad());
 		System.out.println("Tiempo: " + getTiempo());
 		System.out.println("Movimientos: " + getMovimientos().toString());
@@ -72,15 +82,13 @@ public class NPuzzle {
 
 	}
 
-	private static void eightPuzzleIDLSDemo(NPuzzleBoard random1) {
+	private static void eightPuzzleIDLSDemo(NPuzzleBoard random1, int tam) {
 		System.out.println("Tablero Problema");
 		System.out.println(random1.toString());
 		System.out.println("Tablero Meta");
 		NPuzzleGoalTest meta = new NPuzzleGoalTest();
 		meta.generarMeta(tam);
 		System.out.println(meta.getGoalBoard().toString());
-
-		System.out.println("\nEightPuzzleDemo Iterative DLS -->");
 		try {
 			Problem problem = new Problem(random1,
 					new NPuzzleSuccessorFunction(), meta);
@@ -93,7 +101,8 @@ public class NPuzzle {
 		}
 	}
 
-	private static void eightPuzzleAStarManhattanDemo(NPuzzleBoard random1) {
+	private static void eightPuzzleAStarManhattanDemo(NPuzzleBoard random1,
+			int tam) {
 		System.out.println("Tablero Problema");
 		System.out.println(random1.toString());
 		System.out.println("Tablero Meta");
@@ -101,8 +110,6 @@ public class NPuzzle {
 		meta.generarMeta(tam);
 		System.out.println(meta.getGoalBoard().toString());
 
-		System.out
-				.println("\nEightPuzzleDemo AStar Search (ManhattanHeursitic)-->");
 		try {
 			Problem problem = new Problem(random1,
 					new NPuzzleSuccessorFunction(), meta,
@@ -118,8 +125,6 @@ public class NPuzzle {
 	}
 
 	private static void eightPuzzleAStarDemo(NPuzzleBoard random1) {
-		System.out
-				.println("\nEightPuzzleDemo AStar Search (MisplacedTileHeursitic)-->");
 		try {
 			Problem problem = new Problem(random1,
 					new NPuzzleSuccessorFunction(), new NPuzzleGoalTest(),
@@ -154,31 +159,29 @@ public class NPuzzle {
 		for (int i = 0; i < actions.size(); i++) {
 			String action = (String) actions.get(i);
 			movimientos[i] = action;
-			// System.out.println(action);
+			System.out.println(action);
 		}
 	}
 
-	public static void resolverPI() {
+	public static void resolverPI(NPuzzleBoard random1, int tam) {
 		long inicio, fin;
-		NPuzzleBoard random1 = TableroAzar(tam);
+		// NPuzzleBoard mm = TableroAzar(tam);
+		System.out.println("--------------------------------------------");
+		inicio = System.currentTimeMillis();
+		// eightPuzzleAStarManhattanDemo(random1);
+		eightPuzzleIDLSDemo(random1, tam);
+		fin = System.currentTimeMillis();
+		tiempo = (fin - inicio) / 1000.0;
+	}
+
+	public static void resolverAstar_Misplaced(NPuzzleBoard random1) {
+		long inicio, fin;
 		System.out.println("--------------------------------------------");
 		inicio = System.currentTimeMillis();
 
-		eightPuzzleIDLSDemo(random1);
-		// eightPuzzleAStarDemo(random1);
-		// eightPuzzleAStarManhattanDemo(random1);
+		eightPuzzleAStarDemo(random1);
 		fin = System.currentTimeMillis();
 		tiempo = (fin - inicio) / 1000.0;
-		// System.out.println("Y ha tardado: " + ((fin - inicio) / 1000.0)
-		// + " segundos");
-	}
-
-	public static int getTam() {
-		return tam;
-	}
-
-	public static void setTam(int tam) {
-		NPuzzle.tam = tam;
 	}
 
 	public static String getProfundidad() {
