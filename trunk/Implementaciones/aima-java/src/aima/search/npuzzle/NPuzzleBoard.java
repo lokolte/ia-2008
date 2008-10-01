@@ -19,6 +19,11 @@ public class NPuzzleBoard {
     public int[] getBoard() {
         return board;
     }
+
+    public void setBoard(int[] board) {
+        this.board = board;
+    }
+    
     int[] board;
     int tam;
 
