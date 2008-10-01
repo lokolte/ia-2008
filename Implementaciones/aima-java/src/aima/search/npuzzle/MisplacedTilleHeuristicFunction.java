@@ -49,6 +49,7 @@ public class MisplacedTilleHeuristicFunction implements HeuristicFunction {
 		if (!(board.getLocationOf(8).equals(new XYLocation(2, 2)))) {
 			numberOfMisplacedTiles++;
 		}
+		System.out.println(numberOfMisplacedTiles);
 		return numberOfMisplacedTiles;
 	}
 
