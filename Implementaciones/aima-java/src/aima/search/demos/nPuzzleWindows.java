@@ -196,7 +196,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		JPsetN = new JPanel();
 		JPsetN.setLayout(new GridLayout(1, 3));
 		JLsetN = new JLabel();
-		JLsetN = new JLabel("Tamaïo del Puzzle");
+		JLsetN = new JLabel("Tamaño del Puzzle");
 		JLsetN.setHorizontalAlignment(SwingConstants.LEFT);
 		JLsetN.setFont(new Font("Serif", Font.PLAIN, 18));
 		display_n = new JTextField("", 60);
@@ -451,6 +451,14 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 
 				// Para poder poner en el texto de Secuencias
 				String[] movimientos = NPuzzle.getMovimientos();
+				principal.secuencias = NPuzzle.getMovimientos();
+				posiciones = xycoordinatesFromAbsoluteCoordinate(getPositionOf(0));
+				xpos = posiciones[0];
+				ypos = posiciones[1];
+				white_array_pos_prv = absoluteCoordinatesFromXYCoordinates(
+						xpos, ypos);
+				paso = principal.secuencias.length;
+				progreso = 0;
 				String movimientosString = "";
 				for (int i = 0; i < movimientos.length; i++) {
 					movimientosString = movimientosString + movimientos[i]
@@ -487,6 +495,11 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 				partida = randomizar(partida);
 				memoria = partida.clone();
 				dispersarTablero();
+				principal.secuencias = null;
+				display_time.setText("0");
+				display_profundidad.setText("0");
+				display_nodos.setText("0");
+				display_secuencias.setText("");
 				resp_resultado = false;
 			} else if (evento.getSource() == b_setN) {
 				JTextArea areadeSalida = new JTextArea(2, 40);// Para mensajes
@@ -506,6 +519,11 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 						principal.add(panelDisplay, BorderLayout.SOUTH);
 						principal.revalidate();
 						principal.repaint();
+						principal.secuencias = null;
+						display_time.setText("0");
+						display_profundidad.setText("0");
+						display_nodos.setText("0");
+						display_secuencias.setText("");
 					}
 				} catch (Exception e) {
 					String salida = "La entrada debe ser numerico";
@@ -522,7 +540,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 
 		private void realizar_transiciones_secuencias(String[] secuencias) {
 			int aux;
-			if (progreso < paso) {
+			if ((progreso < paso) && secuencias != null) {
 				if (secuencias[progreso].compareTo("Izquierda") == 0) {
 					ypos = ypos - 1;
 				} else if (secuencias[progreso].compareTo("Derecha") == 0) {
@@ -595,6 +613,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		// Metodo para dibujar el tablero randomizado memorizado previamente
 		private void dispersarTableroMemorizado() {
 			for (int i = 0; i < tamanho * tamanho; i++) {
+				partida[i] = memoria[i];
 				if (memoria[i] == 0) {
 					botones_numericos[i].setText("");
 					principal.panelCentro.revalidate();
@@ -605,6 +624,12 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 					principal.panelCentro.repaint();
 				}
 			}
+			posiciones = xycoordinatesFromAbsoluteCoordinate(getPositionOf(0));
+			xpos = posiciones[0];
+			ypos = posiciones[1];
+			white_array_pos_prv = absoluteCoordinatesFromXYCoordinates(xpos,
+					ypos);
+			progreso = 0;
 		}
 
 		// Metodo para redimensionar el tablero del Puzzle
