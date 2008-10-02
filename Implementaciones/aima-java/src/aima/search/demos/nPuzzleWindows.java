@@ -538,6 +538,8 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			}
 		}// Fin del metodo actionPerformed
 
+		// Este metodo realiza las transiciones entre los movimientos del
+		// espacio en blanco en el tablero del PUZZLE
 		private void realizar_transiciones_secuencias(String[] secuencias) {
 			int aux;
 			if ((progreso < paso) && secuencias != null) {
@@ -561,6 +563,8 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			progreso = progreso + 1;
 		}
 
+		// Metodo que obtiene las coordenadas (x,y) de un numero dado en el
+		// vector
 		private int[] xycoordinatesFromAbsoluteCoordinate(int x) {
 			int[] retVal = null;
 			int xcoord = (x / tamanho);
@@ -577,6 +581,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			return retVal;
 		}
 
+		// Metodo que obtiene la posicion x de un numero dado en el vector
 		private int getPositionOf(int val) {
 			int retVal = -1;
 			for (int i = 0; i < tamanho * tamanho; i++) {
@@ -591,6 +596,8 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			return retVal;
 		}
 
+		// Metodo que obtiene la posicion x en el vector partida dada las
+		// coordenadas (x,y)
 		private int absoluteCoordinatesFromXYCoordinates(int x, int y) {
 			return x * tamanho + y;
 		}
