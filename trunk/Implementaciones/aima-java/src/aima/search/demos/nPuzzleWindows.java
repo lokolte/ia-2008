@@ -702,6 +702,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 				botones_numericos[i].setForeground(new Color(0, 0, 255));
 				botones_numericos[i].setFont(new Font("Arial", Font.BOLD,
 						tamanhoFuente));
+				botones_numericos[i].addActionListener(this);
 			}
 			partida[tamanho * tamanho - 1] = 0;
 			memoria = partida.clone();
@@ -713,6 +714,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 					0, 255));
 			botones_numericos[tamanho * tamanho - 1].setFont(new Font("Arial",
 					Font.BOLD, tamanhoFuente));
+			botones_numericos[tamanho * tamanho - 1].addActionListener(this);
 			for (int i = 0; i < tamanho * tamanho; i++) {
 				panelNumerico.add(botones_numericos[i]);
 			}
