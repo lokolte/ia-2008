@@ -113,7 +113,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		panelNumerico.setLayout(new GridLayout(tamanho, tamanho, 2, 2));
 		// Crear y agregar botones numericos
 		botones_numericos = new JButton[tamanho * tamanho];
-		crear_botones_numericos(tamanho);
+		crear_botones_numericos(tamanho, manejador);
 		for (int i = 0; i < tamanho * tamanho; i++) {
 			panelNumerico.add(botones_numericos[i]);
 		}
@@ -294,7 +294,8 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 	/*
 	 * Metodo privado para crear los botones numericos y de aperadores
 	 */
-	private void crear_botones_numericos(int tamanho) {
+	private void crear_botones_numericos(int tamanho,
+			ManejadorEventoBotones manejador) {
 
 		for (int i = 0; i < tamanho * tamanho - 1; i++) {
 			partida[i] = i + 1;
@@ -302,6 +303,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			botones_numericos[i].setToolTipText(String.valueOf(i + 1));
 			botones_numericos[i].setForeground(new Color(0, 0, 255));
 			botones_numericos[i].setFont(new Font("Arial", Font.BOLD, 80));
+			botones_numericos[i].addActionListener(manejador);
 		}
 		partida[tamanho * tamanho - 1] = 0;
 		memoria = partida.clone();
@@ -313,6 +315,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 				255));
 		botones_numericos[tamanho * tamanho - 1].setFont(new Font("Arial",
 				Font.BOLD, 80));
+		botones_numericos[tamanho * tamanho - 1].addActionListener(manejador);
 	}
 
 	private void crear_botones_principales() {
@@ -429,6 +432,11 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 
 		public void actionPerformed(ActionEvent evento) {
 
+			for (int i = 0; i < tamanho * tamanho; i++) {
+				if (evento.getSource() == botones_numericos[i]) {
+					cambiar_etiqueta_puzzle(i);
+				}
+			}
 			if (evento.getActionCommand().compareTo("Resolver A*") == 0) {
 
 				System.out.println("Estoy Resolviendo A*");
@@ -489,7 +497,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 				display_secuencias.setText(mov);
 			}// Fin del Bloque "EvaluarPI"
 			else if (evento.getSource() == b_memoria) {
-				dispersarTableroMemorizado();
+				recordarTableroMemorizado();
 				resp_resultado = false;
 			} else if (evento.getSource() == b_hash) {
 				partida = randomizar(partida);
@@ -537,6 +545,19 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 				realizar_transiciones_secuencias(principal.secuencias);
 			}
 		}// Fin del metodo actionPerformed
+
+		private void cambiar_etiqueta_puzzle(int i) {
+			partida[i] = (partida[i] + 1) % (tamanho * tamanho);
+			if (partida[i] == 0) {
+				botones_numericos[i].setText("");
+				principal.panelCentro.revalidate();
+				principal.panelCentro.repaint();
+			} else {
+				botones_numericos[i].setText(String.valueOf(partida[i]));
+				principal.panelCentro.revalidate();
+				principal.panelCentro.repaint();
+			}
+		}
 
 		// Este metodo realiza las transiciones entre los movimientos del
 		// espacio en blanco en el tablero del PUZZLE
@@ -618,7 +639,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		}
 
 		// Metodo para dibujar el tablero randomizado memorizado previamente
-		private void dispersarTableroMemorizado() {
+		private void recordarTableroMemorizado() {
 			for (int i = 0; i < tamanho * tamanho; i++) {
 				partida[i] = memoria[i];
 				if (memoria[i] == 0) {
