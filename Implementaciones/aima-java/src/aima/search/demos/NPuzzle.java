@@ -45,7 +45,7 @@ public class NPuzzle {
 		// NPuzzleBoard random1 = new NPuzzleBoard(miarray, tam);
 		NPuzzleBoard random1 = new NPuzzleBoard(randomizar(miarray), tam);
 
-		NPuzzleBoard nn = new NPuzzleBoard(new int[] { 4, 1, 2, 0, 5, 3, 7, 8,
+		NPuzzleBoard nn = new NPuzzleBoard(new int[] { 4, 1, 3, 2, 8, 5, 0, 7,
 				6 }, tam);
 
 		return nn;
@@ -151,7 +151,7 @@ public class NPuzzle {
 			String key = (String) keys.next();
 			String property = properties.getProperty(key);
 			System.out.println(key + " : " + property);
-			if (key.equals("maxQueueSize")) {
+			if (key.equals("pathCost")) {
 				profundidad = property;
 			} else if (key.equals("nodesExpanded")) {
 				nodosExpandidos = property;
