@@ -90,9 +90,9 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		// Se crea el objeto que se encargara de manejar todos los eventos del
 		// programa
 		ManejadorEventoBotones manejador = new ManejadorEventoBotones(this);
-		this.addKeyListener(this);// EL objeto de la clase Calculadora se
-		// encarga de manejar los eventos tipo
-		// KeyListener
+		this.addKeyListener(this);// EL objeto de la clase nPuzzleWindows se
+		// encarga de manejar los eventos tipo KeyListener
+
 		/*
 		 * Panel Central para operaciones principales, numerico, y tecla de
 		 * borrar, evaluar, ayuda, etc
@@ -215,6 +215,7 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		JPsetN.add(JLsetN);
 		JPsetN.add(display_n);
 		JPsetN.add(b_setN);
+		JPsetN.addKeyListener(this);
 		// Creamos el display del tiempo utilizado para el proceso y el boton de
 		// Terminacion del programa
 		JLtime = new JLabel();
@@ -304,6 +305,9 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			botones_numericos[i].setForeground(new Color(0, 0, 255));
 			botones_numericos[i].setFont(new Font("Arial", Font.BOLD, 80));
 			botones_numericos[i].addActionListener(manejador);
+			botones_numericos[i].addMouseListener(manejador);
+			botones_numericos[i].addMouseMotionListener(manejador);
+			botones_numericos[i].addKeyListener(this);
 		}
 		partida[tamanho * tamanho - 1] = 0;
 		memoria = partida.clone();
@@ -316,6 +320,10 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		botones_numericos[tamanho * tamanho - 1].setFont(new Font("Arial",
 				Font.BOLD, 80));
 		botones_numericos[tamanho * tamanho - 1].addActionListener(manejador);
+		botones_numericos[tamanho * tamanho - 1].addMouseListener(manejador);
+		botones_numericos[tamanho * tamanho - 1]
+				.addMouseMotionListener(manejador);
+		botones_numericos[tamanho * tamanho - 1].addKeyListener(this);
 	}
 
 	private void crear_botones_principales() {
@@ -366,22 +374,159 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		return ints;
 	}
 
-	// Quitar
+	// Metodo que obtiene las coordenadas (x,y) de un numero dado en el
+	// vector
+	private int[] xycoordinatesFromAbsoluteCoordinate(int x) {
+		int[] retVal = null;
+		int xcoord = (x / tamanho);
+		int c = (xcoord * tamanho) + 1;
+		int ycoord = 0;
+		while (true) {
+			if (c++ > x) {
+				break;
+			}
+			ycoord++;
+		}
+		retVal = new int[] { xcoord, ycoord };
+
+		return retVal;
+	}
+
+	// Metodo que obtiene la posicion x de un numero dado en el vector
+	private int getPositionOf(int val) {
+		int retVal = -1;
+		for (int i = 0; i < tamanho * tamanho; i++) {
+			if (partida[i] == val) {
+				retVal = i;
+			}
+		}
+		if (retVal == -1) {
+			int c = 1;
+		}
+
+		return retVal;
+	}
+
+	// Metodo para dibujar el tablero del Puzzle
+	private void dispersarTablero() {
+		for (int i = 0; i < tamanho * tamanho; i++) {
+			if (partida[i] == 0) {
+				botones_numericos[i].setText("");
+				this.panelCentro.revalidate();
+				this.panelCentro.repaint();
+			} else {
+				botones_numericos[i].setText(String.valueOf(partida[i]));
+				this.panelCentro.revalidate();
+				this.panelCentro.repaint();
+			}
+		}
+	}
+
+	// Metodo que obtiene la posicion x en el vector partida dada las
+	// coordenadas (x,y)
+	private int absoluteCoordinatesFromXYCoordinates(int x, int y) {
+		return x * tamanho + y;
+	}
 
 	/*
 	 * Metodos para la implementar la interface KeyListener en esta clase
 	 * (Calculadora)
 	 */
-	public void keyPressed(KeyEvent evento) {
-		;
-	}// No se define este metodo
+	public void keyPressed(KeyEvent e) {// maneja los eventos de cursor de
+		// desplazamiento
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_DOWN:
+			mover_espacio(1);
+			break;
+		case KeyEvent.VK_UP:
+			mover_espacio(2);
+			break;
+		case KeyEvent.VK_LEFT:
+			mover_espacio(3);
+			break;
+		case KeyEvent.VK_RIGHT:
+			mover_espacio(4);
+			break;
+		}
+	}
+
+	private void mover_espacio(int direccion) {
+		posiciones = xycoordinatesFromAbsoluteCoordinate(getPositionOf(0));
+		xpos = posiciones[0];
+		ypos = posiciones[1];
+		white_array_pos_prv = absoluteCoordinatesFromXYCoordinates(xpos, ypos);// Posicion
+		// actual
+		// del
+		// espacio
+		// en
+		// blanco
+		// en
+		// el
+		// vector partida
+
+		switch (direccion) {
+		case 1:// Abajo
+			System.out.println("Presionaste Abajo");
+			xpos = xpos + 1;
+			if (xpos < tamanho) {
+				int white_array_pos_nxt = absoluteCoordinatesFromXYCoordinates(
+						xpos, ypos);
+				int aux = partida[white_array_pos_prv];
+				partida[white_array_pos_prv] = partida[white_array_pos_nxt];
+				partida[white_array_pos_nxt] = aux;
+				dispersarTablero();
+				// mover espacio en blanco
+			}
+			break;
+		case 2:// Arriba
+			System.out.println("Presionaste Arriba");
+			xpos = xpos - 1;
+			if (xpos >= 0) {
+				int white_array_pos_nxt = absoluteCoordinatesFromXYCoordinates(
+						xpos, ypos);
+				int aux = partida[white_array_pos_prv];
+				partida[white_array_pos_prv] = partida[white_array_pos_nxt];
+				partida[white_array_pos_nxt] = aux;
+				dispersarTablero();
+				// mover espacio en blanco
+			}
+			break;
+		case 3:// Izquieda
+			System.out.println("Presionaste Izquierda");
+			ypos = ypos - 1;
+			if (ypos >= 0) {
+				int white_array_pos_nxt = absoluteCoordinatesFromXYCoordinates(
+						xpos, ypos);
+				int aux = partida[white_array_pos_prv];
+				partida[white_array_pos_prv] = partida[white_array_pos_nxt];
+				partida[white_array_pos_nxt] = aux;
+				dispersarTablero();
+				// mover espacio en blanco
+			}
+			break;
+		case 4:// Derecha
+			System.out.println("Presionaste Derecha");
+			ypos = ypos + 1;
+			if (ypos < tamanho) {
+				int white_array_pos_nxt = absoluteCoordinatesFromXYCoordinates(
+						xpos, ypos);
+				int aux = partida[white_array_pos_prv];
+				partida[white_array_pos_prv] = partida[white_array_pos_nxt];
+				partida[white_array_pos_nxt] = aux;
+				dispersarTablero();
+			}
+			break;
+		}
+
+	}
 
 	/*
 	 * Metodo para la interface KeyListener de esta clase, este metodo ocurre
 	 * cuando se deja de presionar una tecla, ejecuta la accion del boton
 	 * definido
 	 */
-	public void keyReleased(KeyEvent evento) {
+	public void keyReleased(KeyEvent e) {
+
 	}// Fin metodo keyReleased
 
 	/*
@@ -391,6 +536,23 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 	 */
 	public void keyTyped(KeyEvent evento) {
 		String KeyCode = new String("" + evento.getKeyChar());
+		System.out.println(KeyCode);
+		if (evento.getKeyChar() == '\n') {
+			b_setN.doClick();
+			System.out.println("Presionaste Enter");// Tecla Enter
+		} else if (evento.getKeyChar() == '\b') {
+			System.out.println("Presionaste BackSpace");// Tecla BackSpace para
+			// Retroceder
+		} else if (evento.getKeyChar() == 0x7F)
+			System.out.println("Presionaste Suprimir");// Limpia la
+		// pantalla si se
+		// presiona la Tecla
+		// Suprimir o DEL
+		else if (evento.getKeyChar() == 0x1B) {// Se presiona ESC sale de la
+			// Calculador
+			System.out.println("Presionaste Esc");
+			System.exit(0);
+		}
 	}// Fin metodo keyTyped
 
 	/*
@@ -703,6 +865,9 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 				botones_numericos[i].setFont(new Font("Arial", Font.BOLD,
 						tamanhoFuente));
 				botones_numericos[i].addActionListener(this);
+				botones_numericos[i].addMouseListener(this);
+				botones_numericos[i].addMouseMotionListener(this);
+				botones_numericos[i].addKeyListener(principal);
 			}
 			partida[tamanho * tamanho - 1] = 0;
 			memoria = partida.clone();
@@ -715,6 +880,10 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			botones_numericos[tamanho * tamanho - 1].setFont(new Font("Arial",
 					Font.BOLD, tamanhoFuente));
 			botones_numericos[tamanho * tamanho - 1].addActionListener(this);
+			botones_numericos[tamanho * tamanho - 1].addMouseListener(this);
+			botones_numericos[tamanho * tamanho - 1]
+					.addMouseMotionListener(this);
+			botones_numericos[tamanho * tamanho - 1].addKeyListener(principal);
 			for (int i = 0; i < tamanho * tamanho; i++) {
 				panelNumerico.add(botones_numericos[i]);
 			}
@@ -732,13 +901,28 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		@Override
 		public void mouseMoved(MouseEvent evento) {
 
+			for (int i = 0; i < tamanho * tamanho; i++) {
+				if (evento.getSource() == botones_numericos[i]) {
+					botones_numericos[i].requestFocus();
+				}
+			}
+
 			if (evento.getSource() == b_evaluarPI) {
 				b_evaluarPI.requestFocus();
 			} else if (evento.getSource() == b_evaluarAstar) {
 				b_evaluarAstar.requestFocus();
 			} else if (evento.getSource() == b_hash) {
 				b_hash.requestFocus();
+			} else if (evento.getSource() == b_memoria) {
+				b_memoria.requestFocus();
+			} else if (evento.getSource() == b_salir) {
+				b_salir.requestFocus();
+			} else if (evento.getSource() == b_secuencias) {
+				b_secuencias.requestFocus();
+			} else if (evento.getSource() == b_setN) {
+				b_setN.requestFocus();
 			}
+
 		}// fin metodo mouseMoved
 	}// Fin de la clase privada
 
