@@ -466,7 +466,6 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 
 		switch (direccion) {
 		case 1:// Abajo
-			System.out.println("Presionaste Abajo");
 			xpos = xpos + 1;
 			if (xpos < tamanho) {
 				int white_array_pos_nxt = absoluteCoordinatesFromXYCoordinates(
@@ -479,7 +478,6 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			}
 			break;
 		case 2:// Arriba
-			System.out.println("Presionaste Arriba");
 			xpos = xpos - 1;
 			if (xpos >= 0) {
 				int white_array_pos_nxt = absoluteCoordinatesFromXYCoordinates(
@@ -492,7 +490,6 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			}
 			break;
 		case 3:// Izquieda
-			System.out.println("Presionaste Izquierda");
 			ypos = ypos - 1;
 			if (ypos >= 0) {
 				int white_array_pos_nxt = absoluteCoordinatesFromXYCoordinates(
@@ -505,7 +502,6 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 			}
 			break;
 		case 4:// Derecha
-			System.out.println("Presionaste Derecha");
 			ypos = ypos + 1;
 			if (ypos < tamanho) {
 				int white_array_pos_nxt = absoluteCoordinatesFromXYCoordinates(
@@ -539,18 +535,9 @@ public class nPuzzleWindows extends JPanel implements KeyListener,
 		System.out.println(KeyCode);
 		if (evento.getKeyChar() == '\n') {
 			b_setN.doClick();
-			System.out.println("Presionaste Enter");// Tecla Enter
-		} else if (evento.getKeyChar() == '\b') {
-			System.out.println("Presionaste BackSpace");// Tecla BackSpace para
-			// Retroceder
-		} else if (evento.getKeyChar() == 0x7F)
-			System.out.println("Presionaste Suprimir");// Limpia la
-		// pantalla si se
-		// presiona la Tecla
-		// Suprimir o DEL
-		else if (evento.getKeyChar() == 0x1B) {// Se presiona ESC sale de la
+		} else if (evento.getKeyChar() == 0x1B) {// Se presiona ESC sale de
+													// la
 			// Calculador
-			System.out.println("Presionaste Esc");
 			System.exit(0);
 		}
 	}// Fin metodo keyTyped
