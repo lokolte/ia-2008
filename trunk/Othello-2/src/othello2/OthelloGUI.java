@@ -30,8 +30,9 @@ public class OthelloGUI extends JFrame implements OthelloConstants, Observer {
     private int aiDepth = STARTING_DEPTH;
     private int ProfundidadJugador1 = STARTING_DEPTH;
     private int ProfundidadJugador2 = STARTING_DEPTH;
-    private String algoritmoJugador1="miniMax";
-    private String algoritmoJugador2="alphaBeta";
+    private final String MINIMAXPLAYER="miniMax";
+    private final String ALFABETAPLAYER="alphaBeta";
+    private final String RANDONPLAYER="aleatorio";
 
     public OthelloGUI(String title) {
         setTitle(title);
@@ -138,11 +139,11 @@ public class OthelloGUI extends JFrame implements OthelloConstants, Observer {
         if (othelloModel.getOthello().isFinished()) {
             String winner = "";
             if (b.getCount(1) > b.getCount(2)) {
-                winner = "Light Wins.";
+                winner = "Blancas ganan.";
             } else if (b.getCount(2) > b.getCount(1)) {
-                winner = "Dark Wins.";
+                winner = "Negras ganan.";
             } else {
-                winner = "A Tie.";
+                winner = "Empate.";
             }
             winner += "\n\n";
             winner += "BLANCO: " + format.format(b.getCount(1)) + ", NEGRO: " + format.format(b.getCount(2));
@@ -192,24 +193,35 @@ public class OthelloGUI extends JFrame implements OthelloConstants, Observer {
 
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == newABvsAB) {// AlfaBeta vs AlfaBeta
+                othelloModel.resetGame(true, true, ProfundidadJugador1, ProfundidadJugador2,ALFABETAPLAYER,ALFABETAPLAYER);
                 othelloModel.getOthello().addObserver(t_this);
             } else if (e.getSource() == newABvsMM) {// AlfaBeta vs Minimax
+                othelloModel.resetGame(true, true, ProfundidadJugador1, ProfundidadJugador2,ALFABETAPLAYER,MINIMAXPLAYER);
                 othelloModel.getOthello().addObserver(t_this);
             } else if (e.getSource() == newABvsRm) {// Alfabeta vs Aleatorio
+                othelloModel.resetGame(true, true, ProfundidadJugador1, ProfundidadJugador2,ALFABETAPLAYER,RANDONPLAYER);
                 othelloModel.getOthello().addObserver(t_this);
             } else if (e.getSource() == newMMvsMM) {// Minimax vs Minimax
+                othelloModel.resetGame(true, true, ProfundidadJugador1, ProfundidadJugador2,MINIMAXPLAYER,MINIMAXPLAYER);
                 othelloModel.getOthello().addObserver(t_this);
             } else if (e.getSource() == newMMvsRm) {// Minimax vs Aleatorio
+                othelloModel.resetGame(true, true, ProfundidadJugador1, ProfundidadJugador2,MINIMAXPLAYER,RANDONPLAYER);
                 othelloModel.getOthello().addObserver(t_this);
             } else if (e.getSource() == newRmvsRm) {// Aleatorio vs Aleatorio
+                othelloModel.resetGame(true, true, ProfundidadJugador1, ProfundidadJugador2,RANDONPLAYER,RANDONPLAYER);
                 othelloModel.getOthello().addObserver(t_this);
             } else if (e.getSource() == newHvsH) {// Humano vs Humano
+                othelloModel.resetGame(false, false, aiDepth,RANDONPLAYER);
                 othelloModel.getOthello().addObserver(t_this);
             } else if (e.getSource() == newHvsAB) {// Humano vs AlfaBeta
+                othelloModel.resetGame(false, true, aiDepth,ALFABETAPLAYER);
                 othelloModel.getOthello().addObserver(t_this);
             } else if (e.getSource() == newHvsMM) {// Humano vs Minimax
+                othelloModel.resetGame(false, true, aiDepth,MINIMAXPLAYER);
                 othelloModel.getOthello().addObserver(t_this);
             } else if (e.getSource() == newHvsRm) {// Humano vs Aleatorio
+                othelloModel.resetGame(false, true, aiDepth,RANDONPLAYER);
+                othelloModel.getOthello().addObserver(t_this);
             /**}else if (e.getSource() == newHvsAB) {
                 othelloModel.resetGame(false, false, aiDepth,algoritmoJugador2);
                 othelloModel.getOthello().addObserver(t_this);
