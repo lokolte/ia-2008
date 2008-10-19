@@ -54,14 +54,34 @@ public class Player implements OthelloConstants {
         int move;
         if (this.algoritmo.compareTo("aleatorio") == 0) {
             int[] arrayMov = Board.findMoves(board, getID());
-            int x = (int) (arrayMov.length * Math.random());
-            move = arrayMov[x];
+            move = siguienteMovimiento(arrayMov);
             //move=0;
         } else {
             move = t.getBestMove(depth, algoritmo);
 
         }
         return move;
+    }
+    public static int siguienteMovimiento(int[] moves){
+        int cantidad=0;
+        for (int i = 0; i < moves.length && moves[i] != -99; i++) {
+            cantidad++;
+        }
+
+        System.err.println("Cantidad "+cantidad);
+        if (cantidad==0)
+            return -1;
+
+        int[] movimientos=new int[cantidad];
+        cantidad=0;
+        for (int i = 0; i < moves.length && moves[i] != -99; i++) {
+            movimientos[cantidad++]=moves[i];
+        }
+        
+        int x = (int) (movimientos.length * Math.random());
+        System.err.println("Movimiento al azar de "+x+" es:"+movimientos[x]);
+        return movimientos[x];
+        
     }
 
     public void setDepth(int depth) {
