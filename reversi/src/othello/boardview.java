@@ -22,6 +22,10 @@ class boardview extends Canvas
     reversi top;//the applet that uses this boardview
     boolean wait = false;//if wait==true the mouse will be ignored
     player[] players = {null, null};
+
+    public player[] getPlayers() {
+        return players;
+    }
     boolean[] computer = {false, true};
     //wether the computer plays that player.
     int[] oldboard; //a copy of the A table of the board.
@@ -47,8 +51,8 @@ class boardview extends Canvas
         top = ir;
         b = ib;
         myresize(b.X, b.Y);
-        players[0] = new player(b, 0, this);
-        players[1] = new player(b, 1, this);
+        players[0] = new player(b, 0, this,4,"miniMax");
+        players[1] = new player(b, 1, this,4,"aleatorio");
         statusbartext = b.statusmessage();
     }
 
@@ -114,7 +118,8 @@ class boardview extends Canvas
     }
 
     void clicked(int c) {//called if user clicked field c
-
+        mensajeEstado("JUGADOR 0 -> P/A: "+this.getPlayers()[0].getMaxlevel()+"/"+this.getPlayers()[0].getAlgoritmo()+
+                "    JUGADOR 1 -> P/A: "+this.getPlayers()[1].getMaxlevel()+"/"+this.getPlayers()[1].getAlgoritmo());
         if (!computer[b.getplayer()]) {
             if (b.posmoves == 0) {
                 domove(-1);
@@ -125,10 +130,11 @@ class boardview extends Canvas
         if (computer[b.getplayer()]) {
             computermove();
         }
+        
     }
 
     void computermove() {
-        message("computer is thinking...");
+        message("IA "+b.getplayer()+" esta calculando su proxima jugada...");
         wait = true;
         players[b.getplayer()].ask("Please do your move.");
     /*the computer player will start calculating, and call
@@ -295,6 +301,9 @@ class boardview extends Canvas
 
     void message(String s) {
         top.message(s);
+    }
+    void mensajeEstado(String s) {
+        top.mensajeEstado(s);
     }
 
     /**
