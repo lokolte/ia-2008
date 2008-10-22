@@ -60,7 +60,11 @@ class newgamewindow extends JFrame {
             r.newgame();
             r.bview.setplayers(
                     eleccionA.getSelectedItem(),eleccionB.getSelectedItem(),
-                    playerOneDepth.getText(),playerOneDepth.getText());
+                    playerOneDepth.getText(),playerTwoDepth.getText());
+            r.bview.players[0].setAlgoritmo(eleccionA.getSelectedItem());
+            r.bview.players[1].setAlgoritmo(eleccionB.getSelectedItem());
+            r.bview.players[0].setMaxlevel(Integer.parseInt(playerOneDepth.getText()));
+            r.bview.players[1].setMaxlevel(Integer.parseInt(playerTwoDepth.getText()));
             r.bview.wait = false;
             dispose();
         } else if (ev.target == cancel) {

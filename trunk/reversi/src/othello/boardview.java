@@ -1,4 +1,5 @@
 package othello;
+
 import java.awt.*;
 import java.util.*;
 import java.io.*;
@@ -26,7 +27,9 @@ class boardview extends Canvas
     public player[] getPlayers() {
         return players;
     }
-    boolean[] computer = {false, true};
+    boolean[] computer = {true, true};
+    int prof0, prof1 = 4;
+    String algo0, algo1 = "Minimax";
     //wether the computer plays that player.
     int[] oldboard; //a copy of the A table of the board.
 
@@ -51,9 +54,13 @@ class boardview extends Canvas
         top = ir;
         b = ib;
         myresize(b.X, b.Y);
-        players[0] = new player(b, 0, this,4,"miniMax");
-        players[1] = new player(b, 1, this,4,"aleatorio");
+        players[0] = new player(b, 0, this, prof0, algo0);
+        players[1] = new player(b, 1, this, prof1, algo1);
         statusbartext = b.statusmessage();
+        System.err.println("-------------- CUANDO INSTANCIA EL PLAYER ----");
+        System.err.println("Profundidad 0:"+prof0+ "Algo0: "+algo0);
+        System.err.println("Profundidad 1:"+prof1+ "Algo1: "+algo1);
+        
     }
 
     /**
@@ -118,8 +125,9 @@ class boardview extends Canvas
     }
 
     void clicked(int c) {//called if user clicked field c
-        mensajeEstado("JUGADOR 0 -> P/A: "+this.getPlayers()[0].getMaxlevel()+"/"+this.getPlayers()[0].getAlgoritmo()+
-                "    JUGADOR 1 -> P/A: "+this.getPlayers()[1].getMaxlevel()+"/"+this.getPlayers()[1].getAlgoritmo());
+
+        mensajeEstado("JUGADOR 0 -> P/A: " + this.getPlayers()[0].getMaxlevel() + "/" + this.getPlayers()[0].getAlgoritmo() +
+                "    JUGADOR 1 -> P/A: " + this.getPlayers()[1].getMaxlevel() + "/" + this.getPlayers()[1].getAlgoritmo());
         if (!computer[b.getplayer()]) {
             if (b.posmoves == 0) {
                 domove(-1);
@@ -130,11 +138,11 @@ class boardview extends Canvas
         if (computer[b.getplayer()]) {
             computermove();
         }
-        
+
     }
 
     void computermove() {
-        message("IA "+b.getplayer()+" esta calculando su proxima jugada...");
+        message("IA " + b.getplayer() + " esta calculando su proxima jugada...");
         wait = true;
         players[b.getplayer()].ask("Please do your move.");
     /*the computer player will start calculating, and call
@@ -147,17 +155,37 @@ class boardview extends Canvas
      * player. False if the user operates this player.
      * @param b same for second player.
      */
-    
     public void setplayers(boolean a, boolean b) {
         computer[0] = a;
         computer[1] = b;
     }
-    
-    public void setplayers(String playerA, String playerB, String depthA,String depthB ) {
-        System.out.println("Jugador A:"+playerA);
-        System.out.println("Jugador B:"+playerB);
-        System.out.println("Profundidad A:"+depthA);
-        System.out.println("Jugador A:"+depthB);
+
+    public void setplayers(String playerA, String playerB, String depthA, String depthB) {
+        System.out.println("Jugador A:" + playerA);
+        System.out.println("Jugador B:" + playerB);
+        System.out.println("Profundidad A:" + depthA);
+        System.out.println("Jugador A:" + depthB);
+        if (playerA.compareTo("Humano") == 0) {
+            this.computer[0] = false;
+        } else {
+            this.computer[0] = true;
+        }
+        if (playerB.compareTo("Humano") == 0) {
+            this.computer[1] = false;
+        } else {
+            this.computer[1] = true;
+        }
+        algo0 = playerA;
+        algo1 = playerB;
+        try {
+            this.prof0 = Integer.parseInt(depthA);
+            this.prof1 = Integer.parseInt(depthB);
+        } catch (Exception e) {
+            System.out.print("Error en profundidad" + e.getStackTrace());
+        }
+        System.err.println("Profundidad 0:"+prof0+ "Algo0: "+algo0);
+        System.err.println("Profundidad 1:"+prof1+ "Algo1: "+algo1);
+
     }
     /*resize this object.*/
 
@@ -310,6 +338,7 @@ class boardview extends Canvas
     void message(String s) {
         top.message(s);
     }
+
     void mensajeEstado(String s) {
         top.mensajeEstado(s);
     }
