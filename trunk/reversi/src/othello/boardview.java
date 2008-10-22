@@ -147,9 +147,17 @@ class boardview extends Canvas
      * player. False if the user operates this player.
      * @param b same for second player.
      */
+    
     public void setplayers(boolean a, boolean b) {
         computer[0] = a;
         computer[1] = b;
+    }
+    
+    public void setplayers(String playerA, String playerB, String depthA,String depthB ) {
+        System.out.println("Jugador A:"+playerA);
+        System.out.println("Jugador B:"+playerB);
+        System.out.println("Profundidad A:"+depthA);
+        System.out.println("Jugador A:"+depthB);
     }
     /*resize this object.*/
 

@@ -10,9 +10,11 @@ import javax.swing.JFrame;
 class newgamewindow extends JFrame {
 
     reversi r;
-    Choice[] cm = {new Choice(), new Choice()};
-    Button start = new Button("start");
-    Button cancel = new Button("cancel");
+    Choice eleccionA = new Choice();
+    Choice eleccionB = new Choice();
+    
+    Button start = new Button("Iniciar");
+    Button cancel = new Button("Cancelar");
     TextField playerOneDepth = new TextField("4", 1);
     TextField playerTwoDepth = new TextField("4", 1);
     /**
@@ -25,18 +27,18 @@ class newgamewindow extends JFrame {
         r = ir;
         r.bview.wait = true;
         setLayout(new GridLayout(3, 4, 2, 2));
-        cm[0].add("Minimax");
-        cm[0].add("Alfabeta");
-        cm[0].add("Aleatorio");
-        cm[0].add("Humano");
-        cm[1].add("Minimax");
-        cm[1].add("Alfabeta");
-        cm[1].add("Aleatorio");
-        cm[1].add("Humano");
+        eleccionA.add("Minimax");
+        eleccionA.add("Alfabeta");
+        eleccionA.add("Aleatorio");
+        eleccionA.add("Humano");
+        eleccionB.add("Minimax");
+        eleccionB.add("Alfabeta");
+        eleccionB.add("Aleatorio");
+        eleccionB.add("Humano");
         add(new Label("Jugador 1 "));
-        add(cm[0]);
+        add(eleccionA);
         add(new Label("Jugador 2 "));
-        add(cm[1]);
+        add(eleccionB);
         add(new Label("Profundidad P1"));
         add(playerOneDepth);
         add(new Label("Profundidad P2"));
@@ -57,11 +59,12 @@ class newgamewindow extends JFrame {
         if (ev.target == start) {
             r.newgame();
             r.bview.setplayers(
-                    cm[0].getSelectedIndex() == 0,
-                    cm[1].getSelectedIndex() == 0);
+                    eleccionA.getSelectedItem(),eleccionB.getSelectedItem(),
+                    playerOneDepth.getText(),playerOneDepth.getText());
             r.bview.wait = false;
             dispose();
         } else if (ev.target == cancel) {
+
             r.bview.wait = false;
             dispose();
         }
