@@ -17,6 +17,8 @@ class newgamewindow extends JFrame {
     Button cancel = new Button("Cancelar");
     TextField playerOneDepth = new TextField("4", 1);
     TextField playerTwoDepth = new TextField("4", 1);
+    int playerOneDpht = 4;
+    int playerTwoDpht = 4;
     /**
      * create a new newgamewindow. It shown immediately. You can use this
      * dialog only once.
@@ -57,14 +59,23 @@ class newgamewindow extends JFrame {
      */
     public boolean action(Event ev, Object o) {
         if (ev.target == start) {
+            try{
+                playerOneDpht = Integer.parseInt(playerOneDepth.getText());
+                playerTwoDpht = Integer.parseInt(playerTwoDepth.getText());
+            }catch(Exception e){
+                playerOneDpht = 4;
+                playerTwoDpht = 4;
+            }
+            
             r.newgame();
             r.bview.setplayers(
                     eleccionA.getSelectedItem(),eleccionB.getSelectedItem(),
                     playerOneDepth.getText(),playerTwoDepth.getText());
+            
             r.bview.players[0].setAlgoritmo(eleccionA.getSelectedItem());
             r.bview.players[1].setAlgoritmo(eleccionB.getSelectedItem());
-            r.bview.players[0].setMaxlevel(Integer.parseInt(playerOneDepth.getText()));
-            r.bview.players[1].setMaxlevel(Integer.parseInt(playerTwoDepth.getText()));
+            r.bview.players[0].setMaxlevel(playerOneDpht);
+            r.bview.players[1].setMaxlevel(playerTwoDpht);
             r.bview.wait = false;
             dispose();
         } else if (ev.target == cancel) {

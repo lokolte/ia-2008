@@ -423,16 +423,16 @@ class board {
     public String statusmessage() {
         if (finished()) {
             if (P1wins()) {
-                return "RED wins with " + points[P1] + " against " + points[P2];
+                return "Negras ganan con " + points[P1] + " contra " + points[P2];
             }
             if (P2wins()) {
-                return "GREEN wins with " + points[P2] + " against " + points[P1];
+                return "Blancas ganan con " + points[P2] + " contra " + points[P1];
             }
-            return "The game ended in DRAW";
+            return "El juego ha empatado";
         }
         if (thisp == P1) {
-            return "RED to move:" + points[P1] + " (green: " + points[P2] + ")";
+            return "Negras mueven:" + points[P1] + " (blancas: " + points[P2] + ")";
         }
-        return "GREEN to move:" + points[P2] + " (red: " + points[P1] + ")";
+        return "Blancas mueven:" + points[P2] + " (negras: " + points[P1] + ")";
     }
 }
