@@ -27,7 +27,7 @@ class boardview extends Canvas
     public player[] getPlayers() {
         return players;
     }
-    boolean[] computer = {true, true};
+    boolean[] computer = {false, true};
     int prof0, prof1 = 4;
     String algo0, algo1 = "Minimax";
     //wether the computer plays that player.
@@ -54,12 +54,9 @@ class boardview extends Canvas
         top = ir;
         b = ib;
         myresize(b.X, b.Y);
-        players[0] = new player(b, 0, this, prof0, algo0);
-        players[1] = new player(b, 1, this, prof1, algo1);
+        players[0] = new player(b, 0, this, 4, "Humano");
+        players[1] = new player(b, 1, this, 4, "Minimax");
         statusbartext = b.statusmessage();
-        System.err.println("-------------- CUANDO INSTANCIA EL PLAYER ----");
-        System.err.println("Profundidad 0:"+prof0+ "Algo0: "+algo0);
-        System.err.println("Profundidad 1:"+prof1+ "Algo1: "+algo1);
         
     }
 
