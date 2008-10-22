@@ -248,9 +248,9 @@ class boardview extends Canvas
         return 0;
     }/*0 means not, 1 r->g, 2 g->r*/
 
-    Color back[] = {new Color(128, 128, 128), new Color(100, 100, 100)};
-    Color c1 = new Color(255, 0, 0);
-    Color c2 = new Color(0, 255, 0);
+    Color back[] = {new Color(20, 141, 3), new Color(156, 253, 182)};
+    Color c1 = new Color(0, 0, 0);
+    Color c2 = new Color(255, 255, 255);
 
     /**
      * paint one field 
