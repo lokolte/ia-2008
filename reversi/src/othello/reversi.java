@@ -45,11 +45,11 @@ public class reversi extends java.applet.Applet {
     /**
      * the interface components in this applet. slabel means status label.
      */
-    Label slabel = new Label("please do a move");
+    Label slabel = new Label("por favor, haga un movimiento");
     Label estado=new Label ("Estado Inicial");
     board b = new board();
     boardview bview = new boardview(b, this);
-    Button newgame = new Button("NueVa Jugada"),
+    Button newgame = new Button("Nueva Jugada"),
             exit = new Button("Salir"),
             undo = new Button("Deshacer movimiento");
 
