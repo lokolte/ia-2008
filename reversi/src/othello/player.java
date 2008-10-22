@@ -14,7 +14,7 @@ class player implements Runnable {
     board realb, b;
     int side;
     int maxlevel;
-    String algoritmo = "miniMax";
+    String algoritmo = "Minimax";
     double tiempoTotal = 0;
     double cantidadJugada = 0;
 
@@ -80,7 +80,7 @@ class player implements Runnable {
      * @param iside the side the player takes: board.P1 or board.P2
      */
     public player(board ib, int iside) {
-        this(ib, iside, null, 4, "miniMax");
+        this(ib, iside, null, 4, "Minimax");
     }
 
     /**
@@ -160,7 +160,7 @@ class player implements Runnable {
     int obtenerMejorMovimiento() {
         int mejor;
         long inicio, fin;
-        if (this.algoritmo.compareTo("miniMax") == 0) {
+        if (this.algoritmo.compareTo("Minimax") == 0) {
             inicio = System.currentTimeMillis();
             mejor = miniMaxCaller();
             fin = System.currentTimeMillis();
@@ -168,7 +168,7 @@ class player implements Runnable {
             this.cantidadJugada++;
             System.err.println("-- MINIMAX -- " + "\n Tiempo Total: "+this.tiempoTotal+"\n Cant. Mov.: "+this.cantidadJugada+"\n Promedio Tiempo: "+this.tiempoTotal/this.cantidadJugada);
             return mejor;
-        } else if (this.algoritmo.compareTo("alphaBeta") == 0) {
+        } else if (this.algoritmo.compareTo("Alfabeta") == 0) {
             inicio = System.currentTimeMillis();
             mejor = alphaBetaCaller();
             fin = System.currentTimeMillis();
