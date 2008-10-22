@@ -57,7 +57,7 @@ class newgamewindow extends JFrame {
         if (ev.target == start) {
             r.newgame();
             r.bview.setplayers(
-                    cm[0].getSelectedIndex() == 1,
+                    cm[0].getSelectedIndex() == 0,
                     cm[1].getSelectedIndex() == 0);
             r.bview.wait = false;
             dispose();

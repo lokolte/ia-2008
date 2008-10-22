@@ -46,9 +46,10 @@ public class reversi extends java.applet.Applet {
      * the interface components in this applet. slabel means status label.
      */
     Label slabel = new Label("please do a move");
+    Label estado=new Label ("Estado Inicial");
     board b = new board();
     boardview bview = new boardview(b, this);
-    Button newgame = new Button("Nuena Jugada"),
+    Button newgame = new Button("NueVa Jugada"),
             exit = new Button("Salir"),
             undo = new Button("Deshacer movimiento");
 
@@ -75,6 +76,7 @@ public class reversi extends java.applet.Applet {
         Panel superpanel = new Panel();
         superpanel.setLayout(new GridLayout(3, 1));
         superpanel.add(slabel);
+        superpanel.add(estado);
         superpanel.add(buttonpanel);
         setLayout(new BorderLayout());
         add("North", bview);
@@ -141,6 +143,10 @@ public class reversi extends java.applet.Applet {
      */
     public void message(String s) {
         slabel.setText(s);//set a message in the status label.
+
+    }
+    public void mensajeEstado(String s) {
+        estado.setText(s);//set a message in the status label.
 
     }
 

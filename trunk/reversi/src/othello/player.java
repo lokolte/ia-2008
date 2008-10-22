@@ -1,7 +1,9 @@
 package othello;
+
 import java.awt.*;
 import java.util.*;
 import java.io.*;
+
 /**
  * this class is a computer player, that calculates what move to do
  * in a given situation.
@@ -12,6 +14,25 @@ class player implements Runnable {
     board realb, b;
     int side;
     int maxlevel;
+    String algoritmo = "miniMax";
+    double tiempoTotal = 0;
+    double cantidadJugada = 0;
+
+    public String getAlgoritmo() {
+        return algoritmo;
+    }
+
+    public void setAlgoritmo(String algoritmo) {
+        this.algoritmo = algoritmo;
+    }
+
+    public int getMaxlevel() {
+        return maxlevel;
+    }
+
+    public void setMaxlevel(int maxlevel) {
+        this.maxlevel = maxlevel;
+    }
     /*The Artificial intelligence used here is not very complictated
     I use a alphabeta algorithm to search a few moves deep. Then
     I do a simple evaluation with a number of adjustable parameters.
@@ -59,7 +80,7 @@ class player implements Runnable {
      * @param iside the side the player takes: board.P1 or board.P2
      */
     public player(board ib, int iside) {
-        this(ib, iside, null);
+        this(ib, iside, null, 4, "miniMax");
     }
 
     /**
@@ -69,11 +90,13 @@ class player implements Runnable {
      * @param iside the side the player takes: board.P1 or board.P2
      * @param ibv the boardview it must answer to.
      */
-    public player(board ib, int iside, boardview ibv) {
+    public player(board ib, int iside, boardview ibv, int profundidad, String algoritmo) {
         realb = ib;
         side = iside;
         bv = ibv;
-        setstrength(4);
+        setstrength(profundidad);
+        this.algoritmo = algoritmo;
+
     }
 
     /**
@@ -103,7 +126,7 @@ class player implements Runnable {
      */
     public void run() {
         timestart();
-        int move = bestmove();
+        int move = obtenerMejorMovimiento();
         while (gettime() < 4000) {
             try {
                 Thread.sleep(400);
@@ -111,54 +134,6 @@ class player implements Runnable {
             }
         }
         bv.answer("Well, this is my move:", move);
-    }
-
-    /**
-     * this functions returns the move that this player thinks is best. Use this function
-     * if you just want the best move, no extra threads and no delays.
-     * @return a move
-     */
-    public int bestmove() {
-        b = realb.copy();
-        if (b.posmoves == 0) {
-            return -1;
-        }
-        setoffset();
-        int s, best = -1, alpha = -100000;
-        int k = b.posmoves;
-        for (int i = 0; i < k; i++) {
-            b.domove(b.posmove[i]);
-            s = -prognosis(-100000, -alpha, 1);
-            b.undomove();
-            if (s > alpha) {
-                alpha = s;
-                best = i;
-            }
-        }
-        return b.posmove[best];
-    }
-
-    /*returns how good the current situation looks.*/
-    int prognosis(int alpha, int beta, int level) {
-        if (level >= maxlevel || b.posmoves == 0) {
-            return simplescore();
-        }
-        int s;
-        /*try all moves and return the estimate
-        we get when doing the best move*/
-        for (int i = 0; i < b.posmoves; i++) {
-            b.domove(b.posmove[i]);
-            s = -prognosis(-beta, -alpha, level + 1);
-            b.undomove();
-/*            if (s > beta) {
-                return s;
-            }
-            if (s > alpha) {
-                alpha = s;
-            }
- */
-        }
-        return alpha;
     }
 
     void setoffset() {
@@ -181,4 +156,153 @@ class player implements Runnable {
         }
         return score;
     }
+
+    int obtenerMejorMovimiento() {
+        int mejor;
+        long inicio, fin;
+        if (this.algoritmo.compareTo("miniMax") == 0) {
+            inicio = System.currentTimeMillis();
+            mejor = miniMaxCaller();
+            fin = System.currentTimeMillis();
+            this.tiempoTotal = this.tiempoTotal + (fin - inicio) / 1000.0;
+            this.cantidadJugada++;
+            System.err.println("-- MINIMAX -- " + "\n Tiempo Total: "+this.tiempoTotal+"\n Cant. Mov.: "+this.cantidadJugada+"\n Promedio Tiempo: "+this.tiempoTotal/this.cantidadJugada);
+            return mejor;
+        } else if (this.algoritmo.compareTo("alphaBeta") == 0) {
+            inicio = System.currentTimeMillis();
+            mejor = alphaBetaCaller();
+            fin = System.currentTimeMillis();
+            this.tiempoTotal = this.tiempoTotal + (fin - inicio) / 1000.0;
+            this.cantidadJugada++;
+            System.err.println("-- ALPHABETA -- " + "\n Tiempo Total: "+this.tiempoTotal+"\n Cant. Mov.: "+this.cantidadJugada+"\n Promedio Tiempo: "+this.tiempoTotal/this.cantidadJugada);
+            return mejor;
+        } else { //ALEATORIO
+
+            inicio = System.currentTimeMillis();
+            b = realb.copy();
+            mejor = this.siguienteMovimientoAleatorio(b.posmove);
+            fin = System.currentTimeMillis();
+            this.tiempoTotal = this.tiempoTotal + (fin - inicio) / 1000.0;
+            this.cantidadJugada++;
+            System.err.println("-- ALEATORIO -- " + "\n Tiempo Total: "+this.tiempoTotal+"\n Cant. Mov.: "+this.cantidadJugada+"\n Promedio Tiempo: "+this.tiempoTotal/this.cantidadJugada);
+            return mejor;
+        }
+    }
+
+    /**
+     * this functions returns the move that this player thinks is best. Use this function
+     * if you just want the best move, no extra threads and no delays.
+     * @return a move
+     */
+    public int miniMaxCaller() {
+        b = realb.copy();
+        if (b.posmoves == 0) {
+            return -1;
+        }
+        setoffset();
+        int s, best = -1, alpha = -100000;
+        int k = b.posmoves;
+        for (int i = 0; i < k; i++) {
+            b.domove(b.posmove[i]);
+
+            s = -miniMax(-100000, -alpha, 1);
+            b.undomove();
+            if (s > alpha) {
+                alpha = s;
+                best = i;
+            }
+        }
+        return b.posmove[best];
+    }
+
+    /*returns how good the current situation looks.*/
+    int miniMax(int alpha, int beta, int level) {
+        if (level >= maxlevel || b.posmoves == 0) {
+            return simplescore();
+        }
+        int s;
+        /*try all moves and return the estimate
+        we get when doing the best move*/
+        for (int i = 0; i < b.posmoves; i++) {
+            b.domove(b.posmove[i]);
+            s = -miniMax(-beta, -alpha, level + 1);
+            b.undomove();
+        /*            
+        if (s > beta) {
+        return s;
+        }
+        if (s > alpha) {
+        alpha = s;
+        }
+         */
+        }
+        return alpha;
+    }
+
+    /**
+     * this functions returns the move that this player thinks is best. Use this function
+     * if you just want the best move, no extra threads and no delays.
+     * @return a move
+     */
+    public int alphaBetaCaller() {
+        b = realb.copy();
+        if (b.posmoves == 0) {
+            return -1;
+        }
+        setoffset();
+        int s, best = -1, alpha = -100000;
+        int k = b.posmoves;
+        for (int i = 0; i < k; i++) {
+            b.domove(b.posmove[i]);
+
+            s = -alphaBeta(-100000, -alpha, 1);
+            b.undomove();
+            if (s > alpha) {
+                alpha = s;
+                best = i;
+            }
+        }
+        return b.posmove[best];
+    }
+
+    /*returns how good the current situation looks.*/
+    int alphaBeta(int alpha, int beta, int level) {
+        if (level >= maxlevel || b.posmoves == 0) {
+            return simplescore();
+        }
+        int s;
+        /*try all moves and return the estimate
+        we get when doing the best move*/
+        for (int i = 0; i < b.posmoves; i++) {
+            b.domove(b.posmove[i]);
+            s = -alphaBeta(-beta, -alpha, level + 1);
+            b.undomove();
+            if (s > beta) {
+                return s;
+            }
+            if (s > alpha) {
+                alpha = s;
+            }
+        }
+        return alpha;
+    }
+    public static int siguienteMovimientoAleatorio(int[] moves){
+        int cantidad=0;
+        for (int i = 0; i < moves.length && moves[i] != 0; i++) {
+            cantidad++;
+        }
+        if (cantidad==0)
+            return -1;
+
+        int[] movimientos=new int[cantidad];
+        cantidad=0;
+        for (int i = 0; i < moves.length && moves[i] != 0; i++) {
+            movimientos[cantidad++]=moves[i];
+        }
+        
+        int x = (int) (movimientos.length * Math.random());
+        return movimientos[x];
+        
+    }
+    
 }
