@@ -127,9 +127,9 @@ class player implements Runnable {
     public void run() {
         timestart();
         int move = obtenerMejorMovimiento();
-        while (gettime() < 4000) {
+        while (gettime() < 700) {
             try {
-                Thread.sleep(400);
+                Thread.sleep(200);
             } catch (Exception e) {
             }
         }
