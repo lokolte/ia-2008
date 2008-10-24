@@ -123,8 +123,8 @@ class boardview extends Canvas
 
     void clicked(int c) {//called if user clicked field c
 
-        mensajeEstado("JUGADOR 0 -> P/A: " + this.getPlayers()[0].getMaxlevel() + "/" + this.getPlayers()[0].getAlgoritmo() +
-                "    JUGADOR 1 -> P/A: " + this.getPlayers()[1].getMaxlevel() + "/" + this.getPlayers()[1].getAlgoritmo());
+        mensajeEstado("NEGRAS(0) -> P/A: " + this.getPlayers()[0].getMaxlevel() + "/" + this.getPlayers()[0].getAlgoritmo() +
+                "    BLANCAS (1) -> P/A: " + this.getPlayers()[1].getMaxlevel() + "/" + this.getPlayers()[1].getAlgoritmo());
         if (!computer[b.getplayer()]) {
             if (b.posmoves == 0) {
                 domove(-1);
@@ -245,7 +245,7 @@ class boardview extends Canvas
         return 0;
     }/*0 means not, 1 r->g, 2 g->r*/
 
-    Color back[] = {new Color(20, 141, 3), new Color(156, 253, 182)};
+    Color back[] = {new Color(20, 141, 3), new Color(100, 222, 58)};
     Color c1 = new Color(0, 0, 0);
     Color c2 = new Color(255, 255, 255);
 
