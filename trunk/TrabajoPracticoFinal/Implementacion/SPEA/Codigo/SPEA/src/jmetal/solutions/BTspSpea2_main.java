@@ -34,7 +34,7 @@ public class BTspSpea2_main {
     Operator  crossover ;         // Crossover operator
     Operator  mutation  ;         // Mutation operator
     Operator  selection ;         // Selection operator
-    String problemName = "src/files/eil101.tsp" ;
+    String problemName = "src/files/tsp/eil51.tsp" ;
     
     
     // Logger object and file to store log messages
