@@ -1,0 +1,575 @@
+﻿body, html {
+	font-family: Verdana, Kalimati;
+	font-size: 12px;
+	margin: 0px;
+	height: 100%;
+}
+
+a {
+	color: #336699;
+}
+
+.content_wrapper {
+	min-height: 80%;
+	text-align: center;
+}
+
+.koders_logo {
+	margin-top: 1%;
+}
+
+body.results .koders_logo {
+	margin-top: 30px;
+}
+
+.searching_loc {
+	font-size: 11px;
+	font-family: arial;
+	font-weight: normal;
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+.search_bar {
+	height: 90px;
+	width: 584px;
+	text-align: left;
+	background-repeat: no-repeat;
+	background-image: url(http://www.koders.com/media/images/homepage/search_panel_background.gif);
+	margin: 0 auto 0 auto;
+	position: relative;
+}
+
+.search_bar .search_box, .search_bar .searchBG {
+	font-family: Verdana, Kalimati;
+	font-size: 14px;
+	height: 28px;
+	width: 452px;
+	padding: 4px 0 0 4px;
+	position: absolute;
+	left: 18px;
+	top: 16px;
+}
+
+.search_bar .searchBG {
+	font-size: 12px;
+	text-align: center;
+    background: white url(http://www.koders.com/media/images/homepage/search_input_bg.gif) repeat-x scroll 0 0 ;
+    overflow: hidden;
+	color: #aaa;
+	padding-top: 6px;
+}
+
+div > .searchBG {
+    height: 22px !important;
+    width: 475px !important;
+}
+
+.search_bar .search_box {
+	border: solid 1px #274E74;
+	background: transparent;
+}
+
+.search_bar .options {
+	position: absolute;
+	width: 260px;
+	left: 18px;
+	top: 56px;
+}
+
+.lanaguage_select_box {
+	margin-right: 10px;
+}
+
+.options select {
+	vertical-align: top;
+	width: 112px;
+	font-size: 11px;
+}
+
+.options .info_bubble {
+	position: relative;
+	top: 1px;
+	padding: 0;
+	left: 3px;
+}
+
+.options .info_bubble img {
+	border: 0px;
+}
+
+.search_button_container {
+	position: absolute;
+	left: 470px;
+	top: 16px;
+}
+
+.search_button {
+	cursor: pointer;
+	width: 85px;
+	height: 29px;
+	background-image: url(http://www.koders.com/media/images/homepage/search_button.gif);
+	background-position:-10px top;	    
+	display: block;
+	border: none;
+	float: left;
+	margin-top: 0px;
+}
+
+.search_button_hover {
+	cursor: pointer;
+	border: none;
+	width: 85px;
+	height: 29px;
+	background-image: url(http://www.koders.com/media/images/homepage/search_button.gif);
+	background-position:-10px -29px;
+	display: block;
+	float: left;
+	margin-top: 0px;
+}
+
+.search_button_downarrow {
+	width:23px;
+	height:29px;
+	background-image: url(http://www.koders.com/media/images/homepage/search_button_extender.gif);
+	display:block;
+	float:left;
+	margin-left:-12px;
+}
+
+.search_button_downarrow:hover {
+	background-position:0 -29px;
+}
+
+.search_button:hover {
+	background-position:0 -29px;
+}
+
+.search_button_extender {
+	width: 23px;
+	height: 29px;
+	background-image: url(http://www.koders.com/media/images/homepage/search_button_extender.gif);
+	display: block;
+	cursor: pointer;
+	margin-top: 0px;
+	float: left;
+}
+
+.search_button_extender span {
+	display: none;
+}
+
+.search_button_extender:hover {
+	background-image: url(http://www.koders.com/media/images/homepage/search_button_extender_oo.gif);
+}
+
+.search_bar .search_button:hover {
+	background-image: url(http://www.koders.com/media/images/homepage/search_button_oo.gif);
+}
+
+
+.search_examples table td {
+	padding: 8px;
+}
+
+.clear {
+	overflow: hidden;
+	width: 100%;
+}
+
+.helper_text {
+	color: #585858;
+	font-family: Arial, Garuda, Freesans;
+	font-size: 12px;
+	text-align: center;	
+	padding-left: 3px;
+	padding-right: 3px;	
+	margin-top: 10px;	
+	position: relative;
+	height: 50px;
+	display: block;
+}
+
+.helper_text strong {
+	color: #366BA0;
+}
+
+
+#footer_wrapper {
+	text-align: center;	
+	width: 100%;
+	height: 80px;
+	margin: -80px auto 0;
+	/*top: -80px;*/
+	position: relative;
+}
+
+body.results .content_wrapper
+{
+	height: auto;
+}
+
+body.results #footer_wrapper
+{
+	margin-top: 0px;
+}
+
+#ft {
+	height:80px;
+	font-size:12px;
+	font-family: Verdana, Kalimati;
+	position:relative;
+}
+
+#footer {
+	border-top: solid 1px #DBDBDB;
+	width: 615px;
+	text-align:center;
+	color: #acacac;
+	padding-top: 17px;  
+	margin: 0 auto 0 auto;
+	clear:both;
+}
+
+#footer .row_2 {	
+	font-family: Arial, Garuda, Freesans;
+	width: 605px;
+	margin: 15px auto 0 auto;
+
+}
+
+
+#footer .copy {
+	float: left;
+	clear: left;
+	display: block;
+}
+
+#footer .feed {
+	float: right;
+	clear: right;
+	display: block;
+	vertical-align: middle;
+	line-height: 16px;
+	margin-top: -1px;
+}
+
+#footer .feed a, #footer .feed a:hover {
+	color: #CE4900;
+	height: 16px;
+	line-height: 16px;
+}
+
+#footer .feed img {
+	margin: 0px;
+	padding: 0px;
+	margin-top: -3px;
+	vertical-align: middle;
+}
+
+#footer a {
+	color: #4c4c4c;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: #336699;
+	text-decoration: underline
+}
+
+
+.more_wrapper {
+	text-align: center;
+}
+
+.more {
+	margin-left: auto;
+	margin-right: auto;
+	width: 590px;
+	clear: both;
+	overflow: hidden;
+	text-align: left;
+	position:relative;
+	margin-top: -10px;
+	color: #585858;
+}
+
+.more .top {
+	height: 32px;
+	background-image: url(http://www.koders.com/media/images/homepage/more_top.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 24px;	
+	position: relative;
+	overflow: hidden;
+	z-index: 7000;
+}
+
+.more .tab_strip {
+	position: absolute;
+	width:289px;
+	right: 9px;
+	overflow: hidden;
+}
+
+.more .content {
+	width: 100%;
+	min-height:270px;
+	height: auto;
+	background-image: url(http://www.koders.com/media/images/homepage/more_bottom.gif);
+	background-position: left bottom;
+	overflow: hidden;
+}
+
+
+* html .more .content {
+	height:270px;
+}
+
+
+body.no-results .more .content {
+	min-height:0px;		
+}
+
+* html body.no-results .more .content {
+	height:auto;
+}
+
+.welcome_content {
+	height:auto;
+}
+
+.welcome_content iframe {
+	width:97%;
+	border:0;
+	height:250px;
+	margin-bottom:10px;
+	margin-left:10px;
+        overflow:hidden;	
+}
+
+.search_examples_content {
+	display:none;
+}
+
+.search_examples_content table td {
+	font-size:11px;
+	padding:8px;
+}
+
+.search_examples_content table {
+	margin:8px;
+	width:100%;
+}
+
+.search_examples_content p {
+	margin:0px;
+}
+
+.featured_content {
+	height:auto;
+}
+
+.featured_content iframe {
+	width:97%;
+	border:0;
+	height:250px;
+	margin-bottom:10px;
+	margin-left:10px;
+        overflow:hidden;	
+}
+
+
+.tab_strip span {
+	display: none;
+}
+
+.welcome_tab_off {
+	background-image: url(http://www.koders.com/media/images/homepage/welcome_tab_off.gif);
+	height: 27px;
+	width: 87px;
+	display: block;
+	float: right;
+	cursor: pointer;
+}
+
+.welcome_tab_off_alt {
+	background-image: url(http://www.koders.com/media/images/homepage/welcome_tab_off_2.gif);
+	height: 27px;
+	width: 87px;
+	display: block;
+	float: right;
+	cursor: pointer;
+}
+
+.welcome_tab_on {
+	background-image: url(http://www.koders.com/media/images/homepage/welcome_tab.gif);
+	height: 27px;
+	width: 87px;
+	display: block;
+	float: right;
+	cursor: pointer;
+}
+
+.welcome_tab_on span, .welcome_tab_off span {
+	display: none;
+}
+
+.search_examples_tab_on {
+	background-image: url(http://www.koders.com/media/images/homepage/search_examples_tab_on.gif);
+	height: 27px;
+	width: 122px;
+	display: block;
+	float: right;
+	cursor:pointer;
+}
+
+.search_examples_tab_off {
+	background-image: url(http://www.koders.com/media/images/homepage/search_examples_tab_off_1.gif);
+	height: 27px;
+	width: 122px;
+	display: block;
+	float: right;
+	cursor:pointer;
+}
+
+.search_examples_tab_off_alt {
+	background-image: url(http://www.koders.com/media/images/homepage/search_examples_tab_off_2.gif);
+	height: 27px;
+	width: 122px;
+	display: block;
+	float: right;
+	cursor:pointer;
+}
+
+.search_examples_tab_on span, .search_examples_tab_off span {
+	display: none;
+}
+
+.featured_tab_on {
+	background-image: url(http://media.blackducksoftware.com/koders/bds/featured_tab_on.gif);
+	height: 27px;
+	width: 80px;
+	display: block;
+	float: right;
+	cursor:pointer;
+}
+
+.featured_tab_off {
+	background-image: url(http://media.blackducksoftware.com/koders/bds/featured_tab_off.gif);
+	height: 27px;
+	width: 80px;
+	display: block;
+	float: right;
+	cursor:pointer;
+}
+
+.featured_tab_on span, .featured_tab_off span {
+	display: none;
+}
+
+.results .bottom_spacer{
+	display: none;
+}
+
+.bottom_spacer {
+	height:100px;
+}
+
+.topToolbarInner a {
+    text-decoration:none !important;
+}
+
+
+#search-examples td
+{
+    vertical-align:top;
+}
+
+#search-examples label
+{
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#teamstatus_wrapper *
+{
+    padding:5px;
+    padding-left:0px;
+}
+
+
+#search-examples-old td
+{
+    padding:5px;
+}
+
+#search-table-old td
+{
+    padding:2px;
+}
+
+body.home div.error-pane
+{
+    margin: auto;
+    width: 390px;
+}
+
+.no-results
+{
+    padding-top: 10px;
+    text-align: center;
+}
+
+body.no-results {
+	padding-top:0;
+}
+
+.no-results span.error_message
+{
+    display: block;
+    margin-bottom: 15px;
+}
+
+.no-results label
+{
+    font-size: .9em;
+}
+
+.no-results ul
+{
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.no-results ul li
+{
+}
+
+.no-results .error-pane {
+	margin:0;
+	padding:0;
+	width:auto !important;
+}
+
+.no-results .error-pane .more .content {
+	padding:10px;
+	padding-left:20px;
+}
+
+.no-results .error-pane label {
+	font-size:12px;
+	font-weight:bold;
+}
+
+.no-results .error_message {
+	margin-bottom:10px;
+}
+
+#search-scope
+{
+	margin: 10px auto 0 auto;
+	min-height: 50px;
+}

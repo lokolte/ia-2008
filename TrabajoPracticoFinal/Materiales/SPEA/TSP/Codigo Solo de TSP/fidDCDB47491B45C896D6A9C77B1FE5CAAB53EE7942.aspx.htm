@@ -1,0 +1,1047 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="pageHead">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+
+<title>
+	Koders Code Search: Tsp.java - Java
+</title><meta name="robots" content="noarchive,index,follow"><meta name="GOOGLEBOT" content="noarchive,index,follow"><link href="http://www.koders.com/search/KodersDescriptionOS1_1.xml" title="Koders search" rel="search" type="application/opensearchdescription+xml"><link href="http://www.koders.com/search/KodersDescriptionOS1_1Proj.xml" title="Koders Projects search" rel="search" type="application/opensearchdescription+xml"><link href="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/styles.css" type="text/css" rel="stylesheet"><!--[if IE]><link href="/skins/koders/iestyles.css" type="text/css" rel="stylesheet" /><![endif]-->
+<link href="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/koders.css" type="text/css" rel="stylesheet"> <meta name="ROBOTS" content="NOARCHIVE"> 
+		
+	<link href="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/home-page.css" type="text/css" rel="stylesheet">
+
+<script type="text/javascript" language="javascript">
+//Copyright (c) 2005-2007 Koders.com,
+//All Rights Reserved.
+var anchors;
+var symbolSegment = 0;
+var max = 0;
+	
+function assignInitial() {
+	var codeDiv = document.getElementById("CodeDiv");
+	if(codeDiv != null) {
+		anchors = codeDiv.getElementsByTagName("a");
+		assignR(300);
+	}
+}
+
+function assignR(max) {
+	if(symbolSegment + max >= anchors.length) {
+		max = anchors.length - symbolSegment; 
+	}
+	for(var i = 0; i < max; i++) {
+		var temp = "";
+		var index = symbolSegment +  i;
+		var anchor = anchors[index];
+
+		for(var k = 0; k < anchor.childNodes.length; k++) {
+			if(anchor.childNodes[k].data == undefined) {
+				temp = temp + anchor.childNodes[k].childNodes[0].data;
+			}
+			else {
+				temp = temp + anchor.childNodes[k].data;
+			}
+		}
+		
+		anchors[index].setAttribute("href", "javascript:searchRef('" + temp + "')");
+		anchors[index].setAttribute("title", "Search for references of '" + temp + "'");
+	}
+	
+	if(symbolSegment + max < anchors.length) { 
+		symbolSegment += max;
+		this.setTimeout("assignR(50)", 200);		
+	}
+	
+}
+
+function searchRef(symbol) {
+	location = homeUrl + "?s=" + symbol + "&scope=" + projectID + "&la=" + sourceLanguage;
+}
+
+function Hide(element) {
+	if(element) {
+		element.style.visibility = "hidden";
+		element.style.display = "none";
+	} 
+}
+
+function HideBanner() {
+	var eleArray = document.getElementsByTagName('div');
+	for(var i = 0; i < eleArray.length; i++) {
+		if(!eleArray[i] || !eleArray[i].id) {
+			continue;
+		}
+
+		var id = eleArray[i].id;
+		if(id && id.indexOf("RightBanner") != -1){
+			Hide(eleArray[i]);
+								
+			// hide all the iframes nested in the Banner
+			var arrIframe = eleArray[i].getElementsByTagName('iframe');
+			if(!arrIframe)
+				return;
+			
+			for(var j = 0; j < arrIframe.length; j++) {
+				Hide(arrIframe[j]);
+			}
+		}
+	}
+}
+
+var dojo;
+if(dojo) dojo.addOnLoad(assignInitial);
+else window.onload = assignInitial;
+</script>
+</head><body>
+
+	
+ 
+    <form name="FRM" method="post" action="kv.aspx?fid=DCDB47491B45C896D6A9C77B1FE5CAAB53EE7942" id="FRM">
+<div>
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJMTYzMDIzMzAwD2QWBgIBD2QWAgIGDw8WBB4GRmlsZUlEAoqW2gceCVByb2plY3RJRAK/KmRkAgUPZBYEAgMPZBYCZg9kFggCAQ8PFgIeC05hdmlnYXRlVXJsBQEvZBYCZg8PFgIeCEltYWdlVXJsBUFodHRwOi8vbWVkaWEuYmxhY2tkdWNrc29mdHdhcmUuY29tL2tvZGVycy9iZHMvbG9nb19tZWRfdGFnX2JkLmdpZmRkAgcPEA8WAh4LXyFEYXRhQm91bmRnZBAVIg1BbGwgTGFuZ3VhZ2VzDEFjdGlvblNjcmlwdANBZGEDQVNQB0FTUC5ORVQJQXNzZW1ibGVyAUMCQyMDQysrBUNvYm9sCkNvbGRGdXNpb24GRGVscGhpBkVpZmZlbAZFcmxhbmcHRm9ydHJhbgRKYXZhCkphdmFTY3JpcHQDSlNQBExpc3ADTHVhC01hdGhlbWF0aWNhBk1hdGxhYgpPYmplY3RpdmVDBFBlcmwDUEhQBlByb2xvZwZQeXRob24EUnVieQZTY2hlbWUJU21hbGx0YWxrA1NRTANUY2wCVkIGVkIuTkVUFSIBKgxBY3Rpb25TY3JpcHQDQWRhA0FTUAdBU1AuTkVUCUFzc2VtYmxlcgFDAkMjA0NwcAVDb2JvbApDb2xkRnVzaW9uBkRlbHBoaQZFaWZmZWwGRXJsYW5nB0ZvcnRyYW4ESmF2YQpKYXZhU2NyaXB0A0pTUARMaXNwA0x1YQtNYXRoZW1hdGljYQZNYXRsYWIKT2JqZWN0aXZlQwRQZXJsA1BIUAZQcm9sb2cGUHl0aG9uBFJ1YnkGU2NoZW1lCVNtYWxsdGFsawNTUUwDVGNsAlZCBlZCLk5FVBQrAyJnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGQCCQ8QDxYCHwRnZBAVHQxBbGwgTGljZW5zZXMDQUZMBEFMMjADQVNMBEFQU0wDQlNEA0NQTAVFUEwxMARHVFBMA0dQTARMR1BMBUlCTVBMBElPU0wETVNDTARNU1BMBE1TUkwHTVNWU1NESwRNSVREBU1QTDEwBU1QTDExBU5QTDEwBU5QTDExA09TTARQU0ZMAlNMA1NQTANXM0MDWkxMA1pQTBUdASoDQUZMBEFMMjADQVNMBEFQU0wDQlNEA0NQTAVFUEwxMARHVFBMA0dQTARMR1BMBUlCTVBMBElPU0wETVNDTARNU1BMBE1TUkwHTVNWU1NESwRNSVREBU1QTDEwBU1QTDExBU5QTDEwBU5QTDExA09TTARQU0ZMAlNMA1NQTANXM0MDWkxMA1pQTBQrAx1nZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2RkAgsPDxYCHwIFMGh0dHA6Ly93d3cua29kZXJzLmNvbS9jb3JwL3N1cHBvcnQvbGljZW5zZS1pbmZvL2QWAmYPFgIeA3NyYwUTL2ltYWdlcy9pbmZvXzE2LmdpZmQCCQ8PFgIeB1Zpc2libGVnZBYKZg8PFgQfAwUUL2ltYWdlcy9kb3dubG9hZC5naWYeB1Rvb2xUaXAFEURvd25sb2FkIFRzcC5qYXZhZGQCAg8WAh4LXyFJdGVtQ291bnQCARYCZg9kFgJmDxUFCFRzcC5qYXZhBEphdmEAAAhMT0M6IDMxOWQCAw8WAh8IAgEWAmYPZBYGZg8VAlhsc2wgaXMgYSBhZ2VudCBtYW5hZ2VtZW50IHRvb2wgdG8gb3B0aW1pemUgY29zdCBvZiBzY2hlZHVsaW5nIGFnZW50cyB0aHJvdWdoIGEgY291bnRyeQ0KNy9pbmZvLmFzcHg/Yz1Qcm9qZWN0SW5mbyZwaWQ9WEtIV0VDVFAxQVlSRDc3WURSWVpLNDUyRkJkAgEPZBYCZg8VAQNsc2xkAgIPFQIIamF2YS5uZXQDY3ZzZAIFD2QWAmYPZBYGAgEPDxYCHwIFNy9pbmZvLmFzcHg/Yz1Qcm9qZWN0SW5mbyZwaWQ9WEtIV0VDVFAxQVlSRDc3WURSWVpLNDUyRkJkFgJmDw8WBB8DBRIvaW1hZ2VzL2ZvbGRlci5naWYfBwVIamF2YS5uZXRcbFxsc2xcbHNsXHNyY1xqYXZhXGNvbVxzb2Z0d2FyZWh1dFxsc2xcYWxnb3JpdGhtXGNvc3RhbGdvcml0aG1cZGQCAw8PFgQeBFRleHQFHi4uLnNsXGFsZ29yaXRobVxjb3N0YWxnb3JpdGhtXB8HBUhqYXZhLm5ldFxsXGxzbFxsc2xcc3JjXGphdmFcY29tXHNvZnR3YXJlaHV0XGxzbFxhbGdvcml0aG1cY29zdGFsZ29yaXRobVxkZAIFDxYCHwgCBWQCBw8WAh8GaGQCBw8WAh8JBaMDPHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPg0KdmFyIGdhSnNIb3N0ID0gKCgiaHR0cHM6IiA9PSBkb2N1bWVudC5sb2NhdGlvbi5wcm90b2NvbCkgPyAiaHR0cHM6Ly9zc2wuIiA6ICJodHRwOi8vd3d3LiIpOw0KZG9jdW1lbnQud3JpdGUodW5lc2NhcGUoIiUzQ3NjcmlwdCBzcmM9JyIgKyBnYUpzSG9zdCArICJnb29nbGUtYW5hbHl0aWNzLmNvbS9nYS5qcycgdHlwZT0ndGV4dC9qYXZhc2NyaXB0JyUzRSUzQy9zY3JpcHQlM0UiKSk7DQo8L3NjcmlwdD4NCjxzY3JpcHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0Ij4NCnZhciBwYWdlVHJhY2tlciA9IF9nYXQuX2dldFRyYWNrZXIoIlVBLTE0NTA0ODAtMyIpOw0KcGFnZVRyYWNrZXIuX2luaXREYXRhKCk7DQpwYWdlVHJhY2tlci5fdHJhY2tQYWdldmlldygpOw0KPC9zY3JpcHQ+DQpkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYBBRpLb2Rldmlld2VyMSREb3dubG9hZEJ1dHRvbg==" type="hidden">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['FRM'];
+if (!theForm) {
+    theForm = document.FRM;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/WebResource.js" type="text/javascript"></script>
+
+
+<script src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/ScriptResource_002.js" type="text/javascript"></script>
+<script src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/ScriptResource.js" type="text/javascript"></script>
+<script src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/js.js" type="text/javascript"></script>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl05$scriptManager', document.getElementById('FRM'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls([], [], [], 90);
+//]]>
+</script>
+
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                <td style="padding: 8px 10px 2px; width: 425px;" align="left">
+                    
+<table id="t1" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td style="white-space: nowrap;" nowrap="nowrap">
+		    <a id="ctl03_Home" href="http://www.koders.com/"><img id="ctl03_imgLogo" src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/logo_med_tag_bd.gif" style="border-color: rgb(0, 0, 0); border-width: 0px; height: 32px; width: 141px;" vspace="6" hspace="0"></a>
+		</td>
+		<td style="white-space: nowrap;" nowrap="nowrap">
+		    <input name="ctl03$ctl00$s" value="TSP MOEA Source Code" maxlength="128" id="ctl03_ctl00_s" class="tbSearchSmall" style="width: 200px;" type="text">
+
+		    <input name="ctl03$btnSearch" value="Search" id="ctl03_btnSearch" class="btnSearch" type="submit"><input style="display: none;" type="text"><br>
+			Filter:
+			<select name="ctl03$Languages" id="ctl03_Languages">
+	<option value="*">All Languages</option>
+	<option value="ActionScript">ActionScript</option>
+	<option value="Ada">Ada</option>
+	<option value="ASP">ASP</option>
+	<option value="ASP.NET">ASP.NET</option>
+	<option value="Assembler">Assembler</option>
+	<option value="C">C</option>
+	<option value="C#">C#</option>
+	<option value="Cpp">C++</option>
+	<option value="Cobol">Cobol</option>
+	<option value="ColdFusion">ColdFusion</option>
+	<option value="Delphi">Delphi</option>
+	<option value="Eiffel">Eiffel</option>
+	<option value="Erlang">Erlang</option>
+	<option value="Fortran">Fortran</option>
+	<option selected="selected" value="Java">Java</option>
+	<option value="JavaScript">JavaScript</option>
+	<option value="JSP">JSP</option>
+	<option value="Lisp">Lisp</option>
+	<option value="Lua">Lua</option>
+	<option value="Mathematica">Mathematica</option>
+	<option value="Matlab">Matlab</option>
+	<option value="ObjectiveC">ObjectiveC</option>
+	<option value="Perl">Perl</option>
+	<option value="PHP">PHP</option>
+	<option value="Prolog">Prolog</option>
+	<option value="Python">Python</option>
+	<option value="Ruby">Ruby</option>
+	<option value="Scheme">Scheme</option>
+	<option value="Smalltalk">Smalltalk</option>
+	<option value="SQL">SQL</option>
+	<option value="Tcl">Tcl</option>
+	<option value="VB">VB</option>
+	<option value="VB.NET">VB.NET</option>
+
+</select>&nbsp;<select name="ctl03$Licenses" id="ctl03_Licenses">
+	<option selected="selected" value="*">All Licenses</option>
+	<option value="AFL">AFL</option>
+	<option value="AL20">AL20</option>
+	<option value="ASL">ASL</option>
+	<option value="APSL">APSL</option>
+	<option value="BSD">BSD</option>
+	<option value="CPL">CPL</option>
+	<option value="EPL10">EPL10</option>
+	<option value="GTPL">GTPL</option>
+	<option value="GPL">GPL</option>
+	<option value="LGPL">LGPL</option>
+	<option value="IBMPL">IBMPL</option>
+	<option value="IOSL">IOSL</option>
+	<option value="MSCL">MSCL</option>
+	<option value="MSPL">MSPL</option>
+	<option value="MSRL">MSRL</option>
+	<option value="MSVSSDK">MSVSSDK</option>
+	<option value="MITD">MITD</option>
+	<option value="MPL10">MPL10</option>
+	<option value="MPL11">MPL11</option>
+	<option value="NPL10">NPL10</option>
+	<option value="NPL11">NPL11</option>
+	<option value="OSL">OSL</option>
+	<option value="PSFL">PSFL</option>
+	<option value="SL">SL</option>
+	<option value="SPL">SPL</option>
+	<option value="W3C">W3C</option>
+	<option value="ZLL">ZLL</option>
+	<option value="ZPL">ZPL</option>
+
+</select>&nbsp;<a id="ctl03_LicenseInfoLink" href="http://www.koders.com/corp/support/license-info/"><img src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/info_16.gif" id="ctl03_InfoImg" alt="InfoImg" width="16" border="0" height="16"></a>
+		</td>
+		<td valign="middle" width="0" align="center">
+			
+		</td>
+	</tr>
+</tbody></table>
+
+                </td>
+                <td align="right">
+					<div class="kvHeaderLimiter">
+                    
+
+<script type="text/javascript" src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/toolbar.js"></script>
+<link href="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/toptoolbar.css" type="text/css" rel="stylesheet">
+<!-- {Begin Toolbar} -->
+<div id="topToolbars">
+<div class="topToolbar ttb_wider" style="width: 463px; top: 0px; right: 0px;" onmouseover="Toolbar._onmouseover(event); " onmouseout="Toolbar._onmouseout(event); ">
+    <div class="topToolbarCorner"></div>
+    <div class="topToolbarInner">
+        <div class="topToolbarButton" style="width: 84px; cursor: pointer;" onclick="window.location='http://www.koders.com/corp/about/'">Company <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup" style="width: 110px;">
+                <a href="http://corp.koders.com/corp/about/">About Koders</a>
+                <a href="http://corp.koders.com/corp/about#Contact">Contact Us</a>
+            </div>
+        </div>
+        <div class="topToolbarButton" style="width: 72px; cursor: pointer;" onclick="window.location='http://www.koders.com/info.aspx?c=tools'">Plugins <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup" style="width: 110px;">
+                <a href="http://www.koders.com/info.aspx?c=tools#IDEs">
+                    <img src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/toolbar-eclipse_icon.gif" alt="e"> Eclipse</a>
+                <a href="http://www.koders.com/info.aspx?c=tools#IDEs">
+                    <img src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/toolbar-visual_icon.gif" alt="v"> Visual Studio</a>
+                <a href="http://www.koders.com/info.aspx?c=tools#Firefox">Browser</a>
+                <a href="http://www.koders.com/info.aspx?c=tools#AddSearch">Widget APIs</a>
+                <!--<a href="http://www.koders.com/blog/?p=36">Koders APIs</a>-->
+            </div>
+        </div>
+        <div class="topToolbarButton" style="width: 76px; cursor: pointer;" onclick="window.location='http://corp.koders.com/corp/support'">Support <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup" style="width: 160px;">
+                <a href="http://corp.koders.com/corp/support/">Support Overview</a>
+                <a href="http://corp.koders.com/corp/support/code-search/getting-started/">Getting Started Guide</a>
+                <a href="http://www.koders.com/info.aspx?c=feedback&amp;product=kdc&amp;type=bug">Feedback</a>
+                <a href="http://corp.koders.com/corp/support/license-info/">License Info</a>
+            </div>
+        </div>
+        <div class="topToolbarButton" style="width: 98px; cursor: pointer;" onclick="window.location='http://corp.koders.com/corp/community/'">Community <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup" style="width: 150px;">
+		        <a href="http://corp.koders.com/corp/community/">Community Overview</a>
+                <a href="http://www.koders.com/info.aspx?c=forms/SubmitProject">Add Projects</a>
+                <!--<a href="http://www.koders.com/blog/">Blog</a>-->
+                <a href="http://forums.koders.com/">Forums</a>
+                <a href="http://corp.koders.com/zeitgeist/">Top Searches</a>
+            </div>
+        </div>
+        <div class="topToolbarButton" style="width: 102px; cursor: pointer;" onclick="window.location='http://www.koders.com/info.aspx?page=MyAccount'">My Account <span class="topToolbarDownArrow">▼</span>
+            <div class="topToolbarPopup" style="width: 98px;">
+                <a id="Sitetoolbar1_ctl00_toggleAccount" href="http://www.koders.com/info.aspx?page=MyAccount">Join Now!</a>
+                <a id="Sitetoolbar1_ctl00_toggleLogin" href="http://www.koders.com/info.aspx?page=MyAccount&amp;action=Login">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br class="clear">
+</div>
+<!-- {End Toolbar} -->
+&nbsp;
+                    </div>
+                </td>
+            </tr>
+        </tbody></table>
+        
+        <div id="leaderboard" style="">
+            <center>
+				
+<!-- Media Server Begin: 728x90 -->
+
+<!-- Media Server End: 728x90 -->
+               
+            </center>
+		</div>
+        
+        <div class="kodeViewerContDiv">
+            
+<!-- <div class="SidePadding" align="left"> -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td>
+			<table id="Table2" width="100%" border="0" cellspacing="5">
+				<tbody><tr>
+					<td class="info_panel" valign="top">
+						<table id="Table3" border="0">
+							<tbody><tr>
+								<td valign="middle" width="60" align="center">
+									<input name="Kodeviewer1$DownloadButton" id="Kodeviewer1_DownloadButton" title="Download Tsp.java" src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/download.gif" style="border-width: 0px;" type="image">
+									<a id="Kodeviewer1_LinkButton1" href="javascript:__doPostBack('Kodeviewer1$LinkButton1','')">download</a>
+								</td>
+								<td>
+											<b>
+												Tsp.java
+											</b>
+											<br>
+											Language: <b>
+												Java
+											</b>
+											<br>
+											
+											
+											LOC: 319
+											<br>
+										</td>
+							</tr>
+						</tbody></table>
+					</td>
+					<td class="kodeviewer_info_panel" valign="top" width="200">
+								<b>Project Info</b><br>
+								<a title="lsl is a agent management tool to optimize cost of scheduling agents through a country" href="http://www.koders.com/info.aspx?c=ProjectInfo&amp;pid=XKHWECTP1AYRD77YDRYZK452FB">
+									<b>
+										<span id="Kodeviewer1_ProjectView_ctl00_Label2">lsl</span></b></a>
+								<br>
+								Server:
+								java.net
+								<br>
+								Type:
+								cvs
+							
+						
+						
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+<style type="text/css"> 
+.RightBanner { Z-INDEX: 2; RIGHT: 25px; FLOAT: right; WIDTH: 160px; POSITION: absolute; HEIGHT: 600px } 
+</style>
+
+	<div id="Kodeviewer1_RightBanner" class="RightBanner">
+<div style="margin-bottom: 2px;" align="center">[<a style="font-size: smaller;" href="javascript:HideBanner();">Show Code</a>] </div>
+<div>
+
+<!-- Media Server Begin: 160x600 -->
+
+<!-- Media Server End: 160x600 -->
+<br><br><br>
+<!-- Media Server Begin: 160x602 -->
+
+<!-- Media Server End: 160x602 -->
+<br><br><br>
+<!-- Media Server Begin: 160x603 -->
+
+<!-- Media Server End: 160x603 -->
+</div>
+<div style="margin-top: 2px;" align="center">[<a style="font-size: smaller;" href="javascript:HideBanner();">Show Code</a>] </div></div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td height="100%">
+			<table id="Table9" style="height: 100%;" border="0" cellpadding="0" cellspacing="8">
+				<tbody><tr>
+					<td valign="top">
+						
+						
+<table id="Table1" style="border: 1px solid gray; border-collapse: collapse;" width="100%" border="0" cellpadding="3" cellspacing="0">
+	<tbody>
+		<tr>
+			<th class="exp_header" align="left">
+				<a id="Kodeviewer1_ctl00_hyFicon" href="http://www.koders.com/info.aspx?c=ProjectInfo&amp;pid=XKHWECTP1AYRD77YDRYZK452FB"><img id="Kodeviewer1_ctl00_ficon" title="java.net\l\lsl\lsl\src\java\com\softwarehut\lsl\algorithm\costalgorithm\" src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/folder.gif" style="border-width: 0px;" align="left"></a>
+				<b>
+					<span id="Kodeviewer1_ctl00_Label1" title="java.net\l\lsl\lsl\src\java\com\softwarehut\lsl\algorithm\costalgorithm\">...sl\algorithm\costalgorithm\</span>
+				</b>
+				<br>
+			</th>
+		</tr>
+		<tr>
+			<td class="exp_items">
+				
+						&nbsp;&nbsp;
+					<a title="CostAlgorithm.java" href="http://www.koders.com/java/fid9A7DEC9CA6949D07D52D20894C42401F8A9EAFD6.aspx">CostAlgorithm.java<br></a>
+						&nbsp;&nbsp;
+					<a title="CostMatrix.java" href="http://www.koders.com/java/fidF1634CAF3DC5BE5C31C66FDEA34B693FC891C6DC.aspx">CostMatrix.java<br></a>
+						&nbsp;&nbsp;
+					<a title="PermutationGenerator.java" href="http://www.koders.com/java/fid0AE2B96CD30174593CD8CFBA202728FDA19563F3.aspx">PermutationGenerator.java<br></a>
+						&nbsp;&nbsp;
+					<a title="Permute.java" href="http://www.koders.com/java/fid1424EB2EA4BC0ED1E891878052C4198290E5D559.aspx">Permute.java<br></a>
+						&nbsp;&nbsp;
+					<a title="Tsp.java" href="http://www.koders.com/java/fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx">Tsp.java<br></a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+
+						
+
+
+						
+					</td>
+					<td valign="top">
+						<div>
+							<pre id="kodeViewerLineNumbers"><a href="#L1" name="L1">1</a><br><a href="#L2" name="L2">2</a><br><a href="#L3" name="L3">3</a><br><a href="#L4" name="L4">4</a><br><a href="#L5" name="L5">5</a><br><a href="#L6" name="L6">6</a><br><a href="#L7" name="L7">7</a><br><a href="#L8" name="L8">8</a><br><a href="#L9" name="L9">9</a><br><a href="#L10" name="L10">10</a><br><a href="#L11" name="L11">11</a><br><a href="#L12" name="L12">12</a><br><a href="#L13" name="L13">13</a><br><a href="#L14" name="L14">14</a><br><a href="#L15" name="L15">15</a><br><a href="#L16" name="L16">16</a><br><a href="#L17" name="L17">17</a><br><a href="#L18" name="L18">18</a><br><a href="#L19" name="L19">19</a><br><a href="#L20" name="L20">20</a><br><a href="#L21" name="L21">21</a><br><a href="#L22" name="L22">22</a><br><a href="#L23" name="L23">23</a><br><a href="#L24" name="L24">24</a><br><a href="#L25" name="L25">25</a><br><a href="#L26" name="L26">26</a><br><a href="#L27" name="L27">27</a><br><a href="#L28" name="L28">28</a><br><a href="#L29" name="L29">29</a><br><a href="#L30" name="L30">30</a><br><a href="#L31" name="L31">31</a><br><a href="#L32" name="L32">32</a><br><a href="#L33" name="L33">33</a><br><a href="#L34" name="L34">34</a><br><a href="#L35" name="L35">35</a><br><a href="#L36" name="L36">36</a><br><a href="#L37" name="L37">37</a><br><a href="#L38" name="L38">38</a><br><a href="#L39" name="L39">39</a><br><a href="#L40" name="L40">40</a><br><a href="#L41" name="L41">41</a><br><a href="#L42" name="L42">42</a><br><a href="#L43" name="L43">43</a><br><a href="#L44" name="L44">44</a><br><a href="#L45" name="L45">45</a><br><a href="#L46" name="L46">46</a><br><a href="#L47" name="L47">47</a><br><a href="#L48" name="L48">48</a><br><a href="#L49" name="L49">49</a><br><a href="#L50" name="L50">50</a><br><a href="#L51" name="L51">51</a><br><a href="#L52" name="L52">52</a><br><a href="#L53" name="L53">53</a><br><a href="#L54" name="L54">54</a><br><a href="#L55" name="L55">55</a><br><a href="#L56" name="L56">56</a><br><a href="#L57" name="L57">57</a><br><a href="#L58" name="L58">58</a><br><a href="#L59" name="L59">59</a><br><a href="#L60" name="L60">60</a><br><a href="#L61" name="L61">61</a><br><a href="#L62" name="L62">62</a><br><a href="#L63" name="L63">63</a><br><a href="#L64" name="L64">64</a><br><a href="#L65" name="L65">65</a><br><a href="#L66" name="L66">66</a><br><a href="#L67" name="L67">67</a><br><a href="#L68" name="L68">68</a><br><a href="#L69" name="L69">69</a><br><a href="#L70" name="L70">70</a><br><a href="#L71" name="L71">71</a><br><a href="#L72" name="L72">72</a><br><a href="#L73" name="L73">73</a><br><a href="#L74" name="L74">74</a><br><a href="#L75" name="L75">75</a><br><a href="#L76" name="L76">76</a><br><a href="#L77" name="L77">77</a><br><a href="#L78" name="L78">78</a><br><a href="#L79" name="L79">79</a><br><a href="#L80" name="L80">80</a><br><a href="#L81" name="L81">81</a><br><a href="#L82" name="L82">82</a><br><a href="#L83" name="L83">83</a><br><a href="#L84" name="L84">84</a><br><a href="#L85" name="L85">85</a><br><a href="#L86" name="L86">86</a><br><a href="#L87" name="L87">87</a><br><a href="#L88" name="L88">88</a><br><a href="#L89" name="L89">89</a><br><a href="#L90" name="L90">90</a><br><a href="#L91" name="L91">91</a><br><a href="#L92" name="L92">92</a><br><a href="#L93" name="L93">93</a><br><a href="#L94" name="L94">94</a><br><a href="#L95" name="L95">95</a><br><a href="#L96" name="L96">96</a><br><a href="#L97" name="L97">97</a><br><a href="#L98" name="L98">98</a><br><a href="#L99" name="L99">99</a><br><a href="#L100" name="L100">100</a><br><a href="#L101" name="L101">101</a><br><a href="#L102" name="L102">102</a><br><a href="#L103" name="L103">103</a><br><a href="#L104" name="L104">104</a><br><a href="#L105" name="L105">105</a><br><a href="#L106" name="L106">106</a><br><a href="#L107" name="L107">107</a><br><a href="#L108" name="L108">108</a><br><a href="#L109" name="L109">109</a><br><a href="#L110" name="L110">110</a><br><a href="#L111" name="L111">111</a><br><a href="#L112" name="L112">112</a><br><a href="#L113" name="L113">113</a><br><a href="#L114" name="L114">114</a><br><a href="#L115" name="L115">115</a><br><a href="#L116" name="L116">116</a><br><a href="#L117" name="L117">117</a><br><a href="#L118" name="L118">118</a><br><a href="#L119" name="L119">119</a><br><a href="#L120" name="L120">120</a><br><a href="#L121" name="L121">121</a><br><a href="#L122" name="L122">122</a><br><a href="#L123" name="L123">123</a><br><a href="#L124" name="L124">124</a><br><a href="#L125" name="L125">125</a><br><a href="#L126" name="L126">126</a><br><a href="#L127" name="L127">127</a><br><a href="#L128" name="L128">128</a><br><a href="#L129" name="L129">129</a><br><a href="#L130" name="L130">130</a><br><a href="#L131" name="L131">131</a><br><a href="#L132" name="L132">132</a><br><a href="#L133" name="L133">133</a><br><a href="#L134" name="L134">134</a><br><a href="#L135" name="L135">135</a><br><a href="#L136" name="L136">136</a><br><a href="#L137" name="L137">137</a><br><a href="#L138" name="L138">138</a><br><a href="#L139" name="L139">139</a><br><a href="#L140" name="L140">140</a><br><a href="#L141" name="L141">141</a><br><a href="#L142" name="L142">142</a><br><a href="#L143" name="L143">143</a><br><a href="#L144" name="L144">144</a><br><a href="#L145" name="L145">145</a><br><a href="#L146" name="L146">146</a><br><a href="#L147" name="L147">147</a><br><a href="#L148" name="L148">148</a><br><a href="#L149" name="L149">149</a><br><a href="#L150" name="L150">150</a><br><a href="#L151" name="L151">151</a><br><a href="#L152" name="L152">152</a><br><a href="#L153" name="L153">153</a><br><a href="#L154" name="L154">154</a><br><a href="#L155" name="L155">155</a><br><a href="#L156" name="L156">156</a><br><a href="#L157" name="L157">157</a><br><a href="#L158" name="L158">158</a><br><a href="#L159" name="L159">159</a><br><a href="#L160" name="L160">160</a><br><a href="#L161" name="L161">161</a><br><a href="#L162" name="L162">162</a><br><a href="#L163" name="L163">163</a><br><a href="#L164" name="L164">164</a><br><a href="#L165" name="L165">165</a><br><a href="#L166" name="L166">166</a><br><a href="#L167" name="L167">167</a><br><a href="#L168" name="L168">168</a><br><a href="#L169" name="L169">169</a><br><a href="#L170" name="L170">170</a><br><a href="#L171" name="L171">171</a><br><a href="#L172" name="L172">172</a><br><a href="#L173" name="L173">173</a><br><a href="#L174" name="L174">174</a><br><a href="#L175" name="L175">175</a><br><a href="#L176" name="L176">176</a><br><a href="#L177" name="L177">177</a><br><a href="#L178" name="L178">178</a><br><a href="#L179" name="L179">179</a><br><a href="#L180" name="L180">180</a><br><a href="#L181" name="L181">181</a><br><a href="#L182" name="L182">182</a><br><a href="#L183" name="L183">183</a><br><a href="#L184" name="L184">184</a><br><a href="#L185" name="L185">185</a><br><a href="#L186" name="L186">186</a><br><a href="#L187" name="L187">187</a><br><a href="#L188" name="L188">188</a><br><a href="#L189" name="L189">189</a><br><a href="#L190" name="L190">190</a><br><a href="#L191" name="L191">191</a><br><a href="#L192" name="L192">192</a><br><a href="#L193" name="L193">193</a><br><a href="#L194" name="L194">194</a><br><a href="#L195" name="L195">195</a><br><a href="#L196" name="L196">196</a><br><a href="#L197" name="L197">197</a><br><a href="#L198" name="L198">198</a><br><a href="#L199" name="L199">199</a><br><a href="#L200" name="L200">200</a><br><a href="#L201" name="L201">201</a><br><a href="#L202" name="L202">202</a><br><a href="#L203" name="L203">203</a><br><a href="#L204" name="L204">204</a><br><a href="#L205" name="L205">205</a><br><a href="#L206" name="L206">206</a><br><a href="#L207" name="L207">207</a><br><a href="#L208" name="L208">208</a><br><a href="#L209" name="L209">209</a><br><a href="#L210" name="L210">210</a><br><a href="#L211" name="L211">211</a><br><a href="#L212" name="L212">212</a><br><a href="#L213" name="L213">213</a><br><a href="#L214" name="L214">214</a><br><a href="#L215" name="L215">215</a><br><a href="#L216" name="L216">216</a><br><a href="#L217" name="L217">217</a><br><a href="#L218" name="L218">218</a><br><a href="#L219" name="L219">219</a><br><a href="#L220" name="L220">220</a><br><a href="#L221" name="L221">221</a><br><a href="#L222" name="L222">222</a><br><a href="#L223" name="L223">223</a><br><a href="#L224" name="L224">224</a><br><a href="#L225" name="L225">225</a><br><a href="#L226" name="L226">226</a><br><a href="#L227" name="L227">227</a><br><a href="#L228" name="L228">228</a><br><a href="#L229" name="L229">229</a><br><a href="#L230" name="L230">230</a><br><a href="#L231" name="L231">231</a><br><a href="#L232" name="L232">232</a><br><a href="#L233" name="L233">233</a><br><a href="#L234" name="L234">234</a><br><a href="#L235" name="L235">235</a><br><a href="#L236" name="L236">236</a><br><a href="#L237" name="L237">237</a><br><a href="#L238" name="L238">238</a><br><a href="#L239" name="L239">239</a><br><a href="#L240" name="L240">240</a><br><a href="#L241" name="L241">241</a><br><a href="#L242" name="L242">242</a><br><a href="#L243" name="L243">243</a><br><a href="#L244" name="L244">244</a><br><a href="#L245" name="L245">245</a><br><a href="#L246" name="L246">246</a><br><a href="#L247" name="L247">247</a><br><a href="#L248" name="L248">248</a><br><a href="#L249" name="L249">249</a><br><a href="#L250" name="L250">250</a><br><a href="#L251" name="L251">251</a><br><a href="#L252" name="L252">252</a><br><a href="#L253" name="L253">253</a><br><a href="#L254" name="L254">254</a><br><a href="#L255" name="L255">255</a><br><a href="#L256" name="L256">256</a><br><a href="#L257" name="L257">257</a><br><a href="#L258" name="L258">258</a><br><a href="#L259" name="L259">259</a><br><a href="#L260" name="L260">260</a><br><a href="#L261" name="L261">261</a><br><a href="#L262" name="L262">262</a><br><a href="#L263" name="L263">263</a><br><a href="#L264" name="L264">264</a><br><a href="#L265" name="L265">265</a><br><a href="#L266" name="L266">266</a><br><a href="#L267" name="L267">267</a><br><a href="#L268" name="L268">268</a><br><a href="#L269" name="L269">269</a><br><a href="#L270" name="L270">270</a><br><a href="#L271" name="L271">271</a><br><a href="#L272" name="L272">272</a><br><a href="#L273" name="L273">273</a><br><a href="#L274" name="L274">274</a><br><a href="#L275" name="L275">275</a><br><a href="#L276" name="L276">276</a><br><a href="#L277" name="L277">277</a><br><a href="#L278" name="L278">278</a><br><a href="#L279" name="L279">279</a><br><a href="#L280" name="L280">280</a><br><a href="#L281" name="L281">281</a><br><a href="#L282" name="L282">282</a><br><a href="#L283" name="L283">283</a><br><a href="#L284" name="L284">284</a><br><a href="#L285" name="L285">285</a><br><a href="#L286" name="L286">286</a><br><a href="#L287" name="L287">287</a><br><a href="#L288" name="L288">288</a><br><a href="#L289" name="L289">289</a><br><a href="#L290" name="L290">290</a><br><a href="#L291" name="L291">291</a><br><a href="#L292" name="L292">292</a><br><a href="#L293" name="L293">293</a><br><a href="#L294" name="L294">294</a><br><a href="#L295" name="L295">295</a><br><a href="#L296" name="L296">296</a><br><a href="#L297" name="L297">297</a><br><a href="#L298" name="L298">298</a><br><a href="#L299" name="L299">299</a><br><a href="#L300" name="L300">300</a><br><a href="#L301" name="L301">301</a><br><a href="#L302" name="L302">302</a><br><a href="#L303" name="L303">303</a><br><a href="#L304" name="L304">304</a><br><a href="#L305" name="L305">305</a><br><a href="#L306" name="L306">306</a><br><a href="#L307" name="L307">307</a><br><a href="#L308" name="L308">308</a><br><a href="#L309" name="L309">309</a><br><a href="#L310" name="L310">310</a><br><a href="#L311" name="L311">311</a><br><a href="#L312" name="L312">312</a><br><a href="#L313" name="L313">313</a><br><a href="#L314" name="L314">314</a><br><a href="#L315" name="L315">315</a><br><a href="#L316" name="L316">316</a><br><a href="#L317" name="L317">317</a><br><a href="#L318" name="L318">318</a><br><a href="#L319" name="L319">319</a><br><a href="#L320" name="L320">320</a><br><a href="#L321" name="L321">321</a><br><a href="#L322" name="L322">322</a><br><a href="#L323" name="L323">323</a><br><a href="#L324" name="L324">324</a><br><a href="#L325" name="L325">325</a><br><a href="#L326" name="L326">326</a><br><a href="#L327" name="L327">327</a><br><a href="#L328" name="L328">328</a><br><a href="#L329" name="L329">329</a><br><a href="#L330" name="L330">330</a><br><a href="#L331" name="L331">331</a><br><a href="#L332" name="L332">332</a><br><a href="#L333" name="L333">333</a><br><a href="#L334" name="L334">334</a><br><a href="#L335" name="L335">335</a><br><a href="#L336" name="L336">336</a><br><a href="#L337" name="L337">337</a><br><a href="#L338" name="L338">338</a><br><a href="#L339" name="L339">339</a><br><a href="#L340" name="L340">340</a><br><a href="#L341" name="L341">341</a><br><a href="#L342" name="L342">342</a><br><a href="#L343" name="L343">343</a><br><a href="#L344" name="L344">344</a><br><a href="#L345" name="L345">345</a><br><a href="#L346" name="L346">346</a><br><a href="#L347" name="L347">347</a><br><a href="#L348" name="L348">348</a><br><a href="#L349" name="L349">349</a><br><a href="#L350" name="L350">350</a><br><a href="#L351" name="L351">351</a><br><a href="#L352" name="L352">352</a><br><a href="#L353" name="L353">353</a><br><a href="#L354" name="L354">354</a><br><a href="#L355" name="L355">355</a><br><a href="#L356" name="L356">356</a><br><a href="#L357" name="L357">357</a><br><a href="#L358" name="L358">358</a><br><a href="#L359" name="L359">359</a><br><a href="#L360" name="L360">360</a><br><a href="#L361" name="L361">361</a><br><a href="#L362" name="L362">362</a><br><a href="#L363" name="L363">363</a><br><a href="#L364" name="L364">364</a><br><a href="#L365" name="L365">365</a><br><a href="#L366" name="L366">366</a><br><a href="#L367" name="L367">367</a><br><a href="#L368" name="L368">368</a><br><a href="#L369" name="L369">369</a><br><a href="#L370" name="L370">370</a><br><a href="#L371" name="L371">371</a><br><a href="#L372" name="L372">372</a><br><a href="#L373" name="L373">373</a><br><a href="#L374" name="L374">374</a><br><a href="#L375" name="L375">375</a><br><a href="#L376" name="L376">376</a><br><a href="#L377" name="L377">377</a><br><a href="#L378" name="L378">378</a><br><a href="#L379" name="L379">379</a><br><a href="#L380" name="L380">380</a><br><a href="#L381" name="L381">381</a><br><a href="#L382" name="L382">382</a><br><a href="#L383" name="L383">383</a><br><a href="#L384" name="L384">384</a><br><a href="#L385" name="L385">385</a><br><a href="#L386" name="L386">386</a><br><a href="#L387" name="L387">387</a><br><a href="#L388" name="L388">388</a><br><a href="#L389" name="L389">389</a><br><a href="#L390" name="L390">390</a><br><a href="#L391" name="L391">391</a><br><a href="#L392" name="L392">392</a><br><a href="#L393" name="L393">393</a><br><a href="#L394" name="L394">394</a><br><a href="#L395" name="L395">395</a><br><a href="#L396" name="L396">396</a><br><a href="#L397" name="L397">397</a><br><a href="#L398" name="L398">398</a><br><a href="#L399" name="L399">399</a><br><a href="#L400" name="L400">400</a><br><a href="#L401" name="L401">401</a><br><a href="#L402" name="L402">402</a><br><a href="#L403" name="L403">403</a><br><a href="#L404" name="L404">404</a><br><a href="#L405" name="L405">405</a><br><a href="#L406" name="L406">406</a><br><a href="#L407" name="L407">407</a><br><a href="#L408" name="L408">408</a><br><a href="#L409" name="L409">409</a><br><a href="#L410" name="L410">410</a><br><a href="#L411" name="L411">411</a><br><a href="#L412" name="L412">412</a><br><a href="#L413" name="L413">413</a><br><a href="#L414" name="L414">414</a><br><a href="#L415" name="L415">415</a><br><a href="#L416" name="L416">416</a><br><a href="#L417" name="L417">417</a><br><a href="#L418" name="L418">418</a><br><a href="#L419" name="L419">419</a><br><a href="#L420" name="L420">420</a><br><a href="#L421" name="L421">421</a><br><a href="#L422" name="L422">422</a><br><a href="#L423" name="L423">423</a><br><a href="#L424" name="L424">424</a><br><a href="#L425" name="L425">425</a><br><a href="#L426" name="L426">426</a><br><a href="#L427" name="L427">427</a><br><a href="#L428" name="L428">428</a><br><a href="#L429" name="L429">429</a><br><a href="#L430" name="L430">430</a><br><a href="#L431" name="L431">431</a><br><a href="#L432" name="L432">432</a><br><a href="#L433" name="L433">433</a><br><a href="#L434" name="L434">434</a><br><a href="#L435" name="L435">435</a><br><a href="#L436" name="L436">436</a><br><a href="#L437" name="L437">437</a><br><a href="#L438" name="L438">438</a><br><a href="#L439" name="L439">439</a><br><a href="#L440" name="L440">440</a><br><a href="#L441" name="L441">441</a><br><a href="#L442" name="L442">442</a><br><a href="#L443" name="L443">443</a><br><a href="#L444" name="L444">444</a><br><a href="#L445" name="L445">445</a><br><a href="#L446" name="L446">446</a><br><a href="#L447" name="L447">447</a><br><a href="#L448" name="L448">448</a><br><a href="#L449" name="L449">449</a><br><a href="#L450" name="L450">450</a><br><a href="#L451" name="L451">451</a><br><a href="#L452" name="L452">452</a><br><a href="#L453" name="L453">453</a><br><a href="#L454" name="L454">454</a><br><a href="#L455" name="L455">455</a><br><a href="#L456" name="L456">456</a><br><a href="#L457" name="L457">457</a><br><a href="#L458" name="L458">458</a><br><a href="#L459" name="L459">459</a><br><a href="#L460" name="L460">460</a><br><a href="#L461" name="L461">461</a><br><a href="#L462" name="L462">462</a><br><a href="#L463" name="L463">463</a><br><a href="#L464" name="L464">464</a><br><a href="#L465" name="L465">465</a><br><a href="#L466" name="L466">466</a><br><a href="#L467" name="L467">467</a><br><a href="#L468" name="L468">468</a><br><a href="#L469" name="L469">469</a><br><a href="#L470" name="L470">470</a><br><a href="#L471" name="L471">471</a><br><a href="#L472" name="L472">472</a><br><a href="#L473" name="L473">473</a><br><a href="#L474" name="L474">474</a><br><a href="#L475" name="L475">475</a><br><a href="#L476" name="L476">476</a><br><a href="#L477" name="L477">477</a><br><a href="#L478" name="L478">478</a><br><a href="#L479" name="L479">479</a><br><a href="#L480" name="L480">480</a><br><a href="#L481" name="L481">481</a><br><a href="#L482" name="L482">482</a><br><a href="#L483" name="L483">483</a><br><a href="#L484" name="L484">484</a><br><a href="#L485" name="L485">485</a><br><a href="#L486" name="L486">486</a><br><a href="#L487" name="L487">487</a><br><a href="#L488" name="L488">488</a><br><a href="#L489" name="L489">489</a><br><a href="#L490" name="L490">490</a><br><a href="#L491" name="L491">491</a><br><a href="#L492" name="L492">492</a><br><a href="#L493" name="L493">493</a><br><a href="#L494" name="L494">494</a><br><a href="#L495" name="L495">495</a><br><a href="#L496" name="L496">496</a><br><a href="#L497" name="L497">497</a><br><a href="#L498" name="L498">498</a><br><a href="#L499" name="L499">499</a><br><a href="#L500" name="L500">500</a><br><a href="#L501" name="L501">501</a><br><a href="#L502" name="L502">502</a><br><a href="#L503" name="L503">503</a><br><a href="#L504" name="L504">504</a><br><a href="#L505" name="L505">505</a><br><a href="#L506" name="L506">506</a><br><a href="#L507" name="L507">507</a><br><a href="#L508" name="L508">508</a><br><a href="#L509" name="L509">509</a><br><a href="#L510" name="L510">510</a><br><a href="#L511" name="L511">511</a><br><a href="#L512" name="L512">512</a><br><a href="#L513" name="L513">513</a><br><a href="#L514" name="L514">514</a><br><a href="#L515" name="L515">515</a><br><a href="#L516" name="L516">516</a><br></pre>
+						</div>
+					</td>
+					<td onmouseup="javascript:LogReuse();" valign="top">
+						<div id="CodeDiv">
+							<pre><span class="c">/** The Traveling Sales Person problem solution class
+ * This program includes four TSP solution methods
+ * @author Arnas Kainskas and modified by Softhut Group
+ * @author i5arka@vaidila.vdu.lt
+ * @version 2.0 
+ */</span>
+
+<span class="k">package</span> <a title="Search for references of 'com'" href="javascript:searchRef('com')" class="r">com</a>.<a title="Search for references of 'softwarehut'" href="javascript:searchRef('softwarehut')" class="r">softwarehut</a>.<a title="Search for references of 'lsl'" href="javascript:searchRef('lsl')" class="r">lsl</a>.<a title="Search for references of 'algorithm'" href="javascript:searchRef('algorithm')" class="r">algorithm</a>.<a title="Search for references of 'costalgorithm'" href="javascript:searchRef('costalgorithm')" class="r">costalgorithm</a>;
+
+<span class="k">import</span> <a title="Search for references of 'java'" href="javascript:searchRef('java')" class="r">java</a>.<a title="Search for references of 'awt'" href="javascript:searchRef('awt')" class="r">awt</a>.<a title="Search for references of 'Dimension'" href="javascript:searchRef('Dimension')" class="r">Dimension</a>;
+
+<span class="k">public</span> <span class="k">class</span> <a title="Search for references of 'Tsp'" href="javascript:searchRef('Tsp')" class="r">Tsp</a> {
+
+	<span class="c">//** public sector</span>
+
+	<span class="c">/** Maximal cities number */</span>
+	<span class="k">public</span> <span class="k">static</span> <span class="k">final</span> <span class="k">int</span> <a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a> = 500;
+	<span class="c">/** Array of current cities x co-ordinates */</span>
+	<span class="k">public</span> <span class="k">int</span> <a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[] = <span class="k">new</span> <span class="k">int</span>[<a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>];
+	<span class="c">/** Array of current cities y co-ordinates */</span>
+	<span class="k">public</span> <span class="k">int</span> <a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[] = <span class="k">new</span> <span class="k">int</span>[<a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>];
+	<span class="c">/** Array of current route */</span>
+	<span class="k">public</span> <span class="k">int</span> <a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[] = <span class="k">new</span> <span class="k">int</span>[<a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a> + 1];
+
+	<span class="c">//** private sector</span>
+
+	<span class="c">/** Current maximal cities number */</span>
+	<span class="k">private</span> <span class="k">int</span> <a title="Search for references of 'citiesLimit'" href="javascript:searchRef('citiesLimit')" class="r">citiesLimit</a>;
+	<span class="c">/** Current maximal x co-ordinate value */</span>
+	<span class="k">private</span> <span class="k">int</span> <a title="Search for references of 'maxX'" href="javascript:searchRef('maxX')" class="r">maxX</a>;
+	<span class="c">/** Current maximal y co-ordinate value */</span>
+	<span class="k">private</span> <span class="k">int</span> <a title="Search for references of 'maxY'" href="javascript:searchRef('maxY')" class="r">maxY</a>;
+	<span class="c">/** Current minimal x co-ordinate value */</span>
+	<span class="k">private</span> <span class="k">int</span> <a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a>;
+	<span class="c">/** Current minimal y co-ordinate value */</span>
+	<span class="k">private</span> <span class="k">int</span> <a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a>;
+	<span class="c">/** best=0 , worse=1 */</span>
+	<span class="k">private</span> <span class="k">int</span> <a title="Search for references of 'best_or_worst_route_calculation'" href="javascript:searchRef('best_or_worst_route_calculation')" class="r">best_or_worst_route_calculation</a>;
+	
+	<span class="k">private</span> <span class="k">double</span> <a title="Search for references of 'BIG_NUMBER_FOR_DISTANCE_MATRIX'" href="javascript:searchRef('BIG_NUMBER_FOR_DISTANCE_MATRIX')" class="r">BIG_NUMBER_FOR_DISTANCE_MATRIX</a>= 10000.0; <span class="c">//FIXME calculate the biggest number for distance matrix</span>
+
+	<span class="k">private</span> <span class="k">int</span> <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>; <span class="c">// current cities number</span>
+	<span class="k">private</span> <span class="k">int</span> <a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a>; <span class="c">// number of iterations</span>
+	<span class="k">private</span> <span class="k">double</span>[][] <a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a> = <span class="k">new</span> <span class="k">double</span>[<a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>][<a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>]; <span class="c">// distances matrix</span>
+	<span class="k">private</span> <span class="k">boolean</span>[] <a title="Search for references of 'visitedCities'" href="javascript:searchRef('visitedCities')" class="r">visitedCities</a> = <span class="k">new</span> <span class="k">boolean</span>[<a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>]; <span class="c">// city is visited or not </span>
+
+	<span class="k">private</span> <span class="k">int</span>[] <a title="Search for references of 'sortedByY'" href="javascript:searchRef('sortedByY')" class="r">sortedByY</a> = <span class="k">new</span> <span class="k">int</span>[<a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>];
+
+	<span class="c">//** constructors</span>
+
+	<span class="c">/**  Constructs a TSP using users parameters. 
+	 @param minx Initial start x co-ordinate of the map
+	 @param miny Initial start y co-ordinate of the map
+	 @param width Map width
+	 @param height Map height
+	 @param citiesNr Cities limit
+	 */</span>
+	<span class="k">public</span> <a title="Search for references of 'Tsp'" href="javascript:searchRef('Tsp')" class="r">Tsp</a>(<span class="k">int</span> <a title="Search for references of 'minx'" href="javascript:searchRef('minx')" class="r">minx</a>, <span class="k">int</span> <a title="Search for references of 'miny'" href="javascript:searchRef('miny')" class="r">miny</a>, <span class="k">int</span> <a title="Search for references of 'width'" href="javascript:searchRef('width')" class="r">width</a>, <span class="k">int</span> <a title="Search for references of 'height'" href="javascript:searchRef('height')" class="r">height</a>, <span class="k">int</span> <a title="Search for references of 'citiesNr'" href="javascript:searchRef('citiesNr')" class="r">citiesNr</a>) {
+		<a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a> = <a title="Search for references of 'minx'" href="javascript:searchRef('minx')" class="r">minx</a>;
+		<a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a> = <a title="Search for references of 'miny'" href="javascript:searchRef('miny')" class="r">miny</a>;
+		<a title="Search for references of 'maxX'" href="javascript:searchRef('maxX')" class="r">maxX</a> = <a title="Search for references of 'minx'" href="javascript:searchRef('minx')" class="r">minx</a> + <a title="Search for references of 'width'" href="javascript:searchRef('width')" class="r">width</a>;
+		<a title="Search for references of 'maxY'" href="javascript:searchRef('maxY')" class="r">maxY</a> = <a title="Search for references of 'miny'" href="javascript:searchRef('miny')" class="r">miny</a> + <a title="Search for references of 'height'" href="javascript:searchRef('height')" class="r">height</a>;
+		<a title="Search for references of 'citiesLimit'" href="javascript:searchRef('citiesLimit')" class="r">citiesLimit</a> = <a title="Search for references of 'citiesNr'" href="javascript:searchRef('citiesNr')" class="r">citiesNr</a>;
+		<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a> = 0;
+		<a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a> = 0;
+	}
+
+	<span class="c">/**  Constructs a TSP using users parameters. 
+	 @param minx Initial start x co-ordinate of the map
+	 @param miny Initial start y co-ordinate of the map
+	 @param width Map width
+	 @param height Map height
+	 @param citiesNr Cities limit
+	 @param best_or_worse   best_route = 0;  worse_route = 1;
+	 **/</span>
+	<span class="k">public</span> <a title="Search for references of 'Tsp'" href="javascript:searchRef('Tsp')" class="r">Tsp</a>(<span class="k">int</span> <a title="Search for references of 'minx'" href="javascript:searchRef('minx')" class="r">minx</a>, <span class="k">int</span> <a title="Search for references of 'miny'" href="javascript:searchRef('miny')" class="r">miny</a>, <span class="k">int</span> <a title="Search for references of 'width'" href="javascript:searchRef('width')" class="r">width</a>, <span class="k">int</span> <a title="Search for references of 'height'" href="javascript:searchRef('height')" class="r">height</a>, <span class="k">int</span> <a title="Search for references of 'citiesNr'" href="javascript:searchRef('citiesNr')" class="r">citiesNr</a>, <span class="k">int</span> <a title="Search for references of 'best_or_worst'" href="javascript:searchRef('best_or_worst')" class="r">best_or_worst</a>) {
+		<a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a> = <a title="Search for references of 'minx'" href="javascript:searchRef('minx')" class="r">minx</a>;
+		<a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a> = <a title="Search for references of 'miny'" href="javascript:searchRef('miny')" class="r">miny</a>;
+		<a title="Search for references of 'maxX'" href="javascript:searchRef('maxX')" class="r">maxX</a> = <a title="Search for references of 'minx'" href="javascript:searchRef('minx')" class="r">minx</a> + <a title="Search for references of 'width'" href="javascript:searchRef('width')" class="r">width</a>;
+		<a title="Search for references of 'maxY'" href="javascript:searchRef('maxY')" class="r">maxY</a> = <a title="Search for references of 'miny'" href="javascript:searchRef('miny')" class="r">miny</a> + <a title="Search for references of 'height'" href="javascript:searchRef('height')" class="r">height</a>;
+		<a title="Search for references of 'citiesLimit'" href="javascript:searchRef('citiesLimit')" class="r">citiesLimit</a> = <a title="Search for references of 'citiesNr'" href="javascript:searchRef('citiesNr')" class="r">citiesNr</a>;
+		<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a> = 0;
+		<a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a> = 0;
+		<span class="k">this</span>.<a title="Search for references of 'best_or_worst_route_calculation'" href="javascript:searchRef('best_or_worst_route_calculation')" class="r">best_or_worst_route_calculation</a>= <a title="Search for references of 'best_or_worst'" href="javascript:searchRef('best_or_worst')" class="r">best_or_worst</a>;
+	}
+
+	<span class="c">/**  Constructs a TSP using users parameters. 
+	 @param width Map width
+	 @param height Map height
+	 @param citiesNr Cities limit
+	 */</span>
+	<span class="k">public</span> <a title="Search for references of 'Tsp'" href="javascript:searchRef('Tsp')" class="r">Tsp</a>(<span class="k">int</span> <a title="Search for references of 'width'" href="javascript:searchRef('width')" class="r">width</a>, <span class="k">int</span> <a title="Search for references of 'height'" href="javascript:searchRef('height')" class="r">height</a>, <span class="k">int</span> <a title="Search for references of 'citiesNr'" href="javascript:searchRef('citiesNr')" class="r">citiesNr</a>) {
+		<span class="k">this</span>(0, 0, <a title="Search for references of 'width'" href="javascript:searchRef('width')" class="r">width</a>, <a title="Search for references of 'height'" href="javascript:searchRef('height')" class="r">height</a>, <a title="Search for references of 'citiesNr'" href="javascript:searchRef('citiesNr')" class="r">citiesNr</a>);
+	}
+
+	<span class="c">/** Default constructor. Constructs a TSP with map, which is 200 width and 200 height. City limit is 100 */</span>
+	<span class="k">public</span> <a title="Search for references of 'Tsp'" href="javascript:searchRef('Tsp')" class="r">Tsp</a>() {
+		<span class="k">this</span>(0, 0, 200, 200, <a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>);
+	}
+
+	<span class="c">//***   </span>
+
+	<span class="c">//** public methods sector</span>
+
+	<span class="c">/** Returns string, representing main parameters of Tsp
+	 * @return Returns Tsp param string
+	 */</span>
+	<span class="k">public</span> <a title="Search for references of 'String'" href="javascript:searchRef('String')" class="r">String</a> <a title="Search for references of 'getTspParams'" href="javascript:searchRef('getTspParams')" class="r">getTspParams</a>() {
+		<span class="k">return</span> <span class="str">"Minx: "</span> + <a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a> + <span class="str">" Miny: "</span> + <a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a> + <span class="str">" Maxx: "</span> + <a title="Search for references of 'maxX'" href="javascript:searchRef('maxX')" class="r">maxX</a> + <span class="str">" Cities limit: "</span>
+						+ <a title="Search for references of 'citiesLimit'" href="javascript:searchRef('citiesLimit')" class="r">citiesLimit</a> + <span class="str">" Map size: "</span> + (<a title="Search for references of 'maxX'" href="javascript:searchRef('maxX')" class="r">maxX</a> - <a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a>) + <span class="str">"x"</span> + (<a title="Search for references of 'maxY'" href="javascript:searchRef('maxY')" class="r">maxY</a> - <a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a>);
+	}
+
+	<span class="c">/** Generates random test data. Generates random cities number and random cities co-ordinates. */</span>
+	<span class="k">public</span> <span class="k">void</span> <a title="Search for references of 'randomTestData'" href="javascript:searchRef('randomTestData')" class="r">randomTestData</a>() {
+		<span class="k">int</span> <a title="Search for references of 'nr'" href="javascript:searchRef('nr')" class="r">nr</a>;
+		<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a> = 0;
+		<a title="Search for references of 'nr'" href="javascript:searchRef('nr')" class="r">nr</a> = (<span class="k">int</span>) (3 + <a title="Search for references of 'Math'" href="javascript:searchRef('Math')" class="r">Math</a>.<a title="Search for references of 'random'" href="javascript:searchRef('random')" class="r">random</a>() * (<a title="Search for references of 'citiesLimit'" href="javascript:searchRef('citiesLimit')" class="r">citiesLimit</a> - 3));
+		<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = 0; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> &lt; <a title="Search for references of 'nr'" href="javascript:searchRef('nr')" class="r">nr</a>; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>++) {
+			<a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] = (<span class="k">int</span>) (<a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a> + <a title="Search for references of 'Math'" href="javascript:searchRef('Math')" class="r">Math</a>.<a title="Search for references of 'random'" href="javascript:searchRef('random')" class="r">random</a>() * (<a title="Search for references of 'maxX'" href="javascript:searchRef('maxX')" class="r">maxX</a> - <a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a>));
+			<a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] = (<span class="k">int</span>) (<a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a> + <a title="Search for references of 'Math'" href="javascript:searchRef('Math')" class="r">Math</a>.<a title="Search for references of 'random'" href="javascript:searchRef('random')" class="r">random</a>() * (<a title="Search for references of 'maxY'" href="javascript:searchRef('maxY')" class="r">maxY</a> - <a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a>));
+			<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>++;
+		}
+	}
+
+	<span class="c">/** Changes current maximal cities number 
+	 * @param maxCities New maximal cities value.
+	 * @return Returns &lt;I&gt; true &lt;/I&gt; if value was changed and &lt;I&gt; false &lt;/I&gt; if not.
+	 */</span>
+	<span class="k">public</span> <span class="k">boolean</span> <a title="Search for references of 'setCitiesLimit'" href="javascript:searchRef('setCitiesLimit')" class="r">setCitiesLimit</a>(<span class="k">int</span> <a title="Search for references of 'maxCities'" href="javascript:searchRef('maxCities')" class="r">maxCities</a>) {
+		<span class="k">if</span> (<a title="Search for references of 'maxCities'" href="javascript:searchRef('maxCities')" class="r">maxCities</a> &lt; <a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>) {
+			<a title="Search for references of 'citiesLimit'" href="javascript:searchRef('citiesLimit')" class="r">citiesLimit</a> = <a title="Search for references of 'maxCities'" href="javascript:searchRef('maxCities')" class="r">maxCities</a>;
+			<span class="k">return</span> <span class="k">true</span>;
+		}
+		<span class="k">return</span> <span class="k">false</span>;
+	}
+
+	<span class="c">/** Changes cities number 
+	 * @param citiesNr New cities value.
+	 * @return Returns &lt;I&gt; true &lt;/I&gt; if value was changed and &lt;I&gt; false &lt;/I&gt; if not.
+	 */</span>
+	<span class="k">public</span> <span class="k">boolean</span> <a title="Search for references of 'setCitiesNr'" href="javascript:searchRef('setCitiesNr')" class="r">setCitiesNr</a>(<span class="k">int</span> <a title="Search for references of 'citiesNr'" href="javascript:searchRef('citiesNr')" class="r">citiesNr</a>) {
+		<span class="k">if</span> (<a title="Search for references of 'citiesNr'" href="javascript:searchRef('citiesNr')" class="r">citiesNr</a> &lt; <a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>) {
+			<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a> = <a title="Search for references of 'citiesNr'" href="javascript:searchRef('citiesNr')" class="r">citiesNr</a>;
+			<span class="k">return</span> <span class="k">true</span>;
+		}
+		<span class="k">return</span> <span class="k">false</span>;
+	}
+
+	<span class="c">/** Returns the value of current cities limit
+	 * @return Returns the value of current cities limit
+	 */</span>
+
+	<span class="k">public</span> <span class="k">int</span> <a title="Search for references of 'getCitiesLimit'" href="javascript:searchRef('getCitiesLimit')" class="r">getCitiesLimit</a>() {
+		<span class="k">return</span> <a title="Search for references of 'citiesLimit'" href="javascript:searchRef('citiesLimit')" class="r">citiesLimit</a>;
+	}
+
+	<span class="c">/** Changes minimal x co-ordinate value
+	 * @param minx New minimal x co-ordinate value
+	 * @return Returns &lt;I&gt; true &lt;/I&gt; if value was changed and &lt;I&gt; false &lt;/I&gt; if not.
+	 */</span>
+	<span class="k">public</span> <span class="k">boolean</span> <a title="Search for references of 'setMinX'" href="javascript:searchRef('setMinX')" class="r">setMinX</a>(<span class="k">int</span> <a title="Search for references of 'minx'" href="javascript:searchRef('minx')" class="r">minx</a>) {
+		<span class="k">if</span> (<a title="Search for references of 'minx'" href="javascript:searchRef('minx')" class="r">minx</a> &lt; <a title="Search for references of 'maxX'" href="javascript:searchRef('maxX')" class="r">maxX</a>) {
+			<a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a> = <a title="Search for references of 'minx'" href="javascript:searchRef('minx')" class="r">minx</a>;
+			<span class="k">return</span> <span class="k">true</span>;
+		}
+		<span class="k">return</span> <span class="k">false</span>;
+	}
+
+	<span class="c">/** Changes minimal y co-ordinate value
+	 * @param miny New minimal y co-ordinate value
+	 * @return Returns &lt;I&gt; true &lt;/I&gt; if value was changed and &lt;I&gt; false &lt;/I&gt; if not.
+	 */</span>
+	<span class="k">public</span> <span class="k">boolean</span> <a title="Search for references of 'setMinY'" href="javascript:searchRef('setMinY')" class="r">setMinY</a>(<span class="k">int</span> <a title="Search for references of 'miny'" href="javascript:searchRef('miny')" class="r">miny</a>) {
+		<span class="k">if</span> (<a title="Search for references of 'miny'" href="javascript:searchRef('miny')" class="r">miny</a> &lt; <a title="Search for references of 'maxY'" href="javascript:searchRef('maxY')" class="r">maxY</a>) {
+			<a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a> = <a title="Search for references of 'miny'" href="javascript:searchRef('miny')" class="r">miny</a>;
+			<span class="k">return</span> <span class="k">true</span>;
+		}
+		<span class="k">return</span> <span class="k">false</span>;
+	}
+
+	<span class="c">/** Changes maximal x co-ordinate value
+	 * @param maxx New minimal x co-ordinate value
+	 * @return Returns &lt;I&gt; true &lt;/I&gt; if value was changed and &lt;I&gt; false &lt;/I&gt; if not.
+	 */</span>
+	<span class="k">public</span> <span class="k">boolean</span> <a title="Search for references of 'setMaxX'" href="javascript:searchRef('setMaxX')" class="r">setMaxX</a>(<span class="k">int</span> <a title="Search for references of 'maxx'" href="javascript:searchRef('maxx')" class="r">maxx</a>) {
+		<span class="k">if</span> (<a title="Search for references of 'maxx'" href="javascript:searchRef('maxx')" class="r">maxx</a> &gt; <a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a>) {
+			<a title="Search for references of 'maxX'" href="javascript:searchRef('maxX')" class="r">maxX</a> = <a title="Search for references of 'maxx'" href="javascript:searchRef('maxx')" class="r">maxx</a>;
+			<span class="k">return</span> <span class="k">true</span>;
+		}
+		<span class="k">return</span> <span class="k">false</span>;
+	}
+
+	<span class="c">/** Changes maximal y co-ordinate value
+	 * @param maxy New minimal y co-ordinate value
+	 * @return Returns &lt;I&gt; true &lt;/I&gt; if value was changed and &lt;I&gt; false &lt;/I&gt; if not.
+	 */</span>
+	<span class="k">public</span> <span class="k">boolean</span> <a title="Search for references of 'setMaxY'" href="javascript:searchRef('setMaxY')" class="r">setMaxY</a>(<span class="k">int</span> <a title="Search for references of 'maxy'" href="javascript:searchRef('maxy')" class="r">maxy</a>) {
+		<span class="k">if</span> (<a title="Search for references of 'maxy'" href="javascript:searchRef('maxy')" class="r">maxy</a> &gt; <a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a>) {
+			<a title="Search for references of 'maxY'" href="javascript:searchRef('maxY')" class="r">maxY</a> = <a title="Search for references of 'maxy'" href="javascript:searchRef('maxy')" class="r">maxy</a>;
+			<span class="k">return</span> <span class="k">true</span>;
+		}
+		<span class="k">return</span> <span class="k">false</span>;
+	}
+
+	<span class="c">/** Returns tsp map size
+	 * @return Returns dimension of tsp map size.
+	 */</span>
+
+	<span class="k">public</span> <a title="Search for references of 'Dimension'" href="javascript:searchRef('Dimension')" class="r">Dimension</a> <a title="Search for references of 'getMapSize'" href="javascript:searchRef('getMapSize')" class="r">getMapSize</a>() {
+		<span class="k">return</span> <span class="k">new</span> <a title="Search for references of 'Dimension'" href="javascript:searchRef('Dimension')" class="r">Dimension</a>(<a title="Search for references of 'maxX'" href="javascript:searchRef('maxX')" class="r">maxX</a> - <a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a>, <a title="Search for references of 'maxY'" href="javascript:searchRef('maxY')" class="r">maxY</a> - <a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a>);
+	}
+
+	<span class="c">/** Removes the cities, which are out of map bounds 
+	 * @return No return value
+	 */</span>
+	<span class="k">public</span> <span class="k">void</span> <a title="Search for references of 'removeOutOfBoundsCities'" href="javascript:searchRef('removeOutOfBoundsCities')" class="r">removeOutOfBoundsCities</a>() {
+
+		<span class="k">int</span>[] <a title="Search for references of 'temp'" href="javascript:searchRef('temp')" class="r">temp</a> = <span class="k">new</span> <span class="k">int</span>[<a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>];
+		<span class="k">int</span> <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> = 0;
+		<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = 0; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>++) {
+			<span class="k">if</span> ((<a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] &gt; <a title="Search for references of 'maxX'" href="javascript:searchRef('maxX')" class="r">maxX</a>) || (<a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] &gt; <a title="Search for references of 'maxY'" href="javascript:searchRef('maxY')" class="r">maxY</a>) || (<a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] &lt; <a title="Search for references of 'minX'" href="javascript:searchRef('minX')" class="r">minX</a>)
+							|| (<a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] &lt; <a title="Search for references of 'minY'" href="javascript:searchRef('minY')" class="r">minY</a>)) {
+				<a title="Search for references of 'temp'" href="javascript:searchRef('temp')" class="r">temp</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>] = <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>;
+				<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>++;
+			}
+		}
+
+		<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> - 1; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> &gt; -1; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>--) {
+			<a title="Search for references of 'removeCity'" href="javascript:searchRef('removeCity')" class="r">removeCity</a>(<a title="Search for references of 'temp'" href="javascript:searchRef('temp')" class="r">temp</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>]);
+		}
+	}
+
+	<span class="c">/** Removes defined city from the map 
+	 * @param  cityNr City number in array.
+	 * @return Returns &lt;I&gt; true &lt;/I&gt; if city was removed and &lt;I&gt; false &lt;/I&gt; if not.
+	 */</span>
+
+	<span class="k">public</span> <span class="k">boolean</span> <a title="Search for references of 'removeCity'" href="javascript:searchRef('removeCity')" class="r">removeCity</a>(<span class="k">int</span> <a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a>) {
+
+		<span class="k">if</span> (<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>) {
+			<span class="k">while</span> (<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a> - 1) {
+
+				<span class="k">if</span> (<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a> &lt; <a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a> - 1) {
+					<a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a>] = <a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a> + 1];
+					<a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a>] = <a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a> + 1];
+					<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a>++;
+				} <span class="k">else</span> {
+					<a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a>] = 0;
+					<a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a>] = 0;
+					<a title="Search for references of 'cityNr'" href="javascript:searchRef('cityNr')" class="r">cityNr</a>++;
+				}
+			}
+			<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>--;
+			<span class="k">return</span> <span class="k">true</span>;
+		}
+		<span class="k">return</span> <span class="k">false</span>;
+	}
+
+	<span class="c">// **************</span>
+
+	<span class="c">/** Adds a city to the map 
+	 * @param x New city x co-ordinate
+	 * @param y New city y co-ordinate
+	 * @return Returns &lt;I&gt; true &lt;/I&gt; if city was added and &lt;I&gt; false &lt;/I&gt; if not.
+	 */</span>
+	<span class="k">public</span> <span class="k">boolean</span> <a title="Search for references of 'addCity'" href="javascript:searchRef('addCity')" class="r">addCity</a>(<span class="k">int</span> <a title="Search for references of 'x'" href="javascript:searchRef('x')" class="r">x</a>, <span class="k">int</span> <a title="Search for references of 'y'" href="javascript:searchRef('y')" class="r">y</a>) {
+		<span class="k">if</span> (<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a> &lt; <a title="Search for references of 'citiesLimit'" href="javascript:searchRef('citiesLimit')" class="r">citiesLimit</a>) {
+			<span class="c">//if ((x &lt;= maxX) &amp;&amp; (y &lt;= maxY) &amp;&amp; (x &gt;= minX) &amp;&amp; (y &gt;= minY)) {</span>
+				<a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>] = <a title="Search for references of 'x'" href="javascript:searchRef('x')" class="r">x</a>;
+				<a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>] = <a title="Search for references of 'y'" href="javascript:searchRef('y')" class="r">y</a>;
+				<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>++;
+				<span class="k">return</span> <span class="k">true</span>;
+			<span class="c">//}</span>
+        }
+		<a title="Search for references of 'System'" href="javascript:searchRef('System')" class="r">System</a>.<a title="Search for references of 'err'" href="javascript:searchRef('err')" class="r">err</a>.<a title="Search for references of 'println'" href="javascript:searchRef('println')" class="r">println</a>(<span class="str">"Can not add new city  x: "</span> +<a title="Search for references of 'x'" href="javascript:searchRef('x')" class="r">x</a>+ <span class="str">"  y: "</span>+  <a title="Search for references of 'y'" href="javascript:searchRef('y')" class="r">y</a> +<span class="str">" cityNr. "</span> + <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>);
+		<span class="k">return</span> <span class="k">false</span>;
+	}
+
+	<span class="c">/** Returns current number of added cities 
+	 * @return Returns current number of added cities 
+	 */</span>
+	<span class="k">public</span> <span class="k">int</span> <a title="Search for references of 'getCitiesNr'" href="javascript:searchRef('getCitiesNr')" class="r">getCitiesNr</a>() {
+		<span class="k">return</span> <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>;
+	}
+
+	<span class="c">/** Returns current iterations number 
+	 * @return Returns number of iterations, needed to calculate TSP distance and route
+	 */</span>
+	<span class="k">public</span> <span class="k">int</span> <a title="Search for references of 'getIterationsNumber'" href="javascript:searchRef('getIterationsNumber')" class="r">getIterationsNumber</a>() {
+		<span class="k">return</span> <a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a>;
+	}
+
+	<span class="c">/** Clears all cities from the map */</span>
+	<span class="k">public</span> <span class="k">void</span> <a title="Search for references of 'clearCities'" href="javascript:searchRef('clearCities')" class="r">clearCities</a>() {
+		<a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a> = 0;
+		<a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a> = 0;
+	}
+
+	<span class="c">/** Calculates the traveling sales person distance using Nearest Neighbour calculation method
+	 * @return Returns TSP distance.
+	 */</span>
+	<span class="k">public</span> <span class="k">double</span> <a title="Search for references of 'nearestNeighbour'" href="javascript:searchRef('nearestNeighbour')" class="r">nearestNeighbour</a>() {
+		<a title="Search for references of 'initCalc'" href="javascript:searchRef('initCalc')" class="r">initCalc</a>();
+		<span class="k">return</span> <a title="Search for references of 'nearest_n'" href="javascript:searchRef('nearest_n')" class="r">nearest_n</a>(0);
+	}
+
+	<span class="c">/** Calculates the traveling sales person distance using Repeatetive Nearest Neighbour calculation method
+	 * @return Returns TSP distance.
+	 */</span>
+	<span class="k">public</span> <span class="k">double</span> <a title="Search for references of 'repeatetiveNearestNeighbour'" href="javascript:searchRef('repeatetiveNearestNeighbour')" class="r">repeatetiveNearestNeighbour</a>() {
+
+		<span class="k">double</span> <a title="Search for references of 'min_dist'" href="javascript:searchRef('min_dist')" class="r">min_dist</a> = <a title="Search for references of 'Double'" href="javascript:searchRef('Double')" class="r">Double</a>.<a title="Search for references of 'MAX_VALUE'" href="javascript:searchRef('MAX_VALUE')" class="r">MAX_VALUE</a>;
+		<span class="k">double</span> <a title="Search for references of 'nn_dist'" href="javascript:searchRef('nn_dist')" class="r">nn_dist</a>;
+		<span class="k">int</span> <a title="Search for references of 'rep_route'" href="javascript:searchRef('rep_route')" class="r">rep_route</a>[] = <span class="k">new</span> <span class="k">int</span>[<a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a> + 1]; <span class="c">// a copy of route used for rnn method    	</span>
+
+		<a title="Search for references of 'initCalc'" href="javascript:searchRef('initCalc')" class="r">initCalc</a>();
+		<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = 0; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>++) {
+			<span class="c">// clear visited cities values</span>
+			<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'k'" href="javascript:searchRef('k')" class="r">k</a> = 0; <a title="Search for references of 'k'" href="javascript:searchRef('k')" class="r">k</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>; <a title="Search for references of 'k'" href="javascript:searchRef('k')" class="r">k</a>++)
+				<a title="Search for references of 'visitedCities'" href="javascript:searchRef('visitedCities')" class="r">visitedCities</a>[<a title="Search for references of 'k'" href="javascript:searchRef('k')" class="r">k</a>] = <span class="k">false</span>;
+
+			<span class="c">// get the distance and route starting from the city i	</span>
+			<a title="Search for references of 'nn_dist'" href="javascript:searchRef('nn_dist')" class="r">nn_dist</a> = <a title="Search for references of 'nearest_n'" href="javascript:searchRef('nearest_n')" class="r">nearest_n</a>(<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>);
+			<span class="k">if</span> (<a title="Search for references of 'nn_dist'" href="javascript:searchRef('nn_dist')" class="r">nn_dist</a> &lt; <a title="Search for references of 'min_dist'" href="javascript:searchRef('min_dist')" class="r">min_dist</a>) {
+				<a title="Search for references of 'min_dist'" href="javascript:searchRef('min_dist')" class="r">min_dist</a> = <a title="Search for references of 'nn_dist'" href="javascript:searchRef('nn_dist')" class="r">nn_dist</a>;
+				<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> = 0; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a> + 1; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>++)
+					<a title="Search for references of 'rep_route'" href="javascript:searchRef('rep_route')" class="r">rep_route</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>] = <a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>];
+			}
+		}
+		<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> = 0; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a> + 1; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>++)
+			<a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>] = <a title="Search for references of 'rep_route'" href="javascript:searchRef('rep_route')" class="r">rep_route</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>];
+
+		<span class="k">return</span> <a title="Search for references of 'min_dist'" href="javascript:searchRef('min_dist')" class="r">min_dist</a>;
+	}
+
+	<span class="c">/** Calculates the traveling sales person distance using Random Two Optimals Exchange calculation method 
+	 * @return Returns TSP distance.
+	 */</span>
+	<span class="k">public</span> <span class="k">double</span> <a title="Search for references of 'randomTwoOptimals'" href="javascript:searchRef('randomTwoOptimals')" class="r">randomTwoOptimals</a>() {
+		<a title="Search for references of 'initCalc'" href="javascript:searchRef('initCalc')" class="r">initCalc</a>();
+		<span class="k">return</span> <a title="Search for references of 'two_optimals'" href="javascript:searchRef('two_optimals')" class="r">two_optimals</a>(1);
+	}
+
+	<span class="c">/** Calculates the traveling sales person distance using Nearest Neighbour initial value Two Optimals Exchange calculation 
+	 * @return Returns TSP distance.
+	 */</span>
+	<span class="k">public</span> <span class="k">double</span> <a title="Search for references of 'nnTwoOptimals'" href="javascript:searchRef('nnTwoOptimals')" class="r">nnTwoOptimals</a>() {
+		<a title="Search for references of 'initCalc'" href="javascript:searchRef('initCalc')" class="r">initCalc</a>();
+		<span class="k">return</span> <a title="Search for references of 'two_optimals'" href="javascript:searchRef('two_optimals')" class="r">two_optimals</a>(0);
+	}
+
+	<span class="c">// two optimals exchange algorythm</span>
+	<span class="k">private</span> <span class="k">double</span> <a title="Search for references of 'two_optimals'" href="javascript:searchRef('two_optimals')" class="r">two_optimals</a>(<span class="k">int</span> <a title="Search for references of 'which'" href="javascript:searchRef('which')" class="r">which</a>) {
+
+		<span class="k">int</span>[] <a title="Search for references of 'ptr'" href="javascript:searchRef('ptr')" class="r">ptr</a> = <span class="k">new</span> <span class="k">int</span>[<a title="Search for references of 'MAXCITIES'" href="javascript:searchRef('MAXCITIES')" class="r">MAXCITIES</a>];
+		<span class="k">int</span> <a title="Search for references of 'ahead'" href="javascript:searchRef('ahead')" class="r">ahead</a>, <a title="Search for references of 'i1'" href="javascript:searchRef('i1')" class="r">i1</a>, <a title="Search for references of 'i2'" href="javascript:searchRef('i2')" class="r">i2</a>, <a title="Search for references of 'index'" href="javascript:searchRef('index')" class="r">index</a>, <a title="Search for references of 'j1'" href="javascript:searchRef('j1')" class="r">j1</a>, <a title="Search for references of 'j2'" href="javascript:searchRef('j2')" class="r">j2</a>, <a title="Search for references of 'last'" href="javascript:searchRef('last')" class="r">last</a>, <a title="Search for references of 'limit'" href="javascript:searchRef('limit')" class="r">limit</a>, <a title="Search for references of 'n1'" href="javascript:searchRef('n1')" class="r">n1</a>, <a title="Search for references of 'n2'" href="javascript:searchRef('n2')" class="r">n2</a>, <a title="Search for references of 'next'" href="javascript:searchRef('next')" class="r">next</a>, <a title="Search for references of 's1'" href="javascript:searchRef('s1')" class="r">s1</a> = 0, <a title="Search for references of 's2'" href="javascript:searchRef('s2')" class="r">s2</a> = 0, <a title="Search for references of 't1'" href="javascript:searchRef('t1')" class="r">t1</a> = 0, <a title="Search for references of 't2'" href="javascript:searchRef('t2')" class="r">t2</a> = 0;
+
+		<span class="k">double</span> <a title="Search for references of 'max'" href="javascript:searchRef('max')" class="r">max</a>, <a title="Search for references of 'max1'" href="javascript:searchRef('max1')" class="r">max1</a>, <a title="Search for references of 'tweight'" href="javascript:searchRef('tweight')" class="r">tweight</a> = 0;
+		<span class="k">int</span> <a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a> = <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>;
+		<span class="k">if</span> (<a title="Search for references of 'which'" href="javascript:searchRef('which')" class="r">which</a> == 0) {
+			<a title="Search for references of 'tweight'" href="javascript:searchRef('tweight')" class="r">tweight</a> = <a title="Search for references of 'nearest_n'" href="javascript:searchRef('nearest_n')" class="r">nearest_n</a>(0);
+		} <span class="k">else</span> {
+			<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = 0; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> &lt; <a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a>; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>++) {
+				<a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] = <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>;
+				<a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a>++;
+				<span class="k">if</span> (<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> != <a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a> - 1) {
+					<a title="Search for references of 'tweight'" href="javascript:searchRef('tweight')" class="r">tweight</a> = <a title="Search for references of 'tweight'" href="javascript:searchRef('tweight')" class="r">tweight</a> + <a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> + 1][<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>];
+				}
+			}
+			<a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[<a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a>] = 0;
+			<a title="Search for references of 'tweight'" href="javascript:searchRef('tweight')" class="r">tweight</a> = <a title="Search for references of 'tweight'" href="javascript:searchRef('tweight')" class="r">tweight</a> + <a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[0][<a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a> - 1];
+			<a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a>++;
+		}
+
+		<a title="Search for references of 'n1'" href="javascript:searchRef('n1')" class="r">n1</a> = <a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a> - 1;
+		<a title="Search for references of 'n2'" href="javascript:searchRef('n2')" class="r">n2</a> = <a title="Search for references of 'n1'" href="javascript:searchRef('n1')" class="r">n1</a> - 1;
+
+		<span class="c">// ptr yra masyvas, kuris parodo i kuri miesta vaziuoja sekanciame zingsnyje   </span>
+		<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = 0; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> &lt; <a title="Search for references of 'n1'" href="javascript:searchRef('n1')" class="r">n1</a>; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>++)
+			<a title="Search for references of 'ptr'" href="javascript:searchRef('ptr')" class="r">ptr</a>[<a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>]] = <a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> + 1];
+		<a title="Search for references of 'ptr'" href="javascript:searchRef('ptr')" class="r">ptr</a>[<a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[<a title="Search for references of 'n1'" href="javascript:searchRef('n1')" class="r">n1</a>]] = <a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[0];
+
+		<span class="c">//lygina visas ne galimas poras (poros negali tureti bendru virsuniu)</span>
+		<span class="k">do</span> {
+			<a title="Search for references of 'max'" href="javascript:searchRef('max')" class="r">max</a> = 0;
+			<a title="Search for references of 'i1'" href="javascript:searchRef('i1')" class="r">i1</a> = 0;
+			<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = 0; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> &lt; <a title="Search for references of 'n2'" href="javascript:searchRef('n2')" class="r">n2</a>; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>++) {
+				<a title="Search for references of 'limit'" href="javascript:searchRef('limit')" class="r">limit</a> = (<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> == 0) ? <a title="Search for references of 'n1'" href="javascript:searchRef('n1')" class="r">n1</a> : <a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a>;
+				<a title="Search for references of 'i2'" href="javascript:searchRef('i2')" class="r">i2</a> = <a title="Search for references of 'ptr'" href="javascript:searchRef('ptr')" class="r">ptr</a>[<a title="Search for references of 'i1'" href="javascript:searchRef('i1')" class="r">i1</a>];
+				<a title="Search for references of 'j1'" href="javascript:searchRef('j1')" class="r">j1</a> = <a title="Search for references of 'ptr'" href="javascript:searchRef('ptr')" class="r">ptr</a>[<a title="Search for references of 'i2'" href="javascript:searchRef('i2')" class="r">i2</a>];
+				<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> = <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> + 2; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> &lt; <a title="Search for references of 'limit'" href="javascript:searchRef('limit')" class="r">limit</a>; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>++) {
+					<a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a>++;
+					<a title="Search for references of 'j2'" href="javascript:searchRef('j2')" class="r">j2</a> = <a title="Search for references of 'ptr'" href="javascript:searchRef('ptr')" class="r">ptr</a>[<a title="Search for references of 'j1'" href="javascript:searchRef('j1')" class="r">j1</a>];
+					<a title="Search for references of 'max1'" href="javascript:searchRef('max1')" class="r">max1</a> = <a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i1'" href="javascript:searchRef('i1')" class="r">i1</a>][<a title="Search for references of 'i2'" href="javascript:searchRef('i2')" class="r">i2</a>] + <a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'j1'" href="javascript:searchRef('j1')" class="r">j1</a>][<a title="Search for references of 'j2'" href="javascript:searchRef('j2')" class="r">j2</a>] - (<a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i1'" href="javascript:searchRef('i1')" class="r">i1</a>][<a title="Search for references of 'j1'" href="javascript:searchRef('j1')" class="r">j1</a>] + <a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i2'" href="javascript:searchRef('i2')" class="r">i2</a>][<a title="Search for references of 'j2'" href="javascript:searchRef('j2')" class="r">j2</a>]);
+
+					<span class="c">// Jei surasta pora, kurios virsunes sukeitus vietomis</span>
+					<span class="c">// gaunamas trumpesnis atstumas, tai virsunes reikia isaugoti</span>
+
+					<span class="k">if</span> (<a title="Search for references of 'max1'" href="javascript:searchRef('max1')" class="r">max1</a> &gt; <a title="Search for references of 'max'" href="javascript:searchRef('max')" class="r">max</a>) {
+						<a title="Search for references of 's1'" href="javascript:searchRef('s1')" class="r">s1</a> = <a title="Search for references of 'i1'" href="javascript:searchRef('i1')" class="r">i1</a>;
+						<a title="Search for references of 's2'" href="javascript:searchRef('s2')" class="r">s2</a> = <a title="Search for references of 'i2'" href="javascript:searchRef('i2')" class="r">i2</a>;
+						<a title="Search for references of 't1'" href="javascript:searchRef('t1')" class="r">t1</a> = <a title="Search for references of 'j1'" href="javascript:searchRef('j1')" class="r">j1</a>;
+						<a title="Search for references of 't2'" href="javascript:searchRef('t2')" class="r">t2</a> = <a title="Search for references of 'j2'" href="javascript:searchRef('j2')" class="r">j2</a>;
+						<a title="Search for references of 'max'" href="javascript:searchRef('max')" class="r">max</a> = <a title="Search for references of 'max1'" href="javascript:searchRef('max1')" class="r">max1</a>;
+					}
+					<a title="Search for references of 'j1'" href="javascript:searchRef('j1')" class="r">j1</a> = <a title="Search for references of 'j2'" href="javascript:searchRef('j2')" class="r">j2</a>;
+				}
+				<a title="Search for references of 'i1'" href="javascript:searchRef('i1')" class="r">i1</a> = <a title="Search for references of 'i2'" href="javascript:searchRef('i2')" class="r">i2</a>;
+			}
+
+			<span class="c">// Jei turime geresni marsruta , reikia pakeisti informacija.</span>
+			<span class="k">if</span> (<a title="Search for references of 'max'" href="javascript:searchRef('max')" class="r">max</a> &gt; 0) {
+
+				<span class="c">//  Sukeicia virsunes</span>
+				<a title="Search for references of 'ptr'" href="javascript:searchRef('ptr')" class="r">ptr</a>[<a title="Search for references of 's1'" href="javascript:searchRef('s1')" class="r">s1</a>] = <a title="Search for references of 't1'" href="javascript:searchRef('t1')" class="r">t1</a>;
+				<a title="Search for references of 'next'" href="javascript:searchRef('next')" class="r">next</a> = <a title="Search for references of 's2'" href="javascript:searchRef('s2')" class="r">s2</a>;
+				<a title="Search for references of 'last'" href="javascript:searchRef('last')" class="r">last</a> = <a title="Search for references of 't2'" href="javascript:searchRef('t2')" class="r">t2</a>;
+
+				<span class="k">do</span> {
+					<a title="Search for references of 'ahead'" href="javascript:searchRef('ahead')" class="r">ahead</a> = <a title="Search for references of 'ptr'" href="javascript:searchRef('ptr')" class="r">ptr</a>[<a title="Search for references of 'next'" href="javascript:searchRef('next')" class="r">next</a>];
+					<a title="Search for references of 'ptr'" href="javascript:searchRef('ptr')" class="r">ptr</a>[<a title="Search for references of 'next'" href="javascript:searchRef('next')" class="r">next</a>] = <a title="Search for references of 'last'" href="javascript:searchRef('last')" class="r">last</a>;
+					<a title="Search for references of 'last'" href="javascript:searchRef('last')" class="r">last</a> = <a title="Search for references of 'next'" href="javascript:searchRef('next')" class="r">next</a>;
+					<a title="Search for references of 'next'" href="javascript:searchRef('next')" class="r">next</a> = <a title="Search for references of 'ahead'" href="javascript:searchRef('ahead')" class="r">ahead</a>;
+				} <span class="k">while</span> (<a title="Search for references of 'next'" href="javascript:searchRef('next')" class="r">next</a> != <a title="Search for references of 't2'" href="javascript:searchRef('t2')" class="r">t2</a>);
+				<span class="c">//  Sumazina marsruto ilgi</span>
+				<a title="Search for references of 'tweight'" href="javascript:searchRef('tweight')" class="r">tweight</a> = <a title="Search for references of 'tweight'" href="javascript:searchRef('tweight')" class="r">tweight</a> - <a title="Search for references of 'max'" href="javascript:searchRef('max')" class="r">max</a>;
+			}
+		} <span class="k">while</span> (<a title="Search for references of 'max'" href="javascript:searchRef('max')" class="r">max</a> != 0);
+
+		<span class="c">// Pakeicia marsruta.</span>
+		<a title="Search for references of 'index'" href="javascript:searchRef('index')" class="r">index</a> = 0;
+		<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = 0; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> &lt; <a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a>; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>++) {
+			<a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] = <a title="Search for references of 'index'" href="javascript:searchRef('index')" class="r">index</a>;
+			<a title="Search for references of 'index'" href="javascript:searchRef('index')" class="r">index</a> = <a title="Search for references of 'ptr'" href="javascript:searchRef('ptr')" class="r">ptr</a>[<a title="Search for references of 'index'" href="javascript:searchRef('index')" class="r">index</a>];
+		}
+		<span class="k">return</span> <a title="Search for references of 'tweight'" href="javascript:searchRef('tweight')" class="r">tweight</a>;
+	}
+
+	<span class="c">// nearest neighbour method      </span>
+	<span class="k">private</span> <span class="k">double</span> <a title="Search for references of 'nearest_n'" href="javascript:searchRef('nearest_n')" class="r">nearest_n</a>(<span class="k">int</span> <a title="Search for references of 'start'" href="javascript:searchRef('start')" class="r">start</a>) {
+
+		<span class="k">int</span> <a title="Search for references of 'next_c'" href="javascript:searchRef('next_c')" class="r">next_c</a> = 0, <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>, <a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a>;
+		<span class="k">double</span> <a title="Search for references of 'mindist'" href="javascript:searchRef('mindist')" class="r">mindist</a>, <a title="Search for references of 'distance'" href="javascript:searchRef('distance')" class="r">distance</a> = 0;
+		<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = <a title="Search for references of 'start'" href="javascript:searchRef('start')" class="r">start</a>;
+		<span class="k">for</span> (<a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a> = 0; <a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>; <a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a>++) {
+			<a title="Search for references of 'mindist'" href="javascript:searchRef('mindist')" class="r">mindist</a> = <a title="Search for references of 'Double'" href="javascript:searchRef('Double')" class="r">Double</a>.<a title="Search for references of 'MAX_VALUE'" href="javascript:searchRef('MAX_VALUE')" class="r">MAX_VALUE</a>; <span class="c">// let it be, primary minimal distance</span>
+			<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> = 0; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>++) {
+				<a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a>++;
+				<span class="k">if</span> (<a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a> != <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a> - 1) { <span class="c">// to the start city we return in the last step</span>
+					<span class="k">if</span> ((<a title="Search for references of 'mindist'" href="javascript:searchRef('mindist')" class="r">mindist</a> &gt; <a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>][<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>]) &amp;&amp; (<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> != <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>) &amp;&amp; (<a title="Search for references of 'visitedCities'" href="javascript:searchRef('visitedCities')" class="r">visitedCities</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>] != <span class="k">true</span>)
+									&amp;&amp; (<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> != <a title="Search for references of 'start'" href="javascript:searchRef('start')" class="r">start</a>)) {
+						<a title="Search for references of 'mindist'" href="javascript:searchRef('mindist')" class="r">mindist</a> = <a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>][<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>];
+						<a title="Search for references of 'next_c'" href="javascript:searchRef('next_c')" class="r">next_c</a> = <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>;
+					}
+				} <span class="k">else</span> {
+					<a title="Search for references of 'mindist'" href="javascript:searchRef('mindist')" class="r">mindist</a> = <a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>][<a title="Search for references of 'start'" href="javascript:searchRef('start')" class="r">start</a>];
+					<a title="Search for references of 'next_c'" href="javascript:searchRef('next_c')" class="r">next_c</a> = <a title="Search for references of 'start'" href="javascript:searchRef('start')" class="r">start</a>;
+				}
+			}
+
+			<a title="Search for references of 'visitedCities'" href="javascript:searchRef('visitedCities')" class="r">visitedCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] = <span class="k">true</span>;
+			<a title="Search for references of 'distance'" href="javascript:searchRef('distance')" class="r">distance</a> = <a title="Search for references of 'distance'" href="javascript:searchRef('distance')" class="r">distance</a> + <a title="Search for references of 'mindist'" href="javascript:searchRef('mindist')" class="r">mindist</a>;
+			<a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[<a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a>] = <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>; <span class="c">// add visited city to a route array</span>
+			<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = <a title="Search for references of 'next_c'" href="javascript:searchRef('next_c')" class="r">next_c</a>; <span class="c">// city to which we go</span>
+		}
+
+		<span class="c">// return to the start city</span>
+		<a title="Search for references of 'visitedCities'" href="javascript:searchRef('visitedCities')" class="r">visitedCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] = <span class="k">true</span>;
+		<a title="Search for references of 'route'" href="javascript:searchRef('route')" class="r">route</a>[<a title="Search for references of 'n'" href="javascript:searchRef('n')" class="r">n</a>] = <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>;
+		<span class="k">return</span> <a title="Search for references of 'distance'" href="javascript:searchRef('distance')" class="r">distance</a>;
+	}
+
+	<span class="c">// init the matrix of distances values      </span>
+	<span class="k">private</span> <span class="k">void</span> <a title="Search for references of 'initDistances'" href="javascript:searchRef('initDistances')" class="r">initDistances</a>() {
+<span class="c">//		Initializing distance matrix for best route calculation</span>
+		<span class="k">if</span> (<a title="Search for references of 'best_or_worst_route_calculation'" href="javascript:searchRef('best_or_worst_route_calculation')" class="r">best_or_worst_route_calculation</a> == 0) {
+			<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = 0; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>++) {
+				<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> = 0; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>++) {
+					<span class="k">if</span> (<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> == <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>) {
+						<a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>][<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>] = 0;
+					} <span class="k">else</span> {
+						<a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>][<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>] = (<a title="Search for references of 'Math'" href="javascript:searchRef('Math')" class="r">Math</a>.<a title="Search for references of 'sqrt'" href="javascript:searchRef('sqrt')" class="r">sqrt</a>((<span class="k">double</span>) ((<a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] - <a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>])
+										* (<a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] - <a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>]) + (<a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] - <a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>])
+										* (<a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] - <a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>]))));
+					}
+				}
+				<a title="Search for references of 'visitedCities'" href="javascript:searchRef('visitedCities')" class="r">visitedCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] = <span class="k">false</span>; <span class="c">// at the begining all cities are not visited</span>
+				<a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a> = 0; <span class="c">// at the beginning number of iterationss is zero</span>
+			}
+		} <span class="k">else</span> {
+			<span class="c">//Initializing distance matrix for worst route calculation</span>
+
+			<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> = 0; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>; <a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>++) {
+				<span class="k">for</span> (<span class="k">int</span> <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> = 0; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a> &lt; <a title="Search for references of 'cities'" href="javascript:searchRef('cities')" class="r">cities</a>; <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>++) {
+					<span class="k">if</span> (<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a> == <a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>) {
+						<a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>][<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>] = 0;
+					} <span class="k">else</span> {
+						<span class="k">double</span> <a title="Search for references of 'distance'" href="javascript:searchRef('distance')" class="r">distance</a> = (<a title="Search for references of 'Math'" href="javascript:searchRef('Math')" class="r">Math</a>.<a title="Search for references of 'sqrt'" href="javascript:searchRef('sqrt')" class="r">sqrt</a>((<span class="k">double</span>) ((<a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] - <a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>])
+										* (<a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] - <a title="Search for references of 'xCities'" href="javascript:searchRef('xCities')" class="r">xCities</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>]) + (<a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] - <a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>])
+										* (<a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] - <a title="Search for references of 'yCities'" href="javascript:searchRef('yCities')" class="r">yCities</a>[<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>]))));
+						<span class="c">// Adding a big number to turn around the costs on the graph edges</span>
+						<a title="Search for references of 'd'" href="javascript:searchRef('d')" class="r">d</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>][<a title="Search for references of 'j'" href="javascript:searchRef('j')" class="r">j</a>] = <a title="Search for references of 'BIG_NUMBER_FOR_DISTANCE_MATRIX'" href="javascript:searchRef('BIG_NUMBER_FOR_DISTANCE_MATRIX')" class="r">BIG_NUMBER_FOR_DISTANCE_MATRIX</a> - <a title="Search for references of 'distance'" href="javascript:searchRef('distance')" class="r">distance</a>;
+					}
+				}
+				<a title="Search for references of 'visitedCities'" href="javascript:searchRef('visitedCities')" class="r">visitedCities</a>[<a title="Search for references of 'i'" href="javascript:searchRef('i')" class="r">i</a>] = <span class="k">false</span>; <span class="c">// at the begining all cities are not visited</span>
+				<a title="Search for references of 'iterations'" href="javascript:searchRef('iterations')" class="r">iterations</a> = 0; <span class="c">// at the beginning number of iterationss is zero</span>
+			}
+		}
+	}
+
+	<span class="c">// method used to initialize calculations </span>
+	<span class="k">private</span> <span class="k">void</span> <a title="Search for references of 'initCalc'" href="javascript:searchRef('initCalc')" class="r">initCalc</a>() {
+		<a title="Search for references of 'initDistances'" href="javascript:searchRef('initDistances')" class="r">initDistances</a>();
+	}
+
+} <span class="c">///~</span>
+</pre>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+
+<script type="text/javascript">
+var jumpLine = "-1";
+if(jumpLine && jumpLine != "-1" && !document.location.hash){
+	if(document.attachEvent){
+		document.attachEvent("onreadystatechange", function(){
+			if(document.readyState != "complete") return;
+			var numbers = document.all["kodeViewerLineNumbers"];
+			var targetA = numbers.children.tags("a")[jumpLine - 1];
+			targetA.scrollIntoView();
+			document.body.scrollLeft = 0;
+		});
+	} else if(window.addEventListener){
+		window.addEventListener("load", function(){
+			document.location.replace(document.location + "#L" + jumpLine);
+		}, false);
+	}
+}
+	
+var homeUrl = "/"; 
+var projectID = "XKHWECTP1AYRD77YDRYZK452FB";
+var sourceLanguage = "Java";
+var IsLogged = false;
+
+// only logs once
+function LogReuse() {
+	// dynamic image loading
+	if(!IsLogged) {
+		//alert("logging");
+		var	fileImg	= new Image();
+		var fileImgSrc = "/kv.aspx?fid=DCDB47491B45C896D6A9C77B1FE5CAAB53EE7942&mode=cp";
+		//alert("fileImgSrc = " + fileImgSrc);
+		fileImg.src	= fileImgSrc;
+		IsLogged = true;
+	} else {
+		//alert("already logged!");
+	}
+	return true;
+}
+</script>
+
+
+            
+        </div>
+        
+        
+<!-- Footer -->
+
+<div style="clear: both;" id="FooterDiv" align="center">
+	
+        <div id="footer" align="center">
+            <div class="row_1">
+    		    <a href="http://www.koders.com/" title="Home">Home</a> |
+                <a href="http://corp.koders.com/corp/about/" title="About Koders">Company</a> | 
+                <a href="http://www.koders.com/info.aspx?c=tools" title="Download Plugins">Downloads</a> | 
+                <a href="http://corp.koders.com/corp/support/" title="Support resources">Support</a> | 
+                <a href="http://corp.koders.com/corp/community/" title="Community">Community</a> | 
+                <a href="http://www.koders.com/corp/about/#Legal" title="Legal">Legal</a> | 
+                <a href="http://corp.koders.com/corp/about#Contact" title="Contact us">Contact Us</a> |
+   		        <a href="http://www.koders.com/corp/sitemap/" title="Koders Site Map">Site Map</a>    
+	        </div>
+            <div class="row_2">
+                <span class="copy">
+                    Copyright © 2008 <a href="http://www.blackducksoftware.com/" target="_blank" title="Black Duck Software, Inc.">Black Duck Software</a>. 
+                    All rights reserved.
+                </span>            
+                <span class="feed">
+                    <a href="http://www.koders.com/blog/?feed=rss2" title="Subscribe!">RSS Feed</a>
+
+                    <img src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/rss_sm.gif" alt="Koders Rss Feeds" vspace="0" width="12" height="12" hspace="0">                    
+                </span>
+            </div>
+            <br>
+            <br>
+            <a id="KodersFooter_ctl00_hplWorkingTime" title="0.00\0.12\0.00\0.00\0.00\0.06\0.05\0.03\0.02\0.00s" style="color: graytext;">processed in: 0.28s</a>
+        </div>
+
+</div>
+
+    
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.initialize();
+//]]>
+</script>
+</form>
+    
+    <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="fidDCDB47491B45C896D6A9C77B1FE5CAAB53EE7942.aspx_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1450480-3");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+</body></html>
