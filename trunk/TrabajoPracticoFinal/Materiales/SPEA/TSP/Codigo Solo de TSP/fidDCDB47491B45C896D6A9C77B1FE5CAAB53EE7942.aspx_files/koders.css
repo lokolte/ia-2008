@@ -1,0 +1,209 @@
+/* plugins page: info.aspx?c=tools */
+#plugin_downloads 
+{
+	margin-top: 10px;
+	width: 400px;
+	/*margin-left: 100px;*/
+}
+
+
+#plugin_downloads .header 
+{
+	background-color: lightsteelblue;
+	color: White;
+	font-weight: bold;
+	/*font-size: 10pt;*/
+	border-bottom: 2px solid white;
+	border-right: 2px solid white;
+}
+
+
+#plugin_downloads .p_name
+{
+	/*color: darkblue;*/
+	font-weight: bold;
+}
+
+.languages 
+{
+	font-size: smaller;
+	color: Gray;
+}
+
+#tblDownloads
+{
+	
+	border: 1px solid steelblue;
+	background-color: whitesmoke;
+	/*margin-left: 140px;*/
+	margin-top: 10px;
+	padding: 10px;
+	width: 300px;
+	margin-left: 20px;
+	/*margin-right: 20px;*/
+}
+
+#tblDownloads th 
+{
+	border-bottom: 1px solid lightsteelblue;
+}
+
+#plugin_downloads td 
+{
+	vertical-align: top;
+	padding: 5px;
+}
+
+	
+/* MyAccount::DashBoard */
+#DashBoard 
+{
+}
+	
+#DashBoard .dbRight
+{
+}
+
+#DashBoard .dbRight P 
+{ 
+	/* TODO: needed? */
+	MARGIN: 10px; 
+}
+
+#DashBoard .dbRight OL 
+{ 
+}
+
+#DashBoard .dbRight div 
+{
+	
+}
+
+#widgetColumn 
+{
+	MARGIN-TOP: 10px; 
+	FLOAT: right;
+	/*border: 1px solid black;*/
+	width: 400px;
+}
+
+
+/* MyAccount::DashBoard::Widgets */
+.DashboardWidgetContent
+{
+	margin-left: 25px;
+}
+
+.widget_spacing
+{
+	margin-top: 0px;
+	padding: 0px;
+}
+
+/* MyAccount.DashBoard.Widgets.Downloads */
+
+#widget_Downloads 
+{
+	margin-left: 20px;
+}
+
+#widget_Downloads tr td 
+{
+	vertical-align: middle;	
+}
+
+
+
+
+UL.toolsMenu 
+{ 
+	WIDTH: 180px 
+}
+
+.toolsSection 
+{ 
+	MARGIN-BOTTOM: 30px 
+}
+
+.toolsSection DIV 
+{ 
+	WIDTH: 600px 
+}
+
+.toolsSubSection P A 
+{ 
+	MARGIN-LEFT: 15px 
+}
+
+.toolsSubSection P IMG 
+{ 
+	MARGIN-TOP: 10px; 
+	MARGIN-LEFT: 15px 
+}
+
+#tools_ascx_content fieldset 
+{
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 1px solid darkblue;
+}
+
+#tools_ascx_content fieldset legend 
+{
+	border: #336699 solid 4px; 
+	padding-left: 8px; 
+	padding-right: 16px; 
+	background-color: #336699; 
+	color: #ffffff; 
+	text-align: center; 
+/*	font-weight: bold; */
+	font-size: 12px;
+	display: inline;
+	
+	margin-bottom: 10px;
+}
+
+
+ul.tools 
+{
+	list-style-type: disc; 
+	margin-left: 50px;	
+}
+
+li.tool_li
+{
+	font-weight: bold;
+	
+}
+
+#plugin_screenshots 
+{
+	text-align: center;
+	margin-left: 50px;
+}
+
+#plugin_screenshots .caption
+{
+	color: #777777;
+	font-size: 10px;
+}
+
+#plugin_demo_section 
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#plugin_demo 
+{
+	float: right;
+	margin-right: 50px;
+	vertical-align: top;
+}
+
+.section_heading 
+{
+	font-weight: bold;
+	margin-bottom: 10px;
+	display: block;
+}
