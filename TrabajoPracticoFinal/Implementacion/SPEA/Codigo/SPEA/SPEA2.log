@@ -2,19 +2,19 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2009-01-13T23:36:57</date>
-  <millis>1231900617443</millis>
+  <date>2009-01-14T00:19:25</date>
+  <millis>1231903165896</millis>
   <sequence>0</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>jmetal.solutions.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 6765</message>
+  <message>Total execution time: 6125</message>
 </record>
 <record>
-  <date>2009-01-13T23:36:57</date>
-  <millis>1231900617475</millis>
+  <date>2009-01-14T00:19:25</date>
+  <millis>1231903165912</millis>
   <sequence>1</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
@@ -24,8 +24,8 @@
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-01-13T23:36:57</date>
-  <millis>1231900617475</millis>
+  <date>2009-01-14T00:19:25</date>
+  <millis>1231903165912</millis>
   <sequence>2</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
