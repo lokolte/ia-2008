@@ -51,6 +51,8 @@ public class Spea2Fitness {
     solutionSet_ = solutionSet;
     for (int i = 0; i < solutionSet_.size(); i++) {
       solutionSet_.get(i).setLocation(i);
+      
+      System.out.println("Location: " + solutionSet_.get(i).getLocation());
     } // for
   } // Spea2Fitness
     
