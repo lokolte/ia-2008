@@ -43,7 +43,13 @@ public abstract class Problem
                     numerico = false;
                 }
             }
-		matrizAdy = new double[size][size];
+	matrizAdy = new double[size][size];
+        try{
+            reader.close();
+        }catch(Exception e){
+            ;
+        }
+        
 	}
 
         public int getSize()
@@ -57,7 +63,7 @@ public abstract class Problem
 	}
         protected abstract void cargar_estado(String file);
 	public abstract double funcion_obj_1(Solucion sol);
-	public abstract double funcion_obj_2(Solucion sol);
+	public abstract double funcion_obj_2(Solucion so);
 	public abstract double heuristica_1(int estOrigen,int estDest);
 	public abstract double heuristica_2(int estOrigen,int estDest);
 }

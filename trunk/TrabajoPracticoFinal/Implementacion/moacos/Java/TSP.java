@@ -21,7 +21,7 @@ public class TSP extends Problem {
     private int ciudades;
     private int objetivos;
 
-        public void cargar_estado(String file) {
+    public void cargar_estado(String file) {
         // en la primera linea posee el tamaño del problema
 
         BufferedReader reader = null;
@@ -35,8 +35,6 @@ public class TSP extends Problem {
         try {
             ciudades = Integer.parseInt(reader.readLine());
             objetivos = Integer.parseInt(reader.readLine());
-            matrizAdy = new double[ciudades][ciudades];
-            matrizAdy2 = new double[ciudades][ciudades];
             int count = 0;
             String[] subCadena;
             while ((linea = reader.readLine()) != null) {
@@ -47,10 +45,10 @@ public class TSP extends Problem {
                     for (int i = 0; i < subCadena.length; i++) {
                         matrizAdy[count - 1][i] = Double.valueOf(subCadena[i]).doubleValue();
                     }
-                } else if (count > 101) {
+                } else if (count > ciudades + 1) {
                     subCadena = linea.split("\\s");
                     for (int i = 0; i < subCadena.length; i++) {
-                        matrizAdy2[count - 102][i] = Double.valueOf(subCadena[i]).doubleValue();
+                        matrizAdy2[count - (ciudades + 2)][i] = Double.valueOf(subCadena[i]).doubleValue();
                     }
                 }
             }
@@ -61,7 +59,6 @@ public class TSP extends Problem {
 
     public TSP(String file) {
         super(file);
-        int i;
         matrizAdy2 = new double[size][size];
         cargar_estado(file);
     }
@@ -100,14 +97,14 @@ public class TSP extends Problem {
         System.out.print("Matriz Adyacencia 1:\n");
         for (i = 0; i < size; i++) {
             for (j = 0; j < size; j++) {
-                System.out.printf("%lf ", matrizAdy[i][j]);
+                System.out.print(matrizAdy[i][j]+" ");
             }
             System.out.print("\n");
         }
         System.out.print("Matriz Adyacencia 2:\n");
         for (i = 0; i < size; i++) {
             for (j = 0; j < size; j++) {
-                System.out.printf("%lf ", matrizAdy2[i][j]);
+                System.out.print(matrizAdy2[i][j]+" ");
             }
             System.out.print("\n");
         }
