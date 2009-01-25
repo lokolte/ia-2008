@@ -135,7 +135,7 @@ public class TSP2 extends Problem {
         firstCity = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[0];
         lastCity = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[numberOfCities_ - 1];
         fitness += distanceMatrix_[firstCity][lastCity];
-        fitness2 += distanceMatrix_[firstCity][lastCity];
+        fitness2 += timeMatrix_[firstCity][lastCity];
 
 
         solution.setObjective(0, fitness);
