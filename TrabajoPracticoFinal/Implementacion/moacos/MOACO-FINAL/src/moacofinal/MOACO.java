@@ -24,7 +24,6 @@ public abstract class MOACO {
     public MOACO(Problem p) {
         prob = p;
         pareto = new ConjuntoPareto(500);
-        rnd = new Random();
     }
 
     public abstract int seleccionar_siguiente_estadoTSP(int estOrigen, Solucion sol);
