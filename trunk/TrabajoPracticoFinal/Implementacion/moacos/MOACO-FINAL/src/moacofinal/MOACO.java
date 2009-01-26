@@ -12,6 +12,8 @@ import java.util.Random;
  */
 public abstract class MOACO {
 
+    public static final int PARETO = 50;
+    public static final int RAN_MAX = 2147483647;
     protected Problem prob;
     protected int criterio;
     protected int tiempoTotal;
@@ -22,7 +24,7 @@ public abstract class MOACO {
     public MOACO(Problem p) {
         prob = p;
         pareto = new ConjuntoPareto(500);
-        RandomNumbers.seed(time(null));
+        rnd = new Random();
     }
 
     public abstract int seleccionar_siguiente_estadoTSP(int estOrigen, Solucion sol);
@@ -57,58 +59,11 @@ public abstract class MOACO {
 
     public void online_update(int orig, int dest) {
     }
-}
 
-final class DefineConstantsClases2 {
-
-    public static final int PARETO = 50;
-}
-//----------------------------------------------------------------------------------------
-//	Copyright © 2006 - 2008 Tangible Software Solutions Inc.
-//
-//	This class provides the ability to simulate the behavior of the C/C++ functions for 
-//	generating random numbers.
-//	'rand' converts to the parameterless overload of NextNumber
-//	'random' converts to the single-parameter overload of NextNumber
-//	'randomize' converts to the parameterless overload of Seed
-//	'srand' converts to the single-parameter overload of Seed
-//----------------------------------------------------------------------------------------
-final class RandomNumbers {
-
-    private static Random r;
-
-    static int nextNumber() {
-        if (r == null) {
-            seed();
-        }
-        return r.nextInt();
-    }
-
-    static int nextNumber(int ceiling) {
-        if (r == null) {
-            seed();
-        }
-        return r.nextInt(ceiling);
-    }
-
-    static void seed() {
-        r = new Random();
-    }
-
-    static void seed(int seed) {
-        r = new Random(seed);
-    }
-}
-//----------------------------------------------------------------------------------------
-//	Copyright © 2006 - 2008 Tangible Software Solutions Inc.
-//
-//	This class is used to simulate the ability to pass arguments by reference in Java.
-//----------------------------------------------------------------------------------------
-final class RefObject<T> {
-
-    T argvalue;
-
-    RefObject(T refarg) {
-        argvalue = refarg;
+    //Genera un numero entero aleatorio comprendido entre 0 y RAN_MAX
+    public int rand() {
+        double aleat = Math.random() * RAN_MAX;
+        aleat = Math.floor(aleat);
+        return (int) aleat;
     }
 }
