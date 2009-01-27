@@ -1,0 +1,250 @@
+Joaquín Lima: las coincidencias no existen, solo existe lo inevitable
+Joaquín: y ya hiciste funcionar los moacos?
+Silvano: hola joaquin
+si hice funcionar
+para TSP
+ahora solo tengo que interpretar la salida
+Joaquín: mejor si pones en excel y graficas
+Silvano: porque me da un pareto con dos columnas
+sabes que representan esas dos columnas de datos para el TSP?
+Joaquín: cada fila es una solucion del problema multiobjetivo
+una solucion pareto
+Silvano: y sabes que es cada columna?
+Joaquín: y cada columna corresponde al valor de una funcion objetivo en cada solucion
+Silvano: ahhh
+cierto que es biobjetivo
+Joaquín: primero tenes que empezar estudiando los problemas multiobjetivos
+Silvano: yo me estaba enfocando mas a los algoritmos
+por eso no entendia muy bien lo que me daba como resultado
+decime, los parametros de entrada para los otros problemas no tenes?, el de QAP y VPRTW?
+Joaquín: el resultado de una corrida es el mejor frente pareto que pudo hallar el algoritmo en dicha corrida
+Silvano: si, y la verdad a veces halla mas datos en una corrida que en otra
+Joaquín: no tengo
+Silvano: debido a la funcion pseudoaleatoria
+Joaquín: tenes que escribirle a paciello o a martinez
+Silvano: ok..
+Joaquín: o ir a consultar su libro de tesis en la facultad
+Silvano: sera que ya esta disponible en la biblioteca para consultar su libro de tesis?
+Joaquín: si esta
+todos los libros estan alli
+Silvano: voy a llamarle a mi amiga Estela a preguntar
+es que a veces los profesores de tesis no entregan hasta despues de 3 o 4 años
+al menos eso ocurria en analisis antes
+Joaquín: nosotros hicimos 3 copias del libro, 2 para biblioteca, 1 para la coordinacion
+Silvano: che, el de la foto pio sos vos cuando era mas chico?
+Joaquín: yo no implemente las hormigas por que ese no era mi tema
+ademas como paciello y marinez ya estaban implementando eso en esa epoca yo reutilicé sus codigos nomas
+mi tema era inteligencia de enjambre... algo parecido a las hormigas
+te voy pasar mi libro ahora para que veas
+Silvano: esta en pdf o ps?
+Joaquín: pdf
+Silvano: okey
+pasame please para poder mirar
+Joaquín: ahora es un quilombo su codigo
+Silvano: jajaja, tranquilo, ya nos estamos volviendo expertos en c++
+Joaquín: yo quise poner en orden pero demasiado tiempo iba a perder
+Silvano: encima tenemos que pasar todo a Java
+Joaquín: a java?
+y por que?
+Silvano: lo que me di cuenta es que el codigo de Pasciello y Martinez nada de Code Convention tenia
+en fin
+Joaquín: nada codigo a lo loco nomas es
+Silvano: siiiii
+tenemos que pasar a java porque los algoritmos de SPEA y NSGA para TSP que tenemos esta en JAVA
+y queremos que todos los codigos esten en un mismo lenguaje para hacer las mediciones
+porque quiza sea mas performante en C++ que en java y no seria una comparacion justa
+Enviado a la(s) 10:57 del jueves.
+Joaquín: ups te pase el libro equivocado
+Silvano: todavia no lo abrí
+lo borro entonces
+Joaquín: no ese es el libro de ricardo brunelli no el mio
+guarda para que tengas otra idea
+Silvano: ahh, ok
+Enviado a la(s) 11:17 del jueves.
+Joaquín: alli te envie el mio... me gustaría que mires en la pagina 106 para explicarte rapidamente
+seguro que julio y hector hande tener tambien en pdf su libro para pasarte
+Silvano: el e-mail de hector creo que estaba en el e-mail que vos me pasaste
+Joaquín: si estaba alli
+Silvano: esperame voy a abrir tu pdf
+Joaquín: quiero que leas mi libro el cap 2 la parte de problemas multiobjetivos y el cap 5 para que veas como se hace la comparación de algoritmos
+te va a servir mucho
+Silvano: esperame que que mi conexion es lenta y todavia esta descargando tu libro
+Joaquín: ok
+Enviado a la(s) 11:32 del jueves.
+Silvano: pagina 106 del pdf o del libro en si?
+porque viste que no coinciden?
+estoy en la pagina 106 de impresion donde dice "Problema KROAB200"
+Joaquín: 106 del pdf
+Silvano: porque en la pagina 106 del pdf (92 de impresion) hay una tabla que dice "Ranking KROAB100"
+Joaquín: y el grafico de abajo
+Silvano: si
+Figura 5.2
+Joaquín: bueno el ranking esta basado en 4 metricas
+m1 es de calidad
+indica que tanto un frente aproximado
+que es el que devuelven los algoritmos MOACO
+esta proximo al frente real
+Silvano: ufa, que malo es MOACS habia sido
+en cuanto a calidad
+Joaquín: el m2 es de distribucion
+indica si un algoritmo encuentra soluciones bien distribuidas
+osea que explora bien
+o solo se centra en una sola parte del espacio
+osea no explora bien
+el m3
+es la metrica de extension
+esta evalua que tanto del espacio de solucion fue explorado
+y la cuarta es una metrica de calidad tambien
+Silvano: ya entiendo el ranking
+Joaquín: ok
+Silvano: de acuerdo a ciertas metricas un algoritmo es mejor que otro
+Joaquín: ahora el grafico
+claro
+lo que no esta en mi libro es una metrica que englobe a las 4
+solo esta una reflexion de que algoritmo es mejor en cada caso
+lo mismo en los otros libros
+Silvano: claro, pero me parece logico
+es como en el frente de pareto
+no hay mejores soluciones
+Joaquín: asi mismo, sino mejores compromisos
+Silvano: sino es un conjunto de soluciones que es mejor que otro dependiendo del criterio de evaluacion
+Joaquín: asi mismo
+en el grafico si miras
+Silvano: y el grafico?
+ok
+Joaquín: hay 5 frentes
+Silvano: si, los puedo notar
+Joaquín: para un tsb biobj de 100 ciudades
+Silvano: el frente teorico no esta graficado, verdad?
+Joaquín: es decir son dos problemas tsp para los cuales se evalua una misma solucion
+el frente real
+es el negro
+Silvano: ok
+Joaquín: o por lo menos es el mas aproximado al real
+tenia algo asi como 5000 soluciones
+Silvano: Ytrue. ok
+Joaquín: impresionante
+Silvano: si, la verdad que son muchas soluciones para escoger
+Joaquín: ese frente se obtuvo la tecnica de paquete
+que estan publicadas en su sitio web
+los bueno de este frente es que tan bueno en todas la metricas que sirve como referencia de comparacion entre los algoritmos
+mi tesis es la unica que hace este tipo de comparaciones con frentes que son los mas aproximados al frente real de los problemas
+Silvano: decime, ese frente de la tecnica de paquete ya es algo que este medido para esas instancias o vos bajaste los fuentes para correr con esas instancias del problema?
+Joaquín: entre los frentes de los algoritmos
+no yo baje sus resultados nomas
+no corri nada ni probe nada
+solo use esos frentes como referencia de comparacion
+Silvano: ok, me gustaria tener esos resultados
+Joaquín: te pase su web
+ahi estan
+depues el frente en rojo si vez
+Silvano: si veo
+Joaquín: es uno de mis algoritmos
+Silvano: eso era algo que yo me estaba planteando
+contra que comparar para saber que tan bueno era el frente que obtenia en cada algoritmo
+Joaquín: clMOPSO... casi tan bueno como el de paquete
+pero le falta extension
+si ese es el tema
+todos comparan juntando todos los resultados no dominados que sacan
+Silvano: si
+Joaquín: eso no es una buena referencia de comparacion
+Silvano: y me gusta mas esta forma de comparacion la verdad
+Joaquín: por es que yo me romo a mi mismo como referencia para compararme y siempre me voya a paracer
+Silvano: decime, que representa el eje y y el eje x?
+Joaquín: el eje y representa el objetivo 2
+y el x el 1
+Silvano: ok
+Joaquín: el objetivo 2 es la evaluacion de una solucion en el problea KRO B 100
+y el 1 en el problema KRO A 100
+por eso el problema multiobjetivo se llama KRO AB 100
+el 100 poe que es de 100 ciudades
+despues viene el frente del paco
+despues el de MOACS y el del M3AS
+yo use estos tres algoritmos MOACO por que eran los mas buenos segun la tesis de julio y hector
+Silvano: parece ser que el PACO es mejor que el M3AS
+Joaquín: en calidad
+pero no en extension
+Silvano: cierto
+supongo que te habra llevado bastante tiempo hacer todo este analisis
+Joaquín: me llevo su buen rato
+me gustaria que pongas un MOPSO en tu analisi
+si se puede
+el clMOPSO
+yo te voy a pasar el codigo
+esta bien comentado y es bien entendible
+solo que esta en c++
+Silvano: pero quiza me puedas pasar los resultados que vos obtuviste nada
+mas
+ya que estoy midiendo las mismas instancias de problema que vos
+pero pasame tambien el codigo fuente
+Joaquín: ok
+solo MOACOS estan viendo???
+no hay algo geneticos
+Silvano: sii
+tambien SPEA y NSGA estamos viendo
+Joaquín: si podes correr es mejor para que la comparcion sea justa
+osea sea el mismo entorna de ejecucion
+Silvano: si, la idea es tener todo en un mismo lenguaje de programacion y correr todo de vuelta
+Joaquín: para que materia es esto?
+Enviado a la(s) 12:01 del jueves.
+Silvano: electiva 3
+Joaquín: que es electiva 3
+IA???
+Silvano: perdon, si IA
+es que le estoy explicando a mi compa lo mismo que vos me estas explicando de tu tesis
+el ya se esta desesperando...
+porque el año que viene tambien nos toca a nosotros presentar la tesis, y dice que si es asi de complicado no se quiere imaginar lo que le espera
+la verdad que es un buen tema de tesis
+quien fue tu tutor?
+Joaquín: baran
+Silvano: ndiiii
+Joaquín: pero lo unico que hizo fue leer mi libro
+Silvano: esos si son tutores y no macana
+Joaquín: y aprobar mi tema
+jajajaja
+las apariencias engañan
+Silvano: bueno, pero te habra puesto muchas trabas...
+en serio pio?
+todo el mundo dice que es muy bueno
+y muy "especial"
+no como Von Lucken que le anda dando vueltas y vueltas a la pobre Majo y parece que nunca va a terminar su tesis
+Joaquín: asi fue conmigo no puedo hablar de los demas
+Silvano: tranquilo
+Joaquín: yo hice solo mi tesis y me fui 3 veces junto a el
+Silvano: che, decime
+Joaquín: una para mostrarle mi tema
+Silvano: las mediciones que hiciste
+Joaquín: otra para mostarle un borrador del libro
+y otra para mostrarle el libro final
+a el no le gusto mucho eso de usar el frente de paquete
+Silvano: de los 5 algoritmos MOPSO tiene direncias muy grande en cuanto a la forma de obtener los resultados
+Joaquín: no se por que
+si cada uno tiene un enfoque diferente para la busqueda de soluciones
+Silvano: pero el mejor entre todos es el cl?
+Joaquín: es el que mas bien se comporta en todos los criterios
+me parece que si compramos solo en calidad no es el mas bueno de todoas
+hay un ranking final en la pagina de 117 del pdf
+Silvano: que figura es?
+Joaquín: tabla 5.27
+Silvano: si, veo
+es un ranking por cada metrica de evaluacion
+Joaquín: el mt es buenisimo pero no tiene extension
+Silvano: el M2 es al metrica de extension verdad?
+Joaquín: si
+pero si miramos las grafica en todos los problemas
+el cl y el fs son los MOPSOs mas regulares en todos los criterios
+Silvano: si, es son los que se mantienen mas cerca del promedio
+Joaquín: perdon el ranking general esta en la tabla 5.37
+Silvano: en base a que hiciste ese ranking general?
+un promedio?
+Joaquín: un promedio
+Silvano: voy a plantearle para este sabado
+Joaquín: en cada problema habian 10 corridas
+el promedio de las 10
+y eso se promedio nuevamente entre los 4 problemas
+Silvano: ahh
+che, Joaquin, sera que podemos abusar de tu amabilidad?
+queriamos, si se puede, reunirnos contigo, mi compañero de trabajo y yo para que nos expliques unas cosas que aun no nos queda muy claro
+en el horaria que vos puedas
+y donde vos dispongas
+solo si es posible 
