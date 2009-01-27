@@ -109,7 +109,7 @@ public class M3AS extends MOACO {
     }
 
     private int seleccionar_probabilistico(int estOrigen, int[] visitados) {
-        int sgteEstado;
+        int sgteEstado = 0;
         double heuristica1;
         double heuristica2;
 
@@ -128,11 +128,10 @@ public class M3AS extends MOACO {
             lambda2 = hormigas - hormigaActual + 1; // lambda para heuristica 2
         }
 
-        random = RandomNumbers.nextNumber(); // escoger un valor entre 0 y 1
+        random = rand() / (double) RAND_MAX; // escoger un valor entre 0 y 1
         // hallar la suma y los productos
-        for (int i = 0; i <
-                prob.getSize(); i++) {
-            if (visitados[i] != 1) {
+        for (int i = 0; i < prob.getSize(); i++) {
+            if (visitados[i] == 0) {
                 heuristica1 = prob.heuristica_1(estOrigen, i) * NORM1; // normalizado
                 heuristica2 =
                         prob.heuristica_2(estOrigen, i) * NORM2; // normalizado
@@ -144,14 +143,13 @@ public class M3AS extends MOACO {
 
         }
         if (suma == 0) {
-            random = RandomNumbers.nextNumber() % cantSinPorcion;
-            sgteEstado =
-                    sinPorcion[(int) random];
+            random = rand() % cantSinPorcion;
+            sgteEstado = sinPorcion[(int) random];
         } else {
             // aplicar ruleta
             for (int i = 0; i <
                     prob.getSize(); i++) {
-                if (visitados[i] != 1) // estado i no visitado
+                if (visitados[i] == 0) // estado i no visitado
                 {
                     acum += productos[i] / suma;
                     if (acum >= random) {
@@ -285,10 +283,10 @@ public class M3AS extends MOACO {
             generacion++;
             cantNoDominados = 0;
             for (int i = 0; i < hormigas; i++) {
-                estOrigen = RandomNumbers.nextNumber() % (prob.getSize()); // colocar a la hormiga en un estado inicial aleatorio
+                estOrigen = rand() % (prob.getSize()); // colocar a la hormiga en un estado inicial aleatorio
                 hormigaActual = i + 1; // utilizado en seleccionar_sgte_estado
                 construir_solucionTSP(estOrigen, this, 0, sol);
-                if (pareto.agregarNoDominado(sol, prob)) {
+                if (pareto.agregarNoDominado(sol, prob) == 1) {
                     pareto.eliminarDominados(sol, prob);
                 //else
                 }
@@ -301,14 +299,12 @@ public class M3AS extends MOACO {
             // actualizan la tabla las soluciones no dominadas
             for (int i = 0; i < pareto.getSize(); i++) {
                 deltaTao = calcular_delta_tao(pareto.getSolucion(i));
-                taumax =
-                        deltaTao / (1 - rho);
-                taumin =
-                        deltaTao / (2 * hormigas * (1 - rho));
+                taumax = deltaTao / (1 - rho);
+                taumin = deltaTao / (2 * hormigas * (1 - rho));
                 actualizar_feromonas(pareto.getSolucion(i), pareto.getSolucion(i).getSize(), deltaTao, taumin, taumax);
             }
 
-            end = clock();
+            end = System.currentTimeMillis();
         }
 //	pareto->listarSoluciones(prob,"/home/fuentes/tsp.m3as.pareto");
     }
@@ -322,26 +318,24 @@ public class M3AS extends MOACO {
         double taumax;
         double f;
 
-        clock_t start;
+        long start;
 
-        clock_t end;
+        long end;
 
         Solucion sol = new Solucion(prob.getSize());
-        start =
-                clock();
-        end =
-                start;
-        while (!condicion_parada(generacion, start, end)) {
+        start = System.currentTimeMillis();
+        end = start;
+        while (condicion_parada(generacion, start, end) == 0) {
             generacion++;
             cantNoDominados =
                     0;
             for (int i = 0; i <
                     hormigas; i++) {
-                estOrigen = RandomNumbers.nextNumber() % (prob.getSize()); // colocar a la hormiga en un estado inicial aleatorio
+                estOrigen = rand() % (prob.getSize()); // colocar a la hormiga en un estado inicial aleatorio
                 hormigaActual =
                         i; // utilizado en seleccionar_sgte_estado
                 construir_solucionQAP(estOrigen, this, 0, sol);
-                if (pareto.agregarNoDominado(sol, prob)) {
+                if (pareto.agregarNoDominado(sol, prob) == 1) {
                     pareto.eliminarDominados(sol, prob);
                 //else
                 }
@@ -361,7 +355,7 @@ public class M3AS extends MOACO {
                 actualizar_feromonas(pareto.getSolucion(i), pareto.getSolucion(i).getSize(), deltaTao, taumin, taumax);
             }
 
-            end = clock();
+            end = System.currentTimeMillis();
         }
 //	pareto->listarSoluciones(prob,"/home/fuentes/qap.m3as.pareto");
     }
@@ -375,28 +369,22 @@ public class M3AS extends MOACO {
         double taumax;
         double f;
 
-        clock_t start;
+        long start;
 
-        clock_t end;
+        long end;
 
         SolucionVRP sol = new SolucionVRP(prob.getSize() * 2);
-        start =
-                clock();
-        end =
-                start;
-        noLambdas =
-                1;
-        while (!condicion_parada(generacion, start, end)) {
+        start = System.currentTimeMillis();
+        end = start;
+        noLambdas = 1;
+        while (condicion_parada(generacion, start, end) == 0) {
             generacion++;
-            cantNoDominados =
-                    0;
-            for (int i = 0; i <
-                    hormigas; i++) {
+            cantNoDominados = 0;
+            for (int i = 0; i < hormigas; i++) {
                 estOrigen = 0; // colocar a la hormiga en un estado inicial aleatorio
-                hormigaActual =
-                        i; // utilizado en seleccionar_sgte_estado
+                hormigaActual = i; // utilizado en seleccionar_sgte_estado
                 construir_solucionVRP(estOrigen, this, 0, sol);
-                if (pareto.agregarNoDominado(sol, prob)) {
+                if (pareto.agregarNoDominado(sol, prob) == 1) {
                     pareto.eliminarDominados(sol, prob);
                 //else
                 }
@@ -417,12 +405,12 @@ public class M3AS extends MOACO {
                 actualizar_feromonas(pareto.getSolucionVRP(i), pareto.getSolucionVRP(i).getSizeActual(), deltaTao, taumin, taumax);
             }
 
-            end = clock();
+            end = System.currentTimeMillis();
         }
 //	pareto->listarSoluciones(prob,"/home/fuentes/qap.m3as.pareto");
     }
 
-    public static void construir_solucionTSP(int estOrig, MOACO aco, int onlineUpdate, Solucion sol) {
+    private void construir_solucionTSP(int estOrig, MOACO aco, int onlineUpdate, Solucion sol) {
         int estVisitados = 0;
         int sgteEstado = 0;
         int estActual = estOrig;
@@ -440,7 +428,7 @@ public class M3AS extends MOACO {
         sol.set(estVisitados, estOrig);
     }
 
-    public static void construir_solucionQAP(int estOrigen, MOACO aco, int onlineUpdate, Solucion sol) {
+    private void construir_solucionQAP(int estOrigen, MOACO aco, int onlineUpdate, Solucion sol) {
         int estVisitados = 0;
         int sgteEstado;
         int estActual = estOrigen;
@@ -459,7 +447,7 @@ public class M3AS extends MOACO {
 
     }
 
-    public static void construir_solucionVRP(int estOrigen, MOACO aco, int onlineUpdate, SolucionVRP sol) {
+    private void construir_solucionVRP(int estOrigen, MOACO aco, int onlineUpdate, SolucionVRP sol) {
         int estVisitados = 0;
         int sgteEstado;
         int estActual = estOrigen;
