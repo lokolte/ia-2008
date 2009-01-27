@@ -13,7 +13,7 @@ import java.util.Random;
 public abstract class MOACO {
 
     public static final int PARETO = 50;
-    public static final int RAN_MAX = 2147483647;
+    public static final int RAND_MAX = 2147483647;
     protected Problem prob;
     protected int criterio;
     protected int tiempoTotal;
@@ -61,7 +61,7 @@ public abstract class MOACO {
 
     //Genera un numero entero aleatorio comprendido entre 0 y RAN_MAX
     public int rand() {
-        double aleat = Math.random() * RAN_MAX;
+        double aleat = Math.random() * RAND_MAX;
         aleat = Math.floor(aleat);
         return (int) aleat;
     }
