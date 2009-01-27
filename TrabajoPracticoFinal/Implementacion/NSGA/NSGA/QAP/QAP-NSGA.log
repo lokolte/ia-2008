@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2009-01-27T13:22:43</date>
+  <millis>1233080563421</millis>
+  <sequence>0</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.QapNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Total execution time: 3453ms</message>
+</record>
+<record>
+  <date>2009-01-27T13:22:43</date>
+  <millis>1233080563453</millis>
+  <sequence>1</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.QapNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Variables values have been writen to file VAR</message>
+</record>
+<record>
+  <date>2009-01-27T13:22:43</date>
+  <millis>1233080563468</millis>
+  <sequence>2</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.QapNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Objectives values have been writen to file FUN</message>
+</record>
+</log>
