@@ -81,7 +81,7 @@ public class M3AS extends MOACO {
             }
 
         } catch (Exception e) {
-            System.err.println("Error de conversion");
+            System.err.println("Error de conversion"+e.getStackTrace());
         }
     }
 
