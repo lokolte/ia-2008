@@ -83,7 +83,6 @@ public class M3AS extends MOACO {
         } catch (Exception e) {
             System.err.println("Error de conversion");
         }
-
     }
 
     private void actualizar_feromonas(Solucion sol, int solSize, double deltaTau, double taumin, double taumax) {
@@ -93,10 +92,8 @@ public class M3AS extends MOACO {
         for (int i = 0; i <
                 solSize - 1; i++) { // actualizar la tabla de feromonas con el valor indicado por deltaTau
             j = sol.get(i);
-            k =
-                    sol.get(i + 1);
-            tjk =
-                    tabla1.obtenerValor(j, k);
+            k = sol.get(i + 1);
+            tjk = tabla1.obtenerValor(j, k);
             if (tjk + deltaTau < taumin) {
                 tabla1.actualizar(j, k, taumin);
             } else if (tjk + deltaTau > taumax) {
@@ -104,7 +101,6 @@ public class M3AS extends MOACO {
             } else {
                 tabla1.actualizar(j, k, tjk + deltaTau);
             }
-
         }
     }
 
