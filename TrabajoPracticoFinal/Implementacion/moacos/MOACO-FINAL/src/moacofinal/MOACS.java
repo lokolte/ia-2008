@@ -107,7 +107,7 @@ public class MOACS extends MOACO {
     }
 
     private int seleccionar_mayor(int estOrigen, int[] visitados) {
-        int sgteEstado;
+        int sgteEstado=0;
         double mayorValor = -1; // inicializar a un valor peque�o
         double heuristica1;
         double heuristica2;
@@ -139,7 +139,7 @@ public class MOACS extends MOACO {
             }
         }
         if (mayorValor == -1) {
-            random = RandomNumbers.nextNumber() % cantSinPorcion;
+            random = rand() % cantSinPorcion;
             sgteEstado = sinPorcion[(int) random];
         }
         return sgteEstado;
@@ -201,10 +201,10 @@ public class MOACS extends MOACO {
         return delta;
     }
 
-    private double calcular_delta_tao(RefObject<SolucionVRP> sol) {
+    private double calcular_delta_tao(SolucionVRP sol) {
         double delta;
 
-        delta = 1.0 / (prob.funcion_obj_1(sol.argvalue) / F1MAX + prob.funcion_obj_2(sol.argvalue) / F2MAX); //normalizados
+        delta = 1.0 / (prob.funcion_obj_1(sol) / F1MAX + prob.funcion_obj_2(sol) / F2MAX); //normalizados
         return delta;
     }
 
