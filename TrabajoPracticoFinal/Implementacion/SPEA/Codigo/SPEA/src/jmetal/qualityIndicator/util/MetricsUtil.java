@@ -234,7 +234,7 @@ public class MetricsUtil {
       BufferedReader br      = new BufferedReader(isr)      ;
       
       SolutionSet solutionSet = new NonDominatedSolutionList();
-      
+
       String aux = br.readLine();
       while (aux!= null) {
         StringTokenizer st = new StringTokenizer(aux);
@@ -249,6 +249,7 @@ public class MetricsUtil {
         aux = br.readLine();
       }
       br.close();
+      solutionSet.setCapacity(solutionSet.size());
       return solutionSet;
     } catch (Exception e) {
       System.out.println("jmetal.qualityIndicator.util.readNonDominatedSolutionSet: "+path);
