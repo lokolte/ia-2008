@@ -21,17 +21,10 @@ public class Main {
         String cad = new String(new char[300]);
         String pr = new String(new char[60]);
 
-/*
         String archivoProblema = "kroac100.tsp.txt";
         String ruta = "d:\\instancias-parametros\\";
         String archivoParametros = "parametros_tsp.txt";
-        String algoritmoEjecucion = "MOACS"; //Valores: MOACS, M3AS
-        String problemaEjecucion = "TSP"; //Valores: TSP, QAP, VRP
-*/
-        String archivoProblema = "kroac100.tsp.txt";
-        String ruta = "d:\\instancias-parametros\\";
-        String archivoParametros = "parametros_tsp.txt";
-        String algoritmoEjecucion = "MOACS"; //Valores: MOACS, M3AS
+        String algoritmoEjecucion = "M3AS"; //Valores: MOACS, M3AS
         String problemaEjecucion = "TSP"; //Valores: TSP, QAP, VRP
 
 
@@ -48,7 +41,7 @@ public class Main {
         System.out.println("problemaEjecucion = " + problemaEjecucion);
         System.out.println();
 
-        cad = "d:\\instancias-parametros\\PARETO-" + pr + "." + algoritmoEjecucion + "." + problemaEjecucion + ".pareto-" + System.currentTimeMillis();
+        cad = ruta+"PARETO-" + pr + "." + algoritmoEjecucion + "." + problemaEjecucion + "." + System.currentTimeMillis()+".pareto";
 
         // Ejecutar el algoritmo indicado
         if (problemaEjecucion.compareTo("TSP") == 0) {
