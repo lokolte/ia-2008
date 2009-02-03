@@ -79,7 +79,10 @@ public class SolutionSet implements Serializable {
   public int getMaxSize(){
     return capacity_ ;
   } // getMaxSize
-      
+
+    public void setCapacity(int size) {
+        capacity_ = size;
+    }
   /** 
    * Sorts a SolutionSet using a <code>Comparator</code>.
    * @param comparator <code>Comparator</code> used to sort.
