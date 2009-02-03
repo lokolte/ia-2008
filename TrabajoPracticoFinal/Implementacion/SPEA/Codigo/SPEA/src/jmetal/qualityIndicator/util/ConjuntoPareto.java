@@ -75,6 +75,14 @@ public class ConjuntoPareto {
         }
     }
 
+    public SolutionSet getSolutionSet() {
+        return solutionSet;
+    }
+
+    public void setSolutionSet(SolutionSet solutionSet) {
+        this.solutionSet = solutionSet;
+    }
+
     
 
     public void enviar(int tid) {
