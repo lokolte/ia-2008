@@ -19,24 +19,23 @@ public class Metricas {
     public static void main(String[] args) {
 
         Metricas miPrueba = new Metricas();
+        String ruta = "d:\\instancias-parametros\\";
+        String cadAlgoritmo = ruta + "PARETO-qapUni.75.0.1.qap.txt.MOACS.QAP.pareto";
+        String cadenaYtrue = ruta + "QAP-miParetoYtrue.txt";
 
         //1RA. Metrica: Distancia al Ytrue
-        String fileYtrue = "src/files/algorithms/frontpareto/resultado_frente_tsp_spea.txt"; //N ejecuciones de los 4 algoritmos
-        String fileYprima = "src/files/algorithms/frontparetoprima/frontprima.txt";          //N ejecuciones de un solo algoritmo
+        String fileYtrue = cadenaYtrue; //N ejecuciones de los 4 algoritmos
+        String fileYprima = cadAlgoritmo;          //N ejecuciones de un solo algoritmo
         
         double distanciaFinal = miPrueba.getDistanciaYTrue(fileYtrue, fileYprima);
         System.out.println("Distancia Final: " + distanciaFinal);
 
         //2DA. Metrica: Distancia al Ytrue
-        fileYprima = "src/files/algorithms/frontparetoprima/frontprima.txt";
-        
 
         double extension = miPrueba.getExtension(fileYprima);
         System.out.println("Extension: " + extension);
 
          //3RA. Metrica: Distancia al Ytrue
-        fileYprima = "src/files/algorithms/frontparetoprima/frontprima.txt";
-
 
         double distribucion = miPrueba.getDistribucion(fileYprima);
         System.out.println("Distribucion: " + distribucion);
@@ -180,6 +179,7 @@ public class Metricas {
             }
 
         }
+        pareto.solutionSet.printObjectivesToFile(file+"-OPTIMO");
         return pareto;
     }
 }
