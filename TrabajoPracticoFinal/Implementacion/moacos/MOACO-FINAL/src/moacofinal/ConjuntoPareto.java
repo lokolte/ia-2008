@@ -4,7 +4,9 @@
  */
 package moacofinal;
 
+import java.io.BufferedWriter;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.PrintStream;
 
 /**
@@ -15,7 +17,6 @@ public class ConjuntoPareto {
 
     public static final int PARETO = 50;
     private int cantSoluciones; //cantidad actual de soluciones
-
     private int tamano; //tamano del array de soluciones
 
     // array que contiene las soluciones del frente pareto
@@ -164,6 +165,21 @@ public class ConjuntoPareto {
         }
     }
 
+    public void agregarSoluciones(Problem prob, String file) {
+        try {
+            FileWriter fstream = new FileWriter(file, true);
+            BufferedWriter output = new BufferedWriter(fstream);
+
+            for (int i = 0; i < cantSoluciones; i++) {
+                output.write(prob.funcion_obj_1(lista[i]) + "\t" + prob.funcion_obj_2(lista[i]));
+                output.newLine();
+            }
+            output.close();
+        } catch (java.io.IOException e) {
+            System.out.println("Error al leer archivo");
+        }
+    }
+
     public void listarSolucionesVRP(Problem prob, String file) {
         try {
             PrintStream output = new PrintStream(
@@ -171,6 +187,20 @@ public class ConjuntoPareto {
             output.println(cantSoluciones);
             for (int i = 0; i < cantSoluciones; i++) {
                 output.println(prob.funcion_obj_1(listaVRP[i]) + "\t" + prob.funcion_obj_2(listaVRP[i]));
+            }
+            output.close();
+        } catch (java.io.IOException e) {
+            System.out.println("Error al leer archivo");
+        }
+    }
+
+    public void agregarSolucionesVRP(Problem prob, String file) {
+        try {
+            FileWriter fstream = new FileWriter(file, true);
+            BufferedWriter output = new BufferedWriter(fstream);
+            for (int i = 0; i < cantSoluciones; i++) {
+                output.write(prob.funcion_obj_1(listaVRP[i]) + "\t" + prob.funcion_obj_2(listaVRP[i]));
+                output.newLine();
             }
             output.close();
         } catch (java.io.IOException e) {
