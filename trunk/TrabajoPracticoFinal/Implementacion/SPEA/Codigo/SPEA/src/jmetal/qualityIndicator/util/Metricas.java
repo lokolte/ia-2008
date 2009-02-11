@@ -20,8 +20,8 @@ public class Metricas {
 
         Metricas miPrueba = new Metricas();
         String ruta = "d:\\instancias-parametros\\";
-        String cadAlgoritmo = ruta + "PARETO-qapUni.75.0.1.qap.txt.MOACS.QAP.pareto";
-        String cadenaYtrue = ruta + "QAP-miParetoYtrue.txt";
+        String cadAlgoritmo = ruta + "resultado_frente_tsp_spea100.txt";
+        String cadenaYtrue = ruta + "YTRUE-KROAB100.TSP.TXT--TSP.txt";
 
         //1RA. Metrica: Distancia al Ytrue
         String fileYtrue = cadenaYtrue; //N ejecuciones de los 4 algoritmos
