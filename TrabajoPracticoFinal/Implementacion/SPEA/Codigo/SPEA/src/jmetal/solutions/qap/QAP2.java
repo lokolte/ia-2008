@@ -50,7 +50,7 @@ public class QAP2 extends Problem {
         System.out.println("Matriz de distancias");
         for (int k = 0; k < numberOfCities_; k++) {
             for (int j = 0; j < numberOfCities_; j++) {
-                System.out.print(flujo1Matrix_[k][j] + "\t");
+//                System.out.print(flujo1Matrix_[k][j] + "\t");
             } // for
             System.out.println();
         } // for
@@ -58,7 +58,7 @@ public class QAP2 extends Problem {
         System.out.println("Matriz de tiempo");
         for (int k = 0; k < numberOfCities_; k++) {
             for (int j = 0; j < numberOfCities_; j++) {
-                System.out.print(flujo2Matrix_[k][j] + "\t");
+//                System.out.print(flujo2Matrix_[k][j] + "\t");
             } // for
             System.out.println();
         } // for
@@ -120,7 +120,6 @@ public class QAP2 extends Problem {
 
             x = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i];
             y = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i + 1];
-//  cout << "I : " << i << ", x = " << x << ", y = " << y << endl ;    
             fitness += flujo1Matrix_[x][y];
 
             //2° Objetivo
@@ -129,8 +128,9 @@ public class QAP2 extends Problem {
 
             x2 = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i];
             y2 = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i + 1];
-//  cout << "I : " << i << ", x = " << x << ", y = " << y << endl ;
             fitness2 += flujo2Matrix_[x2][y2];
+
+//            System.out.println("X: " + x + ", Y: " + y);
         } // for
 
         int firstCity;
@@ -183,7 +183,7 @@ public class QAP2 extends Problem {
                 for (int j = 0; j < numberOfCities_; j++) {
                     token.nextToken();
                     distanceMatrix_[k][j] = token.nval;
-                    System.out.println("X: " + k + ", Y: " + j + ", Valor: " + distanceMatrix_[k][j]);
+//                    System.out.println("X: " + k + ", Y: " + j + ", Valor: " + distanceMatrix_[k][j]);
                 } // for
             } // for
 
@@ -210,4 +210,7 @@ public class QAP2 extends Problem {
         } // catch
 
     } // readProblem
+
+
+
 } // TSP

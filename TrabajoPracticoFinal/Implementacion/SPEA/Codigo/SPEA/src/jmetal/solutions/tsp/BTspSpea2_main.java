@@ -35,9 +35,9 @@ public class BTspSpea2_main {
     Operator  mutation  ;         // Mutation operator
     Operator  selection ;         // Selection operator
 //    String problemName = "src/files/tsp/eil51.tsp" ;
-//    String problemName = "src/files/tsp/kroac100.tsp.txt" ;
+    String problemName = "src/files/tsp/kroac100.tsp.txt" ;
 //    String problemName = "src/files/tsp/kroac10.tsp.txt" ;
-    String problemName = "src/files/tsp/KROAB100.TSP.TXT";
+//    String problemName = "src/files/tsp/KROAB100.TSP.TXT";
     
     // Logger object and file to store log messages
     logger_      = Configuration.logger_ ;
@@ -51,14 +51,6 @@ public class BTspSpea2_main {
     else { // Default problem
 
       problem = new TSP2(problemName);
-//      problem = new TSP(problemName);
-      //problem = new Kursawe(3, "Real"); 
-      //problem = new Kursawe(3,"BinaryReal");
-      //problem = new Water("Real");
-      //problem = new ZDT4("Real");
-      //problem = new WFG1("Real");
-      //problem = new DTLZ1("Real");
-      //problem = new OKA2("Real") ;
       
     } // else
     
