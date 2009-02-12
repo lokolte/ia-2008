@@ -108,7 +108,7 @@ public class SolutionSet implements Serializable {
   public void printObjectivesToFile(String path){
     try {
       /* Open the file */
-      FileOutputStream fos   = new FileOutputStream(path)     ;
+      FileOutputStream fos   = new FileOutputStream(path,true)     ;
       OutputStreamWriter osw = new OutputStreamWriter(fos)    ;
       BufferedWriter bw      = new BufferedWriter(osw)        ;
                         
@@ -135,7 +135,7 @@ public class SolutionSet implements Serializable {
   public void printVariablesToFile(String path){
     try {
       /* Open the file */
-      FileOutputStream fos   = new FileOutputStream(path)     ;
+      FileOutputStream fos   = new FileOutputStream(path,true)     ;
       OutputStreamWriter osw = new OutputStreamWriter(fos)    ;
       BufferedWriter bw      = new BufferedWriter(osw)        ;            
             
