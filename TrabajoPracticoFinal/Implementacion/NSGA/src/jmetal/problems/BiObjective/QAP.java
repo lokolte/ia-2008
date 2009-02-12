@@ -80,25 +80,27 @@ public class QAP extends Problem {
         fitness1 = 0.0;
         fitness2 = 0.0;
         
-      for (int i = 0; i < (numberOfCities_ - 1); i++) {
-            x = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i];
-            y = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i + 1];
+      for (int i = 0; i < (numberOfCities_ ); i++) {
+           for (int j = 0; j < (numberOfCities_ ); j++) {
+                x = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i];
+                y = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[j];
   
-            fitness1 += flujo1[x][y];
-            fitness2 += flujo2[x][y];
-            
-       /* int firstCity;
-        int lastCity;
-
-        firstCity = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[0];
-        lastCity = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[numberOfCities_ - 1];
-        fitness1 += flujo1[firstCity][lastCity];
-        fitness2 += flujo2[firstCity][lastCity];*/
-
+            fitness1 += distanceMatrix_[i][j] * flujo1[x][y];
+           }
+      }
+        
+         for (int i = 0; i < (numberOfCities_ ); i++) {
+           for (int j = 0; j < (numberOfCities_ ); j++) {
+                x = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i];
+                y = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[j];
+  
+            fitness2 += distanceMatrix_[i][j] * flujo2[x][y];
+           }
+      }
             
             solution.setObjective(0, fitness1);
             solution.setObjective(1, fitness2);
-      }
+      
     } // evaluate
 
     public void readProblem(String fileName) throws FileNotFoundException,
@@ -142,19 +144,6 @@ public class QAP extends Problem {
                 } 
             }
             
-            
-            for (int k = 0; k < numberOfCities_; k++) {
-                for (int j = 0; j < numberOfCities_; j++) {
-                    flujo1[k][j] = flujo1[k][j] * distanceMatrix_[k][j];
-                } // for
-            } // for
-
-            // Cargar objetivo 2
-            for (int k = 0; k < numberOfCities_; k++) {
-                for (int j = 0; j < numberOfCities_; j++) {
-                    flujo2[k][j] = flujo2[k][j] * distanceMatrix_[k][j];;
-                } // for
-            } // for
         } // try
         catch (Exception e) {
             System.err.println("QAP.readProblem(): error when reading data file " + e);
