@@ -22,8 +22,8 @@ public class Metricas {
         String ruta = "d:\\instancias-parametros\\generado\\";
         String[][] arrayArchivoProblema = {{"KROAB100.TSP.TXT", "kroac100.tsp.txt"}, {"qapUni.75.0.1.qap.txt", "qapUni.75.p75.1.qap.txt"}, {"rc101.txt", "c101.txt"}};
         String[] arrayAlgoritmoEjecucion = {"MOACS", "M3AS", "SPEA", "NSGA"}; //Valores: MOACS, M3AS
-        int decimales=2;
-        String pr = arrayArchivoProblema[0][0];
+        int decimales = 2;
+        String pr = arrayArchivoProblema[2][0];
         String cadenaYtrue = ruta + "YTRUE-" + pr + ".txt";
 
         double[] distanciaFinal = new double[arrayAlgoritmoEjecucion.length];
@@ -42,18 +42,21 @@ public class Metricas {
             String fileYprima = cadAlgoritmo;          //N ejecuciones de un solo algoritmo
 
             distanciaFinal[i] = miPrueba.getDistanciaYTrue(fileYtrue, fileYprima);
-            System.out.print(Truncar(distanciaFinal[i],decimales) + "\t");
+            System.out.print(Truncar(distanciaFinal[i], decimales) + "\t");
 
             //2DA. Metrica: Distribucion
             distribucion[i] = miPrueba.getDistribucion(fileYprima);
-            System.out.print(Truncar(distribucion[i],decimales) + "\t");
+            System.out.print(Truncar(distribucion[i], decimales) + "\t");
 
             //3RA. Metrica: Extension
 
             extension[i] = miPrueba.getExtension(fileYprima);
-            System.out.print(Truncar(extension[i],decimales) + "\n");
+            System.out.print(Truncar(extension[i], decimales) + "\n");
 
+            miPrueba.GenerarYTrue(fileYprima, ruta + algoritmoEjecucion);
         }
+        miPrueba.GenerarYTrue(cadenaYtrue, ruta + "YTRUE");
+
         System.out.println("********RESULTADO NORMALIZADO********");
         System.out.println("\tAlgo\tDista\tDistra\tExt\tCard\tExtYtrue");
 
@@ -63,12 +66,12 @@ public class Metricas {
             String cadAlgoritmo = ruta + pr + "-" + algoritmoEjecucion + ".txt";
 
             System.out.print("\t" + arrayAlgoritmoEjecucion[i] + "\t");
-            System.out.print(Truncar((1 - (distanciaFinal[i] / maximoValor(distanciaFinal))),decimales) + "\t");
-            System.out.print(Truncar(distribucion[i] / miPrueba.getCardinalidad(cadAlgoritmo),decimales) + "\t");
-            System.out.print(Truncar(extension[i] / miPrueba.getExtension(cadenaYtrue),decimales) + "\t");
-            System.out.print(miPrueba.getCardinalidad(cadAlgoritmo)+"\t");
-            System.out.print(miPrueba.getExtension(cadenaYtrue)+"\n");
-            
+            System.out.print(Truncar((1 - (distanciaFinal[i] / maximoValor(distanciaFinal))), decimales) + "\t");
+            System.out.print(Truncar(distribucion[i] / miPrueba.getCardinalidad(cadAlgoritmo), decimales) + "\t");
+            System.out.print(Truncar(extension[i] / miPrueba.getExtension(cadenaYtrue), decimales) + "\t");
+            System.out.print(miPrueba.getCardinalidad(cadAlgoritmo) + "\t");
+            System.out.print(miPrueba.getExtension(cadenaYtrue) + "\n");
+
         }
 
     }
@@ -228,6 +231,28 @@ public class Metricas {
 
         }
         pareto.solutionSet.printObjectivesToFile(file + "-OPTIMO");
+        return pareto;
+    }
+
+    public ConjuntoPareto GenerarYTrue(String file, String algorithm) {
+        MetricsUtil metricsUtils = new MetricsUtil();
+
+        SolutionSet solutionSet = metricsUtils.readNonDominatedSolutionSet(file);
+
+
+        ConjuntoPareto pareto = new ConjuntoPareto();
+
+        for (int i = 0; i < solutionSet.size(); i++) {
+
+            double solObjetivo1 = ((Solution) solutionSet.get(i)).getObjective(0);
+            double solObjetivo2 = ((Solution) solutionSet.get(i)).getObjective(1);
+
+            if (pareto.agregarNoDominado(solObjetivo1, solObjetivo2) == 1) {
+                pareto.eliminarDominados(solObjetivo1, solObjetivo2);
+            }
+
+        }
+        pareto.solutionSet.printObjectivesToFile(algorithm + "-OPTIMO.csv");
         return pareto;
     }
 
