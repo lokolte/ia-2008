@@ -309,8 +309,16 @@ public class Solution implements Serializable {
   public String toString() {
     String aux="";
     for (int i = 0; i < this.numberOfObjectives_; i++)
-      aux = aux + this.getObjective(i) + "\t";
+      aux = aux + this.getObjective(i) + ";";
 
+    return aux;
+  } // toString
+  public String toString(boolean comma) {
+    String aux="";
+    for (int i = 0; i < this.numberOfObjectives_; i++)
+      aux = aux + this.getObjective(i) + ";";
+
+    aux=aux.replace('.', ',');
     return aux;
   } // toString
 
