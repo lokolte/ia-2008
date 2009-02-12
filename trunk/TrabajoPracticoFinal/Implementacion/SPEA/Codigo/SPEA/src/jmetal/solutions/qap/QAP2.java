@@ -47,7 +47,7 @@ public class QAP2 extends Problem {
         System.out.println(numberOfCities_);
         length_[0] = numberOfCities_;
 
-        System.out.println("Matriz de distancias");
+       /* System.out.println("Matriz de distancias");
         for (int k = 0; k < numberOfCities_; k++) {
             for (int j = 0; j < numberOfCities_; j++) {
 //                System.out.print(flujo1Matrix_[k][j] + "\t");
@@ -61,7 +61,7 @@ public class QAP2 extends Problem {
 //                System.out.print(flujo2Matrix_[k][j] + "\t");
             } // for
             System.out.println();
-        } // for
+        } // for*/
     } // TSP
 
     /** 
@@ -108,42 +108,30 @@ public class QAP2 extends Problem {
     public void evaluate(Solution solution) {
         double fitness;
         double fitness2;
-
+         int x, y;
         fitness = 0.0;
         fitness2 = 0.0;
 
-        for (int i = 0; i < (numberOfCities_ - 1); i++) {
-
-            //1° Objetivo
-            int x;
-            int y;
-
-            x = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i];
-            y = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i + 1];
-            fitness += flujo1Matrix_[x][y];
-
-            //2° Objetivo
-            int x2;
-            int y2;
-
-            x2 = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i];
-            y2 = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i + 1];
-            fitness2 += flujo2Matrix_[x2][y2];
-
-//            System.out.println("X: " + x + ", Y: " + y);
-        } // for
-
-        int firstCity;
-        int lastCity;
-
-        firstCity = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[0];
-        lastCity = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[numberOfCities_ - 1];
-        fitness += flujo1Matrix_[firstCity][lastCity];
-        fitness2 += flujo2Matrix_[firstCity][lastCity];
-
-
-        solution.setObjective(0, fitness);
-        solution.setObjective(1, fitness2);
+       for (int i = 0; i < (numberOfCities_ ); i++) {
+           for (int j = 0; j < (numberOfCities_ ); j++) {
+                x = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i];
+                y = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[j];
+  
+            fitness += distanceMatrix_[i][j] * flujo1Matrix_[x][y];
+           }
+      }
+        
+         for (int i = 0; i < (numberOfCities_ ); i++) {
+           for (int j = 0; j < (numberOfCities_ ); j++) {
+                x = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[i];
+                y = ((Permutation) solution.getDecisionVariables().variables_[0]).vector_[j];
+  
+            fitness2 += distanceMatrix_[i][j] * flujo2Matrix_[x][y];
+           }
+      }
+            
+            solution.setObjective(0, fitness);
+            solution.setObjective(1, fitness2);
     } // evaluate
 
     public void readProblem(String fileName) throws FileNotFoundException,
@@ -187,7 +175,7 @@ public class QAP2 extends Problem {
                 } // for
             } // for
 
-            for (int k = 0; k < numberOfCities_; k++) {
+           /* for (int k = 0; k < numberOfCities_; k++) {
                 for (int j = 0; j < numberOfCities_; j++) {
                     token.nextToken();
                     flujo1Matrix_[k][j] = flujo1Matrix_[k][j] * distanceMatrix_[k][j];
@@ -201,7 +189,7 @@ public class QAP2 extends Problem {
                     flujo2Matrix_[k][j] = flujo2Matrix_[k][j] * distanceMatrix_[k][j];;
                 } // for
             } // for
-
+*/
 
         } // try
         catch (Exception e) {
