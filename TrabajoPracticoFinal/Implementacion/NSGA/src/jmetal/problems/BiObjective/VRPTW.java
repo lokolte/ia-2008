@@ -17,6 +17,9 @@ public class VRPTW extends Problem {
     CustomerVRP [] customers;
     CustomerVRP cust,cust2;
     double x,y,dem,begin,end,servTime;
+    double carga;
+    int camiones = 1;
+
 
     public VRPTW(String filename) throws FileNotFoundException, IOException {
         numberOfVariables_ = 1;
@@ -50,10 +53,8 @@ public class VRPTW extends Problem {
      * @param solution The solution to evaluate
      */
     public void evaluate(Solution solution) {
-        double fitness1, fitness2;
+        double fitness1 = 0.0;
 
-        fitness1 = 0.0;
-        fitness2 = 0.0;
 
         for (int i = 0; i < (numberOfCust_ - 1); i++) {
             int x;
@@ -74,7 +75,7 @@ public class VRPTW extends Problem {
         fitness1 += distanceMatrix_[firstCity][lastCity];
 
         solution.setObjective(0, fitness1);
-        solution.setObjective(1, fitness2);
+        solution.setObjective(1, camiones);
     } // evaluate
     
 
@@ -133,19 +134,12 @@ public class VRPTW extends Problem {
                 customers[i] = cust; 
                 token.nextToken();
                
-                /*token.nextToken();
-                customers[k].setX(token.nval);
-                token.nextToken();
-                customers[k].setY(token.nval);
-                token.nextToken();
-                customers[k].setDemanda(token.nval);
-                token.nextToken();
-                customers[k].setTimeStart(token.nval);
-                token.nextToken();
-                customers[k].setTimeEnd(token.nval);
-                token.nextToken();
-                customers[k].setServiceTime(token.nval);
-                token.nextToken();*/
+                carga += cust.getDemanda();
+                if (carga >= capacity){
+                    camiones ++;
+                    carga = 0;
+                }
+
             } 
             
           double dist;
