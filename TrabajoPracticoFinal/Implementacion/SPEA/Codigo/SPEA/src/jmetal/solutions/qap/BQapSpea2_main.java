@@ -25,6 +25,7 @@ public class BQapSpea2_main {
     public static Logger logger_;      // Logger object
     public static FileHandler fileHandler_; // FileHandler object
 
+
     /**
      * @param args Command line arguments. The first (optional) argument specifies
      *             the problem to solve.
@@ -42,8 +43,9 @@ public class BQapSpea2_main {
             Operator mutation;         // Mutation operator
             Operator selection;         // Selection operator
 
-            String problemName = "src/files/qap/qapUni.75.p75.1.qap.txt";
-//            String problemName = "src/files/qap/qapUni.75.0.1.qap.txt";
+            //String name = "qapUni.75.0.1.qap.txt";
+            String name= "qapUni.75.p75.1.qap.txt";
+            String problemName = "src/files/qap/";
             // Logger object and file to store log messages
             logger_ = Configuration.logger_;
             fileHandler_ = new FileHandler("SPEA2.log");
@@ -55,15 +57,15 @@ public class BQapSpea2_main {
             } // if
             else { // Default problem
 
-                problem = new QAP2(problemName);
+                problem = new QAP2(problemName + name);
 
             } // else
 
             algorithm = new SPEA2(problem);
 
             // Algorithm params
-            algorithm.setInputParameter("populationSize", 51);
-            algorithm.setInputParameter("archiveSize", 51);
+            algorithm.setInputParameter("populationSize", 100);
+            algorithm.setInputParameter("archiveSize", 100);
             algorithm.setInputParameter("maxEvaluations", 25000);
 
             // Mutation and Crossover for Real codification
@@ -98,9 +100,10 @@ public class BQapSpea2_main {
             // Result messages
             logger_.info("Total execution time: " + estimatedTime);
             logger_.info("Objectives values have been writen to file FUN");
-            population.printObjectivesToFile("SPEA/QAP/FUN"+i);
+            population.printObjectivesToFile("FUN");
             logger_.info("Variables values have been writen to file VAR");
-            population.printVariablesToFile("SPEA/QAP/VAR"+i);
+            population.printVariablesToFile("VAR");
+            population.printObjectivesToFile("c:/instancias/"+ name + "-SPEA.txt");
         }//main
 
     }
