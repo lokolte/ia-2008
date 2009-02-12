@@ -21,8 +21,9 @@ public class Main {
         String cad = new String(new char[300]);
         String pr = new String(new char[60]);
 
-        String[][] arrayArchivoProblema = {{"KROAB100.TSP.TXT","kroac100.tsp.txt"},{"qapUni.75.0.1.qap.txt","qapUni.75.p75.1.qap.txt"},{"rc101.txt","c101.txt"}};
+        String[][] arrayArchivoProblema = {{"KROAB100.TSP.TXT", "kroac100.tsp.txt"}, {"qapUni.75.0.1.qap.txt", "qapUni.75.p75.1.qap.txt"}, {"rc101.txt", "c101.txt"}};
         String ruta = "d:\\instancias-parametros\\";
+        String subRuta = "generado\\";
         String archivoParametros = "parametros_tsp.txt";
         String[] arrayAlgoritmoEjecucion = {"MOACS", "M3AS"}; //Valores: MOACS, M3AS
         String problemaEjecucion = "TSP"; //Valores: TSP, QAP, VRP
@@ -34,7 +35,7 @@ public class Main {
 
                 parametros = ruta + archivoParametros;
                 pr = arrayArchivoProblema[0][m]; // 0=TSP, 1=QAP, 2=VRP
-                archivoProblema=pr;
+                archivoProblema = pr;
                 System.out.println();
                 System.out.println("*********Ejecutandose con los sgtes parametros*********");
                 System.out.println();
@@ -45,8 +46,8 @@ public class Main {
                 System.out.println("problemaEjecucion = " + problemaEjecucion);
                 System.out.println();
 
-                cad = ruta + "PARETOINDIVIDUAL-" + pr + "." + algoritmoEjecucion + "." + problemaEjecucion + ".pareto";
-                String cadenaYtrue = ruta + "YTRUE-"+pr+"--"+problemaEjecucion + ".txt";
+                cad = ruta + subRuta + pr + "-" + algoritmoEjecucion + ".txt";
+                String cadenaYtrue = ruta + subRuta + "YTRUE-" + pr + ".txt";
                 // Ejecutar el algoritmo indicado
                 System.out.println("Ejecutando... ");
 
