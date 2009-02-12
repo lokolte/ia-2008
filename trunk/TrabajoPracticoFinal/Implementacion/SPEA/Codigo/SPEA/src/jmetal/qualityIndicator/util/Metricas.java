@@ -19,30 +19,80 @@ public class Metricas {
     public static void main(String[] args) {
 
         Metricas miPrueba = new Metricas();
-        String ruta = "d:\\instancias-parametros\\";
-        String cadAlgoritmo = ruta + "resultado_frente_tsp_spea100.txt";
-        String cadenaYtrue = ruta + "YTRUE-KROAB100.TSP.TXT--TSP.txt";
+        String ruta = "d:\\instancias-parametros\\generado\\";
+        String[][] arrayArchivoProblema = {{"KROAB100.TSP.TXT", "kroac100.tsp.txt"}, {"qapUni.75.0.1.qap.txt", "qapUni.75.p75.1.qap.txt"}, {"rc101.txt", "c101.txt"}};
+        String[] arrayAlgoritmoEjecucion = {"MOACS", "M3AS", "SPEA", "NSGA"}; //Valores: MOACS, M3AS
+        int decimales=2;
+        String pr = arrayArchivoProblema[0][0];
+        String cadenaYtrue = ruta + "YTRUE-" + pr + ".txt";
 
-        //1RA. Metrica: Distancia al Ytrue
-        String fileYtrue = cadenaYtrue; //N ejecuciones de los 4 algoritmos
-        String fileYprima = cadAlgoritmo;          //N ejecuciones de un solo algoritmo
-        
-        double distanciaFinal = miPrueba.getDistanciaYTrue(fileYtrue, fileYprima);
-        System.out.println("Distancia Final: " + distanciaFinal);
+        double[] distanciaFinal = new double[arrayAlgoritmoEjecucion.length];
+        double[] extension = new double[arrayAlgoritmoEjecucion.length];
+        double[] distribucion = new double[arrayAlgoritmoEjecucion.length];
 
-        //2DA. Metrica: Distancia al Ytrue
+        System.out.println("********RESULTADO EN BRUTO********");
+        System.out.println("\tAlgo\tDista\tDistra\tExt");
+        for (int i = 0; i < arrayAlgoritmoEjecucion.length; i++) {
+            String algoritmoEjecucion = arrayAlgoritmoEjecucion[i];
+            String cadAlgoritmo = ruta + pr + "-" + algoritmoEjecucion + ".txt";
+            System.out.print("\t" + algoritmoEjecucion + "\t");
 
-        double extension = miPrueba.getExtension(fileYprima);
-        System.out.println("Extension: " + extension);
+            //1RA. Metrica: Distancia al Ytrue
+            String fileYtrue = cadenaYtrue; //N ejecuciones de los 4 algoritmos
+            String fileYprima = cadAlgoritmo;          //N ejecuciones de un solo algoritmo
 
-         //3RA. Metrica: Distancia al Ytrue
+            distanciaFinal[i] = miPrueba.getDistanciaYTrue(fileYtrue, fileYprima);
+            System.out.print(Truncar(distanciaFinal[i],decimales) + "\t");
 
-        double distribucion = miPrueba.getDistribucion(fileYprima);
-        System.out.println("Distribucion: " + distribucion);
+            //2DA. Metrica: Distribucion
+            distribucion[i] = miPrueba.getDistribucion(fileYprima);
+            System.out.print(Truncar(distribucion[i],decimales) + "\t");
+
+            //3RA. Metrica: Extension
+
+            extension[i] = miPrueba.getExtension(fileYprima);
+            System.out.print(Truncar(extension[i],decimales) + "\n");
+
+        }
+        System.out.println("********RESULTADO NORMALIZADO********");
+        System.out.println("\tAlgo\tDista\tDistra\tExt\tCard\tExtYtrue");
+
+        for (int i = 0; i < arrayAlgoritmoEjecucion.length; i++) {
+
+            String algoritmoEjecucion = arrayAlgoritmoEjecucion[i];
+            String cadAlgoritmo = ruta + pr + "-" + algoritmoEjecucion + ".txt";
+
+            System.out.print("\t" + arrayAlgoritmoEjecucion[i] + "\t");
+            System.out.print(Truncar((1 - (distanciaFinal[i] / maximoValor(distanciaFinal))),decimales) + "\t");
+            System.out.print(Truncar(distribucion[i] / miPrueba.getCardinalidad(cadAlgoritmo),decimales) + "\t");
+            System.out.print(Truncar(extension[i] / miPrueba.getExtension(cadenaYtrue),decimales) + "\t");
+            System.out.print(miPrueba.getCardinalidad(cadAlgoritmo)+"\t");
+            System.out.print(miPrueba.getExtension(cadenaYtrue)+"\n");
+            
+        }
 
     }
 
-    public double getDistribucion (String fileYTrue){
+    public static double Truncar(double nD, int nDec) {
+        if (nD > 0) {
+            nD = Math.floor(nD * Math.pow(10, nDec)) / Math.pow(10, nDec);
+        } else {
+            nD = Math.ceil(nD * Math.pow(10, nDec)) / Math.pow(10, nDec);
+        }
+        return nD;
+    }
+
+    public static double maximoValor(double[] miVector) {
+        double miMaximo = Double.MIN_VALUE;
+        for (int i = 0; i < miVector.length; i++) {
+            if (miMaximo < miVector[i]) {
+                miMaximo = miVector[i];
+            }
+        }
+        return miMaximo;
+    }
+
+    public double getDistribucion(String fileYTrue) {
         MetricsUtil metricsUtils = new MetricsUtil();
 
         pareto1 = GenerarYTrue(fileYTrue);
@@ -54,18 +104,18 @@ public class Metricas {
         for (int i = 0; i < pareto1.solutionSet.size(); i++) {
 
             Solution solutionYtrue = yTrueSolutionSet.get(i);
-            double[] yTruePunto = {solutionYtrue.getObjective(0),solutionYtrue.getObjective(1)};
+            double[] yTruePunto = {solutionYtrue.getObjective(0), solutionYtrue.getObjective(1)};
 
             double cantidadMaxima = 0.0;
             for (int j = 0; j < pareto1.solutionSet.size(); j++) {
 
                 Solution solutionYPrima = yTrueSolutionSet.get(j);
-                double[] yPrimaPunto = {solutionYPrima.getObjective(0),solutionYPrima.getObjective(1)};
+                double[] yPrimaPunto = {solutionYPrima.getObjective(0), solutionYPrima.getObjective(1)};
 
 
                 Double aux = metricsUtils.distance(yTruePunto, yPrimaPunto);
 
-                if(aux > rho) {
+                if (aux > rho) {
                     cantidadMaxima++;
                 }
 
@@ -75,13 +125,13 @@ public class Metricas {
 
         }
 
-        double distanciaFinal = (1.0/yTrueSolutionSet.size()) * sumaCantidadMaxima;
+        double distanciaFinal = (1.0 / yTrueSolutionSet.size()) * sumaCantidadMaxima;
 
         return distanciaFinal;
 
     }
 
-    public double getExtension (String fileYTrue){
+    public double getExtension(String fileYTrue) {
         MetricsUtil metricsUtils = new MetricsUtil();
 
         pareto1 = GenerarYTrue(fileYTrue);
@@ -92,21 +142,21 @@ public class Metricas {
         for (int i = 0; i < pareto1.solutionSet.size(); i++) {
 
             Solution solutionYtrue = yTrueSolutionSet.get(i);
-            double[] yTruePunto = {solutionYtrue.getObjective(0),solutionYtrue.getObjective(1)};
+            double[] yTruePunto = {solutionYtrue.getObjective(0), solutionYtrue.getObjective(1)};
 
             double distanciaMaxima = Double.MIN_VALUE;
             for (int j = 0; j < pareto1.solutionSet.size(); j++) {
 
                 Solution solutionYPrima = yTrueSolutionSet.get(j);
-                double[] yPrimaPunto = {solutionYPrima.getObjective(0),solutionYPrima.getObjective(1)};
+                double[] yPrimaPunto = {solutionYPrima.getObjective(0), solutionYPrima.getObjective(1)};
 
 
                 Double aux = metricsUtils.distance(yTruePunto, yPrimaPunto);
 
-                if(distanciaMaxima < aux) {
+                if (distanciaMaxima < aux) {
                     distanciaMaxima = aux;
                 }
-                
+
 
             }
             sumaDistanciaMaxima = sumaDistanciaMaxima + distanciaMaxima;
@@ -119,8 +169,7 @@ public class Metricas {
 
     }
 
-
-    public double getDistanciaYTrue (String fileYTrue, String fileYPrima){
+    public double getDistanciaYTrue(String fileYTrue, String fileYPrima) {
         MetricsUtil metricsUtils = new MetricsUtil();
 
         pareto1 = GenerarYTrue(fileYTrue);
@@ -134,18 +183,18 @@ public class Metricas {
         for (int i = 0; i < pareto1.solutionSet.size(); i++) {
 
             Solution solutionYtrue = yTrueSolutionSet.get(i);
-            double[] yTruePunto = {solutionYtrue.getObjective(0),solutionYtrue.getObjective(1)};
+            double[] yTruePunto = {solutionYtrue.getObjective(0), solutionYtrue.getObjective(1)};
 
             double distanciaMinima = Double.MAX_VALUE;
             for (int j = 0; j < pareto2.solutionSet.size(); j++) {
 
                 Solution solutionYPrima = yPrimaSolutionSet.get(j);
-                double[] yPrimaPunto = {solutionYPrima.getObjective(0),solutionYPrima.getObjective(1)};
+                double[] yPrimaPunto = {solutionYPrima.getObjective(0), solutionYPrima.getObjective(1)};
 
 
                 Double aux = metricsUtils.distance(yTruePunto, yPrimaPunto);
 
-                if(distanciaMinima > aux) {
+                if (distanciaMinima > aux) {
                     distanciaMinima = aux;
                 }
 
@@ -154,12 +203,11 @@ public class Metricas {
 
         }
 
-        double distanciaFinal = (1.0/(yTrueSolutionSet.size())) * sumaDistanciaMinima;
+        double distanciaFinal = (1.0 / (yTrueSolutionSet.size())) * sumaDistanciaMinima;
 
         return distanciaFinal;
 
     }
-
 
     public ConjuntoPareto GenerarYTrue(String file) {
         MetricsUtil metricsUtils = new MetricsUtil();
@@ -179,7 +227,12 @@ public class Metricas {
             }
 
         }
-        pareto.solutionSet.printObjectivesToFile(file+"-OPTIMO");
+        pareto.solutionSet.printObjectivesToFile(file + "-OPTIMO");
         return pareto;
+    }
+
+    public double getCardinalidad(String fileYPrima) {
+        pareto2 = GenerarYTrue(fileYPrima);
+        return pareto2.solutionSet.size();
     }
 }
