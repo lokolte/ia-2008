@@ -31,18 +31,19 @@ public class TspNsga_main {
      *      - jmetal.metaheuristics.nsgaII.NSGAII_main problemName
      *      - jmetal.metaheuristics.nsgaII.NSGAII_main problemName paretoFrontFile
      */
-    public static void main(String[] args) throws
-            JMException, SecurityException, IOException {
-
-        for (int i = 0; i < 10; i++) {
+    public static void main(String[] args) throws JMException, SecurityException, IOException {
+       long time1 = System.currentTimeMillis();     
+       
+       for (int i = 0; i < 10; i++) {
 
             Problem problem;         // The problem to solve
             Algorithm algorithm;         // The algorithm to use
             Operator crossover;         // Crossover operator
             Operator mutation;         // Mutation operator
             Operator selection;         // Selection operator
-//    String problemName = "src/files/tsp/KROAB100.TSP.TXT" ;
-            String problemName = "src/files/tsp/kroac100.tsp.txt";
+            String name = "KROAB100.TSP.TXT" ;
+            //String name = "kroac100.tsp.txt";
+            String problemName = "src/files/tsp/";
             QualityIndicator indicators; // Object to get quality indicators
 
             // Logger object and file to store log messages
@@ -61,7 +62,7 @@ public class TspNsga_main {
                 indicators = new QualityIndicator(problem, args[1]);
             } // if
             else { // Default problem
-                problem = new TSP(problemName);
+                problem = new TSP(problemName+name);
             }
 
             algorithm = new NSGAII(problem);
@@ -98,9 +99,10 @@ public class TspNsga_main {
             // Result messages
             logger_.info("Total execution time: " + estimatedTime + "ms");
             logger_.info("Variables values have been writen to file VAR");
-            population.printVariablesToFile("NSGA/TSP/VAR" + i);
+            population.printVariablesToFile("NSGA/TSP/VAR.txt");
             logger_.info("Objectives values have been writen to file FUN");
-            population.printObjectivesToFile("NSGA/TSP/FUN" + i);
+            population.printObjectivesToFile("NSGA/TSP/FUN.txt");
+            population.printObjectivesToFile("c:/instancias/"+ name + "-NSGA.txt");
 
             if (indicators != null) {
                 logger_.info("Quality indicators");
@@ -113,6 +115,8 @@ public class TspNsga_main {
                 int evaluations = ((Integer) algorithm.getOutputParameter("evaluations")).intValue();
                 logger_.info("Speed      : " + evaluations + " evaluations");
             }
-        }
+        }//end for
+        long time2 = System.currentTimeMillis() - time1;
+        System.out.println(" TIME = " + time2);
     }
 } 

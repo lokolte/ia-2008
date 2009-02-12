@@ -31,12 +31,9 @@ public class QapNsga_main {
      *      - jmetal.metaheuristics.nsgaII.NSGAII_main problemName
      *      - jmetal.metaheuristics.nsgaII.NSGAII_main problemName paretoFrontFile
      */
-    public static void main(String[] args) throws
-            JMException, SecurityException, IOException {
+    public static void main(String[] args) throws JMException, SecurityException, IOException {
 
         for (int i = 0; i < 10; i++) {
-
-
 
             Problem problem;         // The problem to solve
             Algorithm algorithm;         // The algorithm to use
@@ -44,8 +41,9 @@ public class QapNsga_main {
             Operator mutation;         // Mutation operator
             Operator selection;         // Selection operator
 
-//            String problemName = "src/files/qap/qapUni.75.0.1.qap.txt";
-            String problemName = "src/files/qap/qapUni.75.p75.1.qap.txt";
+            String name = "qapUni.75.0.1.qap.txt";
+            //String name= "qapUni.75.p75.1.qap.txt";
+            String problemName = "src/files/qap/";
 
             QualityIndicator indicators; // Object to get quality indicators
 
@@ -65,7 +63,7 @@ public class QapNsga_main {
                 indicators = new QualityIndicator(problem, args[1]);
             } // if
             else {
-                problem = new QAP(problemName);
+                problem = new QAP(problemName+name);
             }
 
             algorithm = new NSGAII(problem);
@@ -102,9 +100,10 @@ public class QapNsga_main {
             // Result messages
             logger_.info("Total execution time: " + estimatedTime + "ms");
             logger_.info("Variables values have been writen to file VAR");
-            population.printVariablesToFile("NSGA/QAP/VAR" + i + ".txt");
+            population.printVariablesToFile("NSGA/QAP/VAR.txt");
             logger_.info("Objectives values have been writen to file FUN");
-            population.printObjectivesToFile("NSGA/QAP/FUN" + i + ".txt");
+            population.printObjectivesToFile("NSGA/QAP/FUN.txt");
+            population.printObjectivesToFile("c:/instancias/"+ name + "-NSGA.txt");
 
             if (indicators != null) {
                 logger_.info("Quality indicators");
