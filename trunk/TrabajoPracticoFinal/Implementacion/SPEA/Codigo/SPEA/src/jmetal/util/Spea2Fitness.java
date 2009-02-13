@@ -52,7 +52,7 @@ public class Spea2Fitness {
     for (int i = 0; i < solutionSet_.size(); i++) {
       solutionSet_.get(i).setLocation(i);
       
-      System.out.println("Location: " + solutionSet_.get(i).getLocation());
+      //System.out.println("Location: " + solutionSet_.get(i).getLocation());
     } // for
   } // Spea2Fitness
     

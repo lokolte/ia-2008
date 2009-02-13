@@ -19,11 +19,11 @@ public class Metricas {
     public static void main(String[] args) {
 
         Metricas miPrueba = new Metricas();
-        String ruta = "d:\\instancias-parametros\\generado\\";
+        String ruta = "c:\\instancias-parametros\\generado\\";
         String[][] arrayArchivoProblema = {{"KROAB100.TSP.TXT", "kroac100.tsp.txt"}, {"qapUni.75.0.1.qap.txt", "qapUni.75.p75.1.qap.txt"}, {"rc101.txt", "c101.txt"}};
-        String[] arrayAlgoritmoEjecucion = {"MOACS", "M3AS", "SPEA", "NSGA"}; //Valores: MOACS, M3AS
+        String[] arrayAlgoritmoEjecucion = {"MOACS", "M3AS","NSGA","SPEA"}; //Valores: MOACS, M3AS
         int decimales = 2;
-        String pr = arrayArchivoProblema[2][0];
+        String pr = arrayArchivoProblema[2][1]; //[0,0] KROAB - [0,1] KROAC - [1,0] QAP.75.0 - [1,1] QAP 75.1
         String cadenaYtrue = ruta + "YTRUE-" + pr + ".txt";
 
         double[] distanciaFinal = new double[arrayAlgoritmoEjecucion.length];
@@ -252,7 +252,7 @@ public class Metricas {
             }
 
         }
-        pareto.solutionSet.printObjectivesToFile(algorithm + "-OPTIMO.csv");
+        pareto.solutionSet.printObjectivesToFile(algorithm + "-OPTIMO.csv",true);
         return pareto;
     }
 

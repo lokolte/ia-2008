@@ -43,21 +43,21 @@ public class TSP2 extends Problem {
         System.out.println(numberOfCities_);
         length_[0] = numberOfCities_;
 
-        System.out.println("Matriz de distancias");
+        /*System.out.println("Matriz de distancias");
         for (int k = 0; k < numberOfCities_; k++) {
             for (int j = 0; j < numberOfCities_; j++) {
-                System.out.print(distanceMatrix_[k][j] + "\t");
+                //System.out.print(distanceMatrix_[k][j] + "\t");
             } // for
             System.out.println();
         } // for
         System.out.println();
-        System.out.println("Matriz de tiempo");
+        //System.out.println("Matriz de tiempo");
         for (int k = 0; k < numberOfCities_; k++) {
             for (int j = 0; j < numberOfCities_; j++) {
-                System.out.print(timeMatrix_[k][j] + "\t");
+                //System.out.print(timeMatrix_[k][j] + "\t");
             } // for
             System.out.println();
-        } // for
+        } // for */
     } // TSP
 
     /** 
@@ -166,7 +166,7 @@ public class TSP2 extends Problem {
                     token.nextToken();
                     distanceMatrix_[k][j] = token.nval;
 
-                    System.out.println("X: " + k + ", Y: " + j + ", Valor: " + distanceMatrix_[k][j]);
+                    //System.out.println("X: " + k + ", Y: " + j + ", Valor: " + distanceMatrix_[k][j]);
                 } // for
             } // for
 

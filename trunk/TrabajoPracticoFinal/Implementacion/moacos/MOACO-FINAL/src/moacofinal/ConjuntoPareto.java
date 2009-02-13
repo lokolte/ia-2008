@@ -199,7 +199,7 @@ public class ConjuntoPareto {
             FileWriter fstream = new FileWriter(file, true);
             BufferedWriter output = new BufferedWriter(fstream);
             for (int i = 0; i < cantSoluciones; i++) {
-                output.write(prob.funcion_obj_1(listaVRP[i]) + "\t" + prob.funcion_obj_2(listaVRP[i]));
+                output.write(prob.funcion_obj_2(listaVRP[i]) + "\t" + prob.funcion_obj_1(listaVRP[i]));
                 output.newLine();
             }
             output.close();

@@ -2,19 +2,19 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2009-01-27T13:22:53</date>
-  <millis>1233080573843</millis>
+  <date>2009-02-13T10:48:23</date>
+  <millis>1234538303994</millis>
   <sequence>0</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>jmetal.solutions.VrptwNsga_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 4156ms</message>
+  <message>Total execution time: 5304ms</message>
 </record>
 <record>
-  <date>2009-01-27T13:22:53</date>
-  <millis>1233080573875</millis>
+  <date>2009-02-13T10:48:24</date>
+  <millis>1234538304022</millis>
   <sequence>1</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
@@ -24,9 +24,306 @@
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2009-01-27T13:22:53</date>
-  <millis>1233080573890</millis>
+  <date>2009-02-13T10:48:24</date>
+  <millis>1234538304026</millis>
   <sequence>2</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Objectives values have been writen to file FUN</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:29</date>
+  <millis>1234538309107</millis>
+  <sequence>3</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Total execution time: 5052ms</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:29</date>
+  <millis>1234538309109</millis>
+  <sequence>4</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Variables values have been writen to file VAR</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:29</date>
+  <millis>1234538309113</millis>
+  <sequence>5</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Objectives values have been writen to file FUN</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:34</date>
+  <millis>1234538314790</millis>
+  <sequence>6</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Total execution time: 5668ms</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:34</date>
+  <millis>1234538314799</millis>
+  <sequence>7</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Variables values have been writen to file VAR</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:34</date>
+  <millis>1234538314806</millis>
+  <sequence>8</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Objectives values have been writen to file FUN</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:40</date>
+  <millis>1234538320108</millis>
+  <sequence>9</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Total execution time: 5287ms</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:40</date>
+  <millis>1234538320109</millis>
+  <sequence>10</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Variables values have been writen to file VAR</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:40</date>
+  <millis>1234538320112</millis>
+  <sequence>11</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Objectives values have been writen to file FUN</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:45</date>
+  <millis>1234538325767</millis>
+  <sequence>12</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Total execution time: 5648ms</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:45</date>
+  <millis>1234538325769</millis>
+  <sequence>13</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Variables values have been writen to file VAR</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:45</date>
+  <millis>1234538325777</millis>
+  <sequence>14</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Objectives values have been writen to file FUN</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:52</date>
+  <millis>1234538332237</millis>
+  <sequence>15</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Total execution time: 6446ms</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:52</date>
+  <millis>1234538332239</millis>
+  <sequence>16</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Variables values have been writen to file VAR</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:52</date>
+  <millis>1234538332242</millis>
+  <sequence>17</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Objectives values have been writen to file FUN</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:57</date>
+  <millis>1234538337462</millis>
+  <sequence>18</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Total execution time: 5212ms</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:57</date>
+  <millis>1234538337464</millis>
+  <sequence>19</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Variables values have been writen to file VAR</message>
+</record>
+<record>
+  <date>2009-02-13T10:48:57</date>
+  <millis>1234538337470</millis>
+  <sequence>20</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Objectives values have been writen to file FUN</message>
+</record>
+<record>
+  <date>2009-02-13T10:49:02</date>
+  <millis>1234538342800</millis>
+  <sequence>21</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Total execution time: 5319ms</message>
+</record>
+<record>
+  <date>2009-02-13T10:49:02</date>
+  <millis>1234538342802</millis>
+  <sequence>22</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Variables values have been writen to file VAR</message>
+</record>
+<record>
+  <date>2009-02-13T10:49:02</date>
+  <millis>1234538342806</millis>
+  <sequence>23</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Objectives values have been writen to file FUN</message>
+</record>
+<record>
+  <date>2009-02-13T10:49:08</date>
+  <millis>1234538348075</millis>
+  <sequence>24</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Total execution time: 5261ms</message>
+</record>
+<record>
+  <date>2009-02-13T10:49:08</date>
+  <millis>1234538348077</millis>
+  <sequence>25</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Variables values have been writen to file VAR</message>
+</record>
+<record>
+  <date>2009-02-13T10:49:08</date>
+  <millis>1234538348082</millis>
+  <sequence>26</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Objectives values have been writen to file FUN</message>
+</record>
+<record>
+  <date>2009-02-13T10:49:13</date>
+  <millis>1234538353481</millis>
+  <sequence>27</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Total execution time: 5389ms</message>
+</record>
+<record>
+  <date>2009-02-13T10:49:13</date>
+  <millis>1234538353485</millis>
+  <sequence>28</sequence>
+  <logger>jMetal</logger>
+  <level>INFO</level>
+  <class>jmetal.solutions.VrptwNsga_main</class>
+  <method>main</method>
+  <thread>10</thread>
+  <message>Variables values have been writen to file VAR</message>
+</record>
+<record>
+  <date>2009-02-13T10:49:13</date>
+  <millis>1234538353488</millis>
+  <sequence>29</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
   <class>jmetal.solutions.VrptwNsga_main</class>

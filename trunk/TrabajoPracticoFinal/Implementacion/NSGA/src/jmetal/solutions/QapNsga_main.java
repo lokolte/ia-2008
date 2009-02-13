@@ -41,8 +41,8 @@ public class QapNsga_main {
             Operator mutation;         // Mutation operator
             Operator selection;         // Selection operator
 
-            String name = "qapUni.75.0.1.qap.txt";
-            //String name= "qapUni.75.p75.1.qap.txt";
+            //String name = "qapUni.75.0.1.qap.txt";
+            String name= "qapUni.75.p75.1.qap.txt";
             String problemName = "src/files/qap/";
 
             QualityIndicator indicators; // Object to get quality indicators
@@ -103,7 +103,7 @@ public class QapNsga_main {
             population.printVariablesToFile("NSGA/QAP/VAR.txt");
             logger_.info("Objectives values have been writen to file FUN");
             population.printObjectivesToFile("NSGA/QAP/FUN.txt");
-            population.printObjectivesToFile("c:/instancias/"+ name + "-NSGA.txt");
+            population.printObjectivesToFile("c:\\instancias-parametros\\generado\\"+ name + "-NSGA.txt");
 
             if (indicators != null) {
                 logger_.info("Quality indicators");

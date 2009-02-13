@@ -22,11 +22,11 @@ public class Main {
         String pr = new String(new char[60]);
 
         String[][] arrayArchivoProblema = {{"KROAB100.TSP.TXT", "kroac100.tsp.txt"}, {"qapUni.75.0.1.qap.txt", "qapUni.75.p75.1.qap.txt"}, {"rc101.txt", "c101.txt"}};
-        String ruta = "d:\\instancias-parametros\\";
+        String ruta = "c:\\instancias-parametros\\";
         String subRuta = "generado\\";
         String archivoParametros = "parametros_tsp.txt";
         String[] arrayAlgoritmoEjecucion = {"MOACS", "M3AS"}; //Valores: MOACS, M3AS
-        String problemaEjecucion = "TSP"; //Valores: TSP, QAP, VRP
+        String problemaEjecucion = "VRP"; //Valores: TSP, QAP, VRP
         String algoritmoEjecucion; //Valores: MOACS, M3AS
         String archivoProblema;
         for (int k = 0; k < 2; k++) { //recorrer array de Algoritmos
@@ -34,7 +34,7 @@ public class Main {
             for (int m = 0; m < 2; m++) { //recorrer array de ArchivoProblema
 
                 parametros = ruta + archivoParametros;
-                pr = arrayArchivoProblema[0][m]; // 0=TSP, 1=QAP, 2=VRP
+                pr = arrayArchivoProblema[2][m]; // 0=TSP, 1=QAP, 2=VRP
                 archivoProblema = pr;
                 System.out.println();
                 System.out.println("*********Ejecutandose con los sgtes parametros*********");

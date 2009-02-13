@@ -89,7 +89,7 @@ public class SPEA2 extends Algorithm{
           parents[1] = (Solution)selectionOperator.execute(archive);
         } while (k < SPEA2.TOURNAMENTS_ROUNDS); // do-while
         
-        System.out.println("Padre 0: " +  parents[0].getFitness() + ", Padre 1: " +  parents[1].getFitness());
+        //System.out.println("Padre 0: " +  parents[0].getFitness() + ", Padre 1: " +  parents[1].getFitness());
         
         //make the crossover 
         Solution [] offSpring = (Solution [])crossoverOperator.execute(parents);            
