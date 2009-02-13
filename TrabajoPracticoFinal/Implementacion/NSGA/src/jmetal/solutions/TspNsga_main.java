@@ -41,8 +41,8 @@ public class TspNsga_main {
             Operator crossover;         // Crossover operator
             Operator mutation;         // Mutation operator
             Operator selection;         // Selection operator
-            String name = "KROAB100.TSP.TXT" ;
-            //String name = "kroac100.tsp.txt";
+            //String name = "KROAB100.TSP.TXT" ;
+            String name = "kroac100.tsp.txt";
             String problemName = "src/files/tsp/";
             QualityIndicator indicators; // Object to get quality indicators
 
@@ -102,7 +102,7 @@ public class TspNsga_main {
             population.printVariablesToFile("NSGA/TSP/VAR.txt");
             logger_.info("Objectives values have been writen to file FUN");
             population.printObjectivesToFile("NSGA/TSP/FUN.txt");
-            population.printObjectivesToFile("c:/instancias/"+ name + "-NSGA.txt");
+            population.printObjectivesToFile("c:\\instancias-parametros\\generado\\"+ name + "-NSGA.txt");
 
             if (indicators != null) {
                 logger_.info("Quality indicators");

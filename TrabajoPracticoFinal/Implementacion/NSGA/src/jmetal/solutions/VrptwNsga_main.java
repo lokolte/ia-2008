@@ -44,8 +44,8 @@ public class VrptwNsga_main {
             Operator mutation;         // Mutation operator
             Operator selection;         // Selection operator
             
-            String name = "rc101.txt";
-            //String name = "c101.txt";
+            //String name = "rc101.txt";
+            String name = "c101.txt";
             String problemName = "src/files/vrptw/";
             QualityIndicator indicators; // Object to get quality indicators
 
@@ -104,7 +104,7 @@ public class VrptwNsga_main {
             population.printVariablesToFile("NSGA/VRPTW/VAR.txt");
             logger_.info("Objectives values have been writen to file FUN");
             population.printObjectivesToFile("NSGA/VRPTW/FUN.txt");
-            population.printObjectivesToFile("c:/instancias/" + name + "-NSGA.txt");
+            population.printObjectivesToFile("c:\\instancias-parametros\\generado\\" + name + "-NSGA.txt");
 
             if (indicators != null) {
                 logger_.info("Quality indicators");

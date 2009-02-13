@@ -129,6 +129,27 @@ public class SolutionSet implements Serializable {
       e.printStackTrace();
     }
   } // printObjectivesToFile
+  public void printObjectivesToFile(String path, boolean comma){
+    try {
+      /* Open the file */
+      FileOutputStream fos   = new FileOutputStream (path,false)     ;
+      OutputStreamWriter osw = new OutputStreamWriter(fos)    ;
+      BufferedWriter bw      = new BufferedWriter(osw)        ;
+                        
+      for (int i = 0; i < solutionsList_.size(); i++) {
+        //if (this.vector[i].getFitness()<1.0) {
+        bw.write(solutionsList_.get(i).toString(comma));
+        bw.newLine();
+        //}
+      }
+      
+      /* Close the file */
+      bw.close();
+    }catch (IOException e) {
+      Configuration.logger_.severe("Error acceding to the file");
+      e.printStackTrace();
+    }
+  } // printObjectivesToFile
  
   /**
    * Writes the decision variable values of the <code>Solution</code>

@@ -107,7 +107,7 @@ public class BVrptwSpea2_main {
             population.printObjectivesToFile("FUN");
             logger_.info("Variables values have been writen to file VAR");
             population.printVariablesToFile("VAR");
-            population.printObjectivesToFile("c:/instancias/" + name + "-SPEA.txt");
+            population.printObjectivesToFile("c:\\instancias-parametros\\generado\\" + name + "-SPEA.txt");
 
         }
     }//main
