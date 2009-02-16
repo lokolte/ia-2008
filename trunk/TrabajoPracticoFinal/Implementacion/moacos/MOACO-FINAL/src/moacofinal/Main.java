@@ -26,7 +26,7 @@ public class Main {
         String subRuta = "generado\\";
         String archivoParametros = "parametros_tsp.txt";
         String[] arrayAlgoritmoEjecucion = {"MOACS", "M3AS"}; //Valores: MOACS, M3AS
-        String problemaEjecucion = "VRP"; //Valores: TSP, QAP, VRP
+        String problemaEjecucion = "TSP"; //Valores: TSP, QAP, VRP
         String algoritmoEjecucion; //Valores: MOACS, M3AS
         String archivoProblema;
         for (int k = 0; k < 2; k++) { //recorrer array de Algoritmos
@@ -34,7 +34,7 @@ public class Main {
             for (int m = 0; m < 2; m++) { //recorrer array de ArchivoProblema
 
                 parametros = ruta + archivoParametros;
-                pr = arrayArchivoProblema[2][m]; // 0=TSP, 1=QAP, 2=VRP
+                pr = arrayArchivoProblema[0][m]; // 0=TSP, 1=QAP, 2=VRP
                 archivoProblema = pr;
                 System.out.println();
                 System.out.println("*********Ejecutandose con los sgtes parametros*********");

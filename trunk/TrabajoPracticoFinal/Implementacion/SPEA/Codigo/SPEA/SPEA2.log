@@ -2,331 +2,331 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2009-02-13T11:49:19</date>
-  <millis>1234541959927</millis>
+  <date>2009-02-15T18:39:53</date>
+  <millis>1234739393125</millis>
   <sequence>0</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 7639</message>
+  <message>Total execution time: 6855</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:19</date>
-  <millis>1234541959957</millis>
+  <date>2009-02-15T18:39:53</date>
+  <millis>1234739393153</millis>
   <sequence>1</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:19</date>
-  <millis>1234541959962</millis>
+  <date>2009-02-15T18:39:53</date>
+  <millis>1234739393166</millis>
   <sequence>2</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:26</date>
-  <millis>1234541966701</millis>
+  <date>2009-02-15T18:40:00</date>
+  <millis>1234739400073</millis>
   <sequence>3</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 6707</message>
+  <message>Total execution time: 6854</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:26</date>
-  <millis>1234541966704</millis>
+  <date>2009-02-15T18:40:00</date>
+  <millis>1234739400075</millis>
   <sequence>4</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:26</date>
-  <millis>1234541966706</millis>
+  <date>2009-02-15T18:40:00</date>
+  <millis>1234739400695</millis>
   <sequence>5</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:33</date>
-  <millis>1234541973051</millis>
+  <date>2009-02-15T18:40:07</date>
+  <millis>1234739407279</millis>
   <sequence>6</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 6336</message>
+  <message>Total execution time: 6557</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:33</date>
-  <millis>1234541973059</millis>
+  <date>2009-02-15T18:40:07</date>
+  <millis>1234739407280</millis>
   <sequence>7</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:33</date>
-  <millis>1234541973062</millis>
+  <date>2009-02-15T18:40:07</date>
+  <millis>1234739407284</millis>
   <sequence>8</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:40</date>
-  <millis>1234541980121</millis>
+  <date>2009-02-15T18:40:13</date>
+  <millis>1234739413883</millis>
   <sequence>9</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 7046</message>
+  <message>Total execution time: 6567</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:40</date>
-  <millis>1234541980122</millis>
+  <date>2009-02-15T18:40:13</date>
+  <millis>1234739413884</millis>
   <sequence>10</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:40</date>
-  <millis>1234541980123</millis>
+  <date>2009-02-15T18:40:13</date>
+  <millis>1234739413889</millis>
   <sequence>11</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:47</date>
-  <millis>1234541987017</millis>
+  <date>2009-02-15T18:40:31</date>
+  <millis>1234739431278</millis>
   <sequence>12</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 6880</message>
+  <message>Total execution time: 14187</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:47</date>
-  <millis>1234541987026</millis>
+  <date>2009-02-15T18:40:31</date>
+  <millis>1234739431280</millis>
   <sequence>13</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:47</date>
-  <millis>1234541987029</millis>
+  <date>2009-02-15T18:40:31</date>
+  <millis>1234739431285</millis>
   <sequence>14</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:54</date>
-  <millis>1234541994845</millis>
+  <date>2009-02-15T18:40:43</date>
+  <millis>1234739443783</millis>
   <sequence>15</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 7802</message>
+  <message>Total execution time: 12436</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:54</date>
-  <millis>1234541994847</millis>
+  <date>2009-02-15T18:40:43</date>
+  <millis>1234739443785</millis>
   <sequence>16</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-02-13T11:49:54</date>
-  <millis>1234541994850</millis>
+  <date>2009-02-15T18:40:43</date>
+  <millis>1234739443790</millis>
   <sequence>17</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:02</date>
-  <millis>1234542002033</millis>
+  <date>2009-02-15T18:40:57</date>
+  <millis>1234739457183</millis>
   <sequence>18</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 7173</message>
+  <message>Total execution time: 13361</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:02</date>
-  <millis>1234542002035</millis>
+  <date>2009-02-15T18:40:57</date>
+  <millis>1234739457221</millis>
   <sequence>19</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:02</date>
-  <millis>1234542002037</millis>
+  <date>2009-02-15T18:40:57</date>
+  <millis>1234739457227</millis>
   <sequence>20</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:08</date>
-  <millis>1234542008503</millis>
+  <date>2009-02-15T18:41:10</date>
+  <millis>1234739470660</millis>
   <sequence>21</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 6457</message>
+  <message>Total execution time: 13394</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:08</date>
-  <millis>1234542008504</millis>
+  <date>2009-02-15T18:41:10</date>
+  <millis>1234739470662</millis>
   <sequence>22</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:08</date>
-  <millis>1234542008671</millis>
+  <date>2009-02-15T18:41:10</date>
+  <millis>1234739470667</millis>
   <sequence>23</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:16</date>
-  <millis>1234542016392</millis>
+  <date>2009-02-15T18:41:24</date>
+  <millis>1234739484432</millis>
   <sequence>24</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 7711</message>
+  <message>Total execution time: 13730</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:16</date>
-  <millis>1234542016394</millis>
+  <date>2009-02-15T18:41:24</date>
+  <millis>1234739484434</millis>
   <sequence>25</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:16</date>
-  <millis>1234542016396</millis>
+  <date>2009-02-15T18:41:24</date>
+  <millis>1234739484440</millis>
   <sequence>26</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:24</date>
-  <millis>1234542024332</millis>
+  <date>2009-02-15T18:41:38</date>
+  <millis>1234739498834</millis>
   <sequence>27</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
-  <message>Total execution time: 7926</message>
+  <message>Total execution time: 14300</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:24</date>
-  <millis>1234542024335</millis>
+  <date>2009-02-15T18:41:38</date>
+  <millis>1234739498836</millis>
   <sequence>28</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Objectives values have been writen to file FUN</message>
 </record>
 <record>
-  <date>2009-02-13T11:50:24</date>
-  <millis>1234542024338</millis>
+  <date>2009-02-15T18:41:38</date>
+  <millis>1234739498842</millis>
   <sequence>29</sequence>
   <logger>jMetal</logger>
   <level>INFO</level>
-  <class>jmetal.solutions.vrptw.BVrptwSpea2_main</class>
+  <class>jmetal.solutions.tsp.BTspSpea2_main</class>
   <method>main</method>
   <thread>10</thread>
   <message>Variables values have been writen to file VAR</message>

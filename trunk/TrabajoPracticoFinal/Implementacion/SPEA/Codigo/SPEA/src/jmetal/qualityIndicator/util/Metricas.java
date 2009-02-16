@@ -21,9 +21,9 @@ public class Metricas {
         Metricas miPrueba = new Metricas();
         String ruta = "c:\\instancias-parametros\\generado\\";
         String[][] arrayArchivoProblema = {{"KROAB100.TSP.TXT", "kroac100.tsp.txt"}, {"qapUni.75.0.1.qap.txt", "qapUni.75.p75.1.qap.txt"}, {"rc101.txt", "c101.txt"}};
-        String[] arrayAlgoritmoEjecucion = {"MOACS", "M3AS","NSGA","SPEA"}; //Valores: MOACS, M3AS
-        int decimales = 2;
-        String pr = arrayArchivoProblema[2][1]; //[0,0] KROAB - [0,1] KROAC - [1,0] QAP.75.0 - [1,1] QAP 75.1
+        String[] arrayAlgoritmoEjecucion = {"MOACS", "M3AS", "NSGA", "SPEA"}; //Valores: MOACS, M3AS
+        int decimales = 1;
+        String pr = arrayArchivoProblema[2][0]; //[0,0] KROAB - [0,1] KROAC - [1,0] QAP.75.0 - [1,1] QAP 75.1
         String cadenaYtrue = ruta + "YTRUE-" + pr + ".txt";
 
         double[] distanciaFinal = new double[arrayAlgoritmoEjecucion.length];
@@ -58,7 +58,7 @@ public class Metricas {
         miPrueba.GenerarYTrue(cadenaYtrue, ruta + "YTRUE");
 
         System.out.println("********RESULTADO NORMALIZADO********");
-        System.out.println("\tAlgo\tDista\tDistra\tExt\tCard\tExtYtrue");
+        System.out.println("\tAlgo\tDista\tDistra\tExt");
 
         for (int i = 0; i < arrayAlgoritmoEjecucion.length; i++) {
 
@@ -77,10 +77,10 @@ public class Metricas {
     }
 
     public static double Truncar(double nD, int nDec) {
-        if (nD > 0) {
-            nD = Math.floor(nD * Math.pow(10, nDec)) / Math.pow(10, nDec);
+                if (nD > 0) {
+        nD = Math.floor(nD * Math.pow(10, nDec)) / Math.pow(10, nDec);
         } else {
-            nD = Math.ceil(nD * Math.pow(10, nDec)) / Math.pow(10, nDec);
+        nD = Math.ceil(nD * Math.pow(10, nDec)) / Math.pow(10, nDec);
         }
         return nD;
     }
@@ -137,20 +137,21 @@ public class Metricas {
     public double getExtension(String fileYTrue) {
         MetricsUtil metricsUtils = new MetricsUtil();
 
-        pareto1 = GenerarYTrue(fileYTrue);
+        pareto2 = GenerarYTrue(fileYTrue);
 
-        SolutionSet yTrueSolutionSet = pareto1.getSolutionSet();
-
+        SolutionSet yTrueSolutionSet = pareto2.getSolutionSet();
+        Solution solutionYPrima;
+        Solution solutionYtrue;
         double sumaDistanciaMaxima = 0.0;
-        for (int i = 0; i < pareto1.solutionSet.size(); i++) {
+        for (int i = 0; i < pareto2.solutionSet.size(); i++) {
 
-            Solution solutionYtrue = yTrueSolutionSet.get(i);
+            solutionYtrue = yTrueSolutionSet.get(i);
             double[] yTruePunto = {solutionYtrue.getObjective(0), solutionYtrue.getObjective(1)};
 
             double distanciaMaxima = Double.MIN_VALUE;
-            for (int j = 0; j < pareto1.solutionSet.size(); j++) {
+            for (int j = 0; j < pareto2.solutionSet.size(); j++) {
 
-                Solution solutionYPrima = yTrueSolutionSet.get(j);
+                solutionYPrima = yTrueSolutionSet.get(j);
                 double[] yPrimaPunto = {solutionYPrima.getObjective(0), solutionYPrima.getObjective(1)};
 
 
@@ -252,7 +253,7 @@ public class Metricas {
             }
 
         }
-        pareto.solutionSet.printObjectivesToFile(algorithm + "-OPTIMO.csv",true);
+        pareto.solutionSet.printObjectivesToFile(algorithm + "-OPTIMO.csv", true);
         return pareto;
     }
 
