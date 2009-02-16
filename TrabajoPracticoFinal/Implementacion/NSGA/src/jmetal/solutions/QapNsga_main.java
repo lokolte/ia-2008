@@ -41,8 +41,8 @@ public class QapNsga_main {
             Operator mutation;         // Mutation operator
             Operator selection;         // Selection operator
 
-            //String name = "qapUni.75.0.1.qap.txt";
-            String name= "qapUni.75.p75.1.qap.txt";
+            String name = "qapUni.75.0.1.qap.txt";
+            //String name= "qapUni.75.p75.1.qap.txt";
             String problemName = "src/files/qap/";
 
             QualityIndicator indicators; // Object to get quality indicators
